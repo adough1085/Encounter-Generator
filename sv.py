@@ -2896,7 +2896,7 @@ g.box = ["Crocalor","Oinkologne (Male)","Clodsire","Gumshoos","Arrokuda","Klawf"
 g.dupe_out()
 #g.distribution(0,8,1,"Flying",0)
 #g.generate(0,8,1,"Flying",0)
-#g.distribution(0,9,1,"Normal",0)
+g.distribution(0,19,3,"Normal",1)
 g.generate(0,19,3,"Normal",1)
 #g.generate(0,10,1,"Dragon",1)
 #g.locate(0, "Dratini")
