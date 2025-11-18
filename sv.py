@@ -218,10 +218,18 @@ class Game:
         self.links.append([self.pokedex[399]+" (Violet)"]) # Miraidon
 
     def dupe_out(self):
+        """
+        Loop 1) For every single Pokémon in the box, it will check all links:
+            Loop 2) For every link in the link list, it will check the link:
+                Loop 3) For every Pokémon in a link: 
+                    If a Pokémon in the link is equal to the box Pokémon, set found to True.
+                    If found is True, copy every Pokémon in the link to the "dupes" list, then exit Loop 3.
+                If found is True, exit Loop 2.
+        """
         found = False
-        for boxed_mon in self.box:
-            for link in self.links:
-                for pkmn in link:
+        for boxed_mon in self.box: # 1
+            for link in self.links: # 2
+                for pkmn in link: # 3
                     if boxed_mon.strip().lower() == pkmn.strip().lower():
                         found = True
                     if found == True:
@@ -232,17 +240,20 @@ class Game:
                     found = False
                     break 
 
-    def generate(self, pkmn_set_int, area, time, type, power):
+    def generate(self, pkmn_set_char, area, time, type, power):
         pkmn_set = {}
         area_chosen = -1
         daypart = ""
-        if pkmn_set_int == 1:
+
+        # Ensures that
+        pkmn_set_char = pkmn_set_char.strip().lower()
+        if pkmn_set_char == "a":
             pkmn_set = alphabetical
-        elif pkmn_set_int == 0:
+        elif pkmn_set_char == "c":
             pkmn_set = chronological
         else:
-            print("0 = chronological")
-            print("1 = alphabetical")
+            print("a = alphabetical")
+            print("c = chronological")
             return None
 
         if 1 <= area and area <= 30:
@@ -2894,9 +2905,9 @@ chronological[30] = great_crater_of_paldea
 g = Game("Scarlet")
 g.box = ["Crocalor","Oinkologne (Male)","Clodsire","Gumshoos","Arrokuda","Klawf","Bombirdier", "Gyarados", "Gimmighoul","Goomy", "Tauros (Combat Breed)", "Basculin (Red-Striped)","Floette", "Azumarill","Jigglypuff"]
 g.dupe_out()
-#g.distribution(0,8,1,"Flying",0)
-#g.generate(0,8,1,"Flying",0)
-g.distribution(0,19,3,"Normal",1)
-g.generate(0,19,3,"Normal",1)
-#g.generate(0,10,1,"Dragon",1)
-#g.locate(0, "Dratini")
+#g.distribution("c",8,1,"Flying",0)
+#g.generate("c",8,1,"Flying",0)
+g.distribution("c",19,3,"Normal",1)
+g.generate("c",19,3,"Normal",1)
+#g.generate("c",10,1,"Dragon",1)
+#g.locate("c", "Dratini")
