@@ -338,41 +338,41 @@ class Game:
             day_found = False
             dusk_found = False
             night_found = False
-            for k in pkmn_set[x+1].dawn.keys():
+            for k in pkmn_set[x].dawn.keys():
                 if k.lower().find(pkmn.lower().strip()) != -1:
                     pkmn_found = True
                     break
             if pkmn_found == False:
                 continue
             elif pkmn_found == True:
-                for k in pkmn_set[x+1].dawn.keys():
+                for k in pkmn_set[x].dawn.keys():
                     if k.lower().find(pkmn.lower().strip()) == -1:
                         continue
-                    if pkmn_set[x+1].dawn[k] > 0:
+                    if pkmn_set[x].dawn[k] > 0:
                         dawn_found = True
                         break
-                for k in pkmn_set[x+1].day.keys():
+                for k in pkmn_set[x].day.keys():
                     if k.lower().find(pkmn.lower().strip()) == -1:
                         continue
-                    if pkmn_set[x+1].day[k] > 0:
+                    if pkmn_set[x].day[k] > 0:
                         day_found = True
                         break
-                for k in pkmn_set[x+1].dusk.keys():
+                for k in pkmn_set[x].dusk.keys():
                     if k.lower().find(pkmn.lower().strip()) == -1:
                         continue
-                    if pkmn_set[x+1].dusk[k] > 0:
+                    if pkmn_set[x].dusk[k] > 0:
                         dusk_found = True
                         break
-                for k in pkmn_set[x+1].night.keys():
+                for k in pkmn_set[x].night.keys():
                     if k.lower().find(pkmn.lower().strip()) == -1:
                         continue
-                    if pkmn_set[x+1].night[k] > 0:
+                    if pkmn_set[x].night[k] > 0:
                         night_found = True
                         break
             if (dawn_found == True) and (day_found == True) and (dusk_found == True) and (night_found == True):
-                habitats.append(pkmn_set[x+1].name)
+                habitats.append(pkmn_set[x].name)
             else:
-                string = pkmn_set[x+1].name + " ("
+                string = pkmn_set[x].name + " ("
                 if dawn_found == True:
                     string = string + "Dawn, "
                 if day_found == True:
@@ -2783,6 +2783,7 @@ west_province_area_three.add("Tinkatuff_Fairy_Steel", "15")
 west_province_area_three.add("Greavard_Ghost", "40")
 
 """
+REFORMAT
  1 = Alfornada Cavern
  2 = Asado Desert
  3 = Casseroya Lake
@@ -2814,37 +2815,38 @@ west_province_area_three.add("Greavard_Ghost", "40")
 29 = West Province (Area Three)
 """
 alphabetical = {}
-alphabetical[1] = alfornada_cavern
-alphabetical[2] = asado_desert
-alphabetical[3] = cabo_poco
-alphabetical[4] = casseroya_lake
-alphabetical[5] = dalizapa_passage
-alphabetical[6] = east_paldean_sea
-alphabetical[7] = east_province_area_one
-alphabetical[8] = east_province_area_two
-alphabetical[9] = east_province_area_three
-alphabetical[10] = glaseado_mountain
-alphabetical[11] = great_crater_of_paldea
-alphabetical[12] = inlet_grotto
-alphabetical[13] = north_paldean_sea
-alphabetical[14] = north_province_area_one
-alphabetical[15] = north_province_area_two
-alphabetical[16] = north_province_area_three
-alphabetical[17] = poco_path
-alphabetical[18] = socarrat_trail
-alphabetical[19] = south_paldean_sea
-alphabetical[20] = south_province_area_one
-alphabetical[21] = south_province_area_two
-alphabetical[22] = south_province_area_three
-alphabetical[23] = south_province_area_four
-alphabetical[24] = south_province_area_five
-alphabetical[25] = south_province_area_six
-alphabetical[26] = tagtree_thicket
-alphabetical[27] = west_paldean_sea
-alphabetical[28] = west_province_area_one
-alphabetical[29] = west_province_area_two
-alphabetical[30] = west_province_area_three
+alphabetical[0] = alfornada_cavern
+alphabetical[1] = asado_desert
+alphabetical[2] = cabo_poco
+alphabetical[3] = casseroya_lake
+alphabetical[4] = dalizapa_passage
+alphabetical[5] = east_paldean_sea
+alphabetical[6] = east_province_area_one
+alphabetical[7] = east_province_area_two
+alphabetical[8] = east_province_area_three
+alphabetical[9]  = glaseado_mountain
+alphabetical[10] = great_crater_of_paldea
+alphabetical[11] = inlet_grotto
+alphabetical[12] = north_paldean_sea
+alphabetical[13] = north_province_area_one
+alphabetical[14] = north_province_area_two
+alphabetical[15] = north_province_area_three
+alphabetical[16] = poco_path
+alphabetical[17] = socarrat_trail
+alphabetical[18] = south_paldean_sea
+alphabetical[19] = south_province_area_one
+alphabetical[20] = south_province_area_two
+alphabetical[21] = south_province_area_three
+alphabetical[22] = south_province_area_four
+alphabetical[23] = south_province_area_five
+alphabetical[24] = south_province_area_six
+alphabetical[25] = tagtree_thicket
+alphabetical[26] = west_paldean_sea
+alphabetical[27] = west_province_area_one
+alphabetical[28] = west_province_area_two
+alphabetical[29] = west_province_area_three
 """
+REFORMAT
  3 = Cabo Poco
 16 = Poco Path
 11 = Inlet Grotto
@@ -2877,43 +2879,43 @@ alphabetical[30] = west_province_area_three
 10 = Great Crater of Paldea
 """
 chronological = {}
-chronological[1] = cabo_poco
-chronological[2] = poco_path
-chronological[3] = inlet_grotto
-chronological[4] = south_province_area_one
-chronological[5] = south_province_area_two
-chronological[6] = south_province_area_three
-chronological[7] = west_province_area_one
-chronological[8] = south_paldean_sea
-chronological[9] = south_province_area_four
-chronological[10] = south_province_area_five
-chronological[11] = east_province_area_one
-chronological[12] = east_province_area_two
-chronological[13] = east_province_area_three
-chronological[14] = west_province_area_two
-chronological[15] = tagtree_thicket
-chronological[16] = west_province_area_three
-chronological[17] = east_paldean_sea
-chronological[18] = west_paldean_sea
-chronological[19] = dalizapa_passage
-chronological[20] = glaseado_mountain
-chronological[21] = alfornada_cavern
-chronological[22] = south_province_area_six
-chronological[23] = asado_desert
-chronological[24] = north_province_area_three
-chronological[25] = north_province_area_two
-chronological[26] = north_province_area_one
-chronological[27] = north_paldean_sea
-chronological[28] = casseroya_lake
-chronological[29] = socarrat_trail
-chronological[30] = great_crater_of_paldea
+chronological[0] = cabo_poco
+chronological[1] = poco_path
+chronological[2] = inlet_grotto
+chronological[3] = south_province_area_one
+chronological[4] = south_province_area_two
+chronological[5] = south_province_area_three
+chronological[6] = west_province_area_one
+chronological[7] = south_paldean_sea
+chronological[8] = south_province_area_four
+chronological[9]  = south_province_area_five
+chronological[10] = east_province_area_one
+chronological[11] = east_province_area_two
+chronological[12] = east_province_area_three
+chronological[13] = west_province_area_two
+chronological[14] = tagtree_thicket
+chronological[15] = west_province_area_three
+chronological[16] = east_paldean_sea
+chronological[17] = west_paldean_sea
+chronological[18] = dalizapa_passage
+chronological[19] = glaseado_mountain
+chronological[20] = alfornada_cavern
+chronological[21] = south_province_area_six
+chronological[22] = asado_desert
+chronological[23] = north_province_area_three
+chronological[24] = north_province_area_two
+chronological[25] = north_province_area_one
+chronological[26] = north_paldean_sea
+chronological[27] = casseroya_lake
+chronological[28] = socarrat_trail
+chronological[29] = great_crater_of_paldea
 
 g = Game("Scarlet")
 g.box = ["Crocalor","Oinkologne (Male)","Clodsire","Gumshoos","Arrokuda","Klawf","Bombirdier", "Gyarados", "Gimmighoul","Goomy", "Tauros (Combat Breed)", "Basculin (Red-Striped)","Floette", "Azumarill","Jigglypuff"]
 g.dupe_out()
 #g.distribution("c",8,1,"Flying",0)
 #g.generate("c",8,1,"Flying",0)
-g.distribution("c",19,3,"Normal",1)
-g.generate("c",19,3,"Normal",1)
+g.distribution("c",18,3,"Normal",1)
+g.generate("c",18,3,"Normal",1)
 #g.generate("c",10,1,"Dragon",1)
 #g.locate("c", "Dratini")

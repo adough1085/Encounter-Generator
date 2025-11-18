@@ -1,0 +1,68 @@
+alphabetical = {}
+alphabetical[0] = alfornada_cavern
+alphabetical[1] = asado_desert
+alphabetical[2] = cabo_poco
+alphabetical[3] = casseroya_lake
+alphabetical[4] = dalizapa_passage
+alphabetical[5] = east_paldean_sea
+alphabetical[6] = east_province_area_one
+alphabetical[7] = east_province_area_two
+alphabetical[8] = east_province_area_three
+alphabetical[9]  = glaseado_mountain
+alphabetical[10] = great_crater_of_paldea
+alphabetical[11] = inlet_grotto
+alphabetical[12] = north_paldean_sea
+alphabetical[13] = north_province_area_one
+alphabetical[14] = north_province_area_two
+alphabetical[15] = north_province_area_three
+alphabetical[16] = poco_path
+alphabetical[17] = socarrat_trail
+alphabetical[18] = south_paldean_sea
+alphabetical[19] = south_province_area_one
+alphabetical[20] = south_province_area_two
+alphabetical[21] = south_province_area_three
+alphabetical[22] = south_province_area_four
+alphabetical[23] = south_province_area_five
+alphabetical[24] = south_province_area_six
+alphabetical[25] = tagtree_thicket
+alphabetical[26] = west_paldean_sea
+alphabetical[27] = west_province_area_one
+alphabetical[28] = west_province_area_two
+alphabetical[29] = west_province_area_three
+
+
+chronological = {}
+chronological[0] = cabo_poco
+chronological[1] = poco_path
+chronological[2] = inlet_grotto
+chronological[3] = south_province_area_one
+chronological[4] = south_province_area_two
+chronological[5] = south_province_area_three
+chronological[6] = west_province_area_one
+chronological[7] = south_paldean_sea
+chronological[8] = south_province_area_four
+chronological[9]  = south_province_area_five
+chronological[10] = east_province_area_one
+chronological[11] = east_province_area_two
+chronological[12] = east_province_area_three
+chronological[13] = west_province_area_two
+chronological[14] = tagtree_thicket
+chronological[15] = west_province_area_three
+chronological[16] = east_paldean_sea
+chronological[17] = west_paldean_sea
+chronological[18] = dalizapa_passage
+chronological[19] = glaseado_mountain
+chronological[20] = alfornada_cavern
+chronological[21] = south_province_area_six
+chronological[22] = asado_desert
+chronological[23] = north_province_area_three
+chronological[24] = north_province_area_two
+chronological[25] = north_province_area_one
+chronological[26] = north_paldean_sea
+chronological[27] = casseroya_lake
+chronological[28] = socarrat_trail
+chronological[29] = great_crater_of_paldea
+
+print(len(alphabetical))
+for x in range(1, len(alphabetical)):
+    print(x)
