@@ -1,10 +1,13 @@
 This program was made for nuzlocking the base game of Pokémon Scarlet and Violet.
-A nuzlocke is a type of fanmade challenge in Pokémon games that limits the amount of Pokémon you can capture in a playthrough.
+A nuzlocke is a type of fanmade challenge in Pokémon games that has the two core rules:
+- you are limited to one Pokémon per unique location
+- if a Pokémon you own faints, you cannot use that Pokémon for the rest of the playthrough.
+
 A common rule is that one cannot capture the same Pokémon twice (including evolutionary-related Pokémon).
 This program will check:
-- the Pokémon that I have already captured
-- the chosen area
-- time
+- the Pokémon that have already been captured
+- the chosen location
+- time of day
 - boosting power that influences certain types to spawn
 and it will either choose a Pokémon or display the probability of each Pokémon based on a weighted score.
 
