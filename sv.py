@@ -1,4 +1,5 @@
 import random
+import modules.name_conventions.nc as nc
 
 class Game:
     def __init__(self, game):
@@ -6,7 +7,7 @@ class Game:
         self.areas = []
         self.box = []
         self.dupes = []
-        f = open("paldea_dex.txt", "r")
+        f = open("data/pokedex/paldea_dex.txt", "r")
         self.pokedex = f.readlines()
         f.close()
         for x in range(len(self.pokedex)):
@@ -245,10 +246,10 @@ class Game:
             print("1 = alphabetical")
             return None
 
-        if 1 <= area and area <= 30:
+        if 1 <= area and area <= 31:
             area_chosen = area
         else:
-            print("Areas 1-30")
+            print("Areas 1-31")
             return None
 
         if time == 0:
@@ -378,19 +379,13 @@ class Game:
 
 class Area:
     def __init__(self, name):
-        self.name = name
-        self.file_format_name = ""
+        self.name = nc.standard(name)
+        self.snake_case_name = nc.snake_case(name)
         self.pokemon = []
         self.dawn = {}
         self.day = {}
         self.dusk = {}
         self.night = {}
-
-        area_name_split=self.name.lower().split(" ")
-        area_name = ""
-        for token in area_name_split:
-            area_name += token + "_"
-        self.file_format_name = area_name[:len(area_name)-1]
 
     def power(self, power):
         upper_bound = 0
@@ -425,7 +420,10 @@ class Area:
             dusk = int(weight)
             night = int(weight)
 
+        
         # For testing/reworking purposes
+        # activation = ""
+        # if activation == "ACTIVATE":
         # self.raw_probability(name,weight)
 
         if self.f_key(name) == False:
@@ -647,6 +645,7 @@ class Area:
         f1.close()
 
     def raw_probability(self, raw_pokemon, weight):
+        # Meant to be used with add()
         # Overwriting in case there is pre-existing text
         # raw_pokemon should be a format like "Dugtrio_Ground"
         # weight should be a like "60/60/20/0" or "5" 

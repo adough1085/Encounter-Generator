@@ -1,31 +1,18 @@
 from pathlib import Path
-from pixel_count.pc import count_colour_pixels as ccp
+from modules.pixel_count.pc import count_colour_pixels as ccp
+import modules.name_conventions.nc as nc
 
 class Area:
     def __init__(self, number, name):
         self.number = number # Number corresponds to numbers in image files, which is roughly chronological order in-game
-        self.name = ""
-        proto_name_arr = name.split(" ")
-        for token in proto_name_arr:
-            self.name += token.title() + " "
-        self.name = self.name[:len(self.name)-1] # Written like "Alfornada Cavern", ensuring that it comes out to the right caps regardless of initial input
-        self.snake_case_name = "" # Written like "alfornada_cavern"
-        self.image_name = ""
+        self.name = nc.standard(name)
+        self.snake_case_name = nc.snake_case(name)
+        self.image_name = nc.image_case(name, number)
         self.biomes = []
         self.biome_pixels = {}
         self.distribution = {}
         self.pixel_total = 0
-        self.target_colour_rgb = (80, 47, 121)
-
-        area_name_split=self.name.lower().split(" ")
-        area_name = ""
-        for token in area_name_split:
-            area_name += token + "_"
-        self.snake_case_name = area_name[:len(area_name)-1]
-
-        name_pascal_underscore = self.name.replace(" ", "_")
-        i_name = f"{str(self.number)}Paldea_{name_pascal_underscore}"
-        self.image_name = i_name
+        self.target_colour_rgb = (80, 47, 121) # Purple sort of colour
 
         
     def count(self):
