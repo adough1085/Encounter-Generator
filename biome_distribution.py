@@ -1,10 +1,10 @@
 from pathlib import Path
-from pixel_count.pixel_count import count_colour_pixels as ccp
-import os
+from pixel_count.pc import count_colour_pixels as ccp
 
 class Area:
     def __init__(self, number, name):
         self.number = number # Number corresponds to numbers in image files, which is roughly chronological order in-game
+        self.name = ""
         proto_name_arr = name.split(" ")
         for token in proto_name_arr:
             self.name += token.title() + " "
@@ -30,7 +30,7 @@ class Area:
         
     def count(self):
         # For every biome, check if it exists in the region
-        image_folder = Path("../images/")
+        image_folder = Path("data/image/")
         area_folder = image_folder / self.image_name
         biomes_list = ["Bamboo_Forest","Beach","Cave","Desert","Flower","Forest","Lake","Mine","Mountain",
                        "Ocean","Olive","Prairie","Riverside","Rocky_Area","Ruins","Snowfield","Swamp","Town"]

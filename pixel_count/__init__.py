@@ -1,2 +1,2 @@
-__all__ = ["pixel_count"]
-from . import pixel_count
+__all__ = ["pc"]
+from . import pc
