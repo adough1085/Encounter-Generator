@@ -1,0 +1,113 @@
+Name,Type1,Type2,Biome,Dawn,Day,Dusk,Night
+Misdreavus,Ghost,Ghost,,60,60,60,60
+Dreepy,Dragon,Ghost,,15,15,15,15
+Dreepy,Dragon,Ghost,,5,5,5,5
+Meowth,Normal,Normal,,30,30,30,30
+Persian,Normal,Normal,,30,30,30,30
+Chansey,Normal,Normal,,1,1,1,1
+Scyther,Bug,Flying,,3,3,3,3
+Ditto,Normal,Normal,,10,10,10,10
+Jumpluff,Grass,Flying,,30,30,30,30
+Espeon,Psychic,Psychic,,1,1,1,0
+Murkrow,Dark,Flying,,0,0,40,40
+Dunsparce,Normal,Normal,,2,2,2,2
+Shroomish,Grass,Grass,,30,30,30,30
+Vigoroth,Normal,Normal,,20,20,20,20
+Tropius,Grass,Flying,,10,10,10,10
+Staravia,Normal,Flying,,30,30,30,0
+Pachirisu,Electric,Electric,,10,10,10,10
+Zorua,Dark,Dark,,15,15,15,15
+Deerling,Normal,Grass,,70,70,70,70
+Sawsbuck,Normal,Grass,,10,10,10,10
+Fletchinder,Fire,Flying,,30,30,30,30
+Oinkologne (Male),Normal,Normal,,20,20,20,20
+Oinkologne (Female),Normal,Normal,,20,20,20,20
+Pawmo,Electric,Fighting,,10,10,10,10
+Maschiff,Dark,Dark,,30,30,30,30
+Mabosstiff,Dark,Dark,,20,20,20,20
+Toedscool,Ground,Grass,,2,2,2,2
+Lilligant,Grass,Grass,,1,1,1,1
+Pikachu,Electric,Electric,,10,10,10,10
+Primeape,Fighting,Fighting,,20,20,20,20
+Scyther,Bug,Flying,,5,5,5,5
+Jolteon,Electric,Electric,,1,1,1,1
+Sudowoodo,Rock,Rock,,60,60,60,60
+Murkrow,Dark,Flying,,0,0,20,20
+Pineco,Bug,Bug,,60,60,60,60
+Dunsparce,Normal,Normal,,4,4,4,4
+Shroomish,Grass,Grass,,60,60,60,60
+Breloom,Grass,Fighting,,30,30,30,30
+Tropius,Grass,Flying,,30,30,30,30
+Pachirisu,Electric,Electric,,40,40,40,40
+Honchkrow,Dark,Flying,,0,0,20,20
+Leafeon,Grass,Grass,,1,1,1,1
+Zorua,Dark,Dark,,30,30,30,30
+Sawsbuck,Normal,Grass,,50,50,50,50
+Foongus,Grass,Normal,,60,60,60,60
+Komala,Normal,Normal,,30,30,30,30
+Greedent,Normal,Normal,,30,30,30,30
+Applin,Grass,Dragon,,10,10,10,10
+Oinkologne (Male),Normal,Normal,,20,20,20,20
+Oinkologne (Female),Normal,Normal,,20,20,20,20
+Spidops,Bug,Bug,,30,30,30,30
+Charcadet,Fire,Fire,,1,1,1,1
+Mabosstiff,Dark,Dark,,20,20,20,20
+Shroodle,Poison,Normal,,20,20,20,20
+Toedscool,Ground,Grass,,10,10,10,10
+Jigglypuff,Normal,Fairy,,60,60,60,60
+Meowth,Normal,Normal,,60,60,60,60
+Persian,Normal,Normal,,30,30,30,30
+Voltorb,Electric,Electric,,30,30,30,30
+Electrode,Electric,Electric,,10,10,10,10
+Ditto,Normal,Normal,,30,30,30,30
+Eevee,Normal,Normal,,10,10,10,10
+Murkrow,Dark,Flying,,0,0,60,60
+Drifloon (Scarlet),Ghost,Flying,,0,0,40,40
+Drifblim (Scarlet),Ghost,Flying,,0,0,20,20
+Dedenne,Electric,Fairy,,20,20,20,20
+Tandemaus,Normal,Normal,,10,10,10,10
+Dachsbun,Fairy,Fairy,,30,30,30,30
+Bombirdier,Flying,Dark,,5,5,5,5
+Psyduck,Water,Water,,60,60,60,60
+Scyther,Bug,Flying,,30,30,30,30
+Magikarp,Water,Water,,60,60,60,60
+Azumarill,Water,Water,,30,30,30,30
+Dunsparce,Normal,Normal,,5,5,5,5
+Barboach,Water,Ground,,60,60,60,60
+Whiscash,Water,Ground,,10,10,10,10
+Tropius,Grass,Flying,,30,30,30,30
+Basculin (Red-Striped),Water,Water,,60,60,60,60
+Basculin (Blue-Striped),Water,Water,,60,60,60,60
+Goomy,Dragon,Dragon,,40,40,40,40
+Drednaw,Water,Rock,,10,10,10,10
+Hatenna,Psychic,Psychic,,40,40,40,40
+Flamigo,Flying,Fighting,,10,10,10,10
+Clodsire,Poison,Ground,,30,30,30,30
+Psyduck,Water,Water,,60,60,60,60
+Golduck,Water,Water,,20,20,20,20
+Magikarp,Water,Water,,20,20,20,20
+Vaporeon,Water,Water,,1,1,1,1
+Azumarill,Water,Water,,30,30,30,30
+Floatzel,Water,Water,,10,10,10,10
+Basculin (Red-Striped),Water,Water,,60,60,60,60
+Basculin (Blue-Striped),Water,Water,,60,60,60,60
+Drednaw,Water,Rock,,10,10,10,10
+Barraskewda,Water,Water,,20,20,20,20
+Tadbulb,Electric,Electric,,50,50,50,50
+Bellibolt,Electric,Electric,,5,5,5,5
+Flamigo,Flying,Fighting,,12,12,12,12
+Primeape,Fighting,Fighting,,10,10,10,10
+Hariyama,Fighting,Fighting,,15,15,15,15
+Honchkrow,Dark,Flying,,0,0,20,20
+Skiddo,Grass,Grass,,50,50,50,50
+Gogoat,Grass,Grass,,30,30,30,30
+Gumshoos,Normal,Normal,,30,30,30,30
+Lokix,Bug,Dark,,30,30,30,30
+Nacli,Rock,Rock,,60,60,60,60
+Naclstack,Rock,Rock,,60,60,60,60
+Charcadet,Fire,Fire,,1,1,1,1
+Hypno,Psychic,Psychic,,20,20,20,20
+Bronzong,Steel,Psychic,,20,20,20,20
+Mabosstiff,Dark,Dark,,30,30,30,30
+Tinkatuff,Fairy,Steel,,15,15,15,15
+Greavard,Ghost,Ghost,,40,40,40,40

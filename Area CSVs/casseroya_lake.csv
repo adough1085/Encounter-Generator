@@ -1,52 +1,68 @@
 Name,Type1,Type2,Biome,Dawn,Day,Dusk,Night
-Mismagius (Violet),Ghost,Ghost,,0,0,0,3
-Swalot (Violet),Poison,Poison,,30,30,30,30
-Drakloak (Violet),Dragon,Ghost,,30,30,30,30
-Clawitzer (Violet),Water,Water,,20,20,20,20
-Glalie,Ice,Ice,,20,20,20,20
-Bronzong,Steel,Psychic,,40,40,40,40
-Glaceon,Ice,Ice,,1,1,1,1
-Froslass,Ice,Ice,,2,2,2,2
-Beartic,Ice,Ice,,20,20,20,20
-Frosmoth,Ice,Bug,,10,10,10,10
-Houndstone,Ghost,Ghost,,15,15,15,15
-Cetitan,Ice,Ice,,10,10,10,10
-Golduck,Water,Water,,40,40,40,40
-Slowpoke,Water,Psychic,,120,120,120,120
-Slowbro,Water,Psychic,,55,55,55,55
-Scyther,Bug,Flying,,30,30,30,30
-Gyarados,Water,Flying,,155,155,155,155
-Vaporeon,Water,Water,,2,2,2,2
-Dratini,Dragon,Dragon,,40,40,40,40
-Dragonair,Dragon,Dragon,,10,10,10,10
-Azumarill,Water,Water,,60,60,60,60
-Altaria,Dragon,Flying,,20,20,20,20
-Tropius,Grass,Flying,,30,30,30,30
-Staraptor,Normal,Flying,,10,10,10,0
-Skuntank (Scarlet),Poison,Dark,,30,30,30,30
-Toxicroak,Poison,Fighting,,50,50,50,50
-Sliggoo,Dragon,Dragon,,50,50,50,50
-Bergmite,Ice,Ice,,150,150,150,150
-Avalugg,Ice,Ice,,100,100,100,100
-Drednaw,Water,Rock,,20,20,20,20
-Flamigo,Flying,Fighting,,60,60,60,60
-Veluza,Water,Psychic,,50,50,50,50
-Dondozo,Water,Water,,30,30,30,30
-Tatsugiri,Dragon,Water,,60,60,60,60
-Floatzel,Water,Water,,60,60,60,60
-Bellibolt,Electric,Electric,,5,5,5,5
-Cloyster,Water,Ice,,10,10,10,10
-Skrelp (Scarlet),Poison,Water,,60,60,60,60
-Dragalge (Scarlet),Poison,Water,,20,20,20,20
-Kilowattrel,Electric,Flying,,60,60,60,60
-Honchkrow,Dark,Flying,,0,0,20,20
-Gogoat,Grass,Grass,,30,30,30,30
-Hawlucha,Fighting,Flying,,60,60,60,60
-Copperajah,Steel,Steel,,20,20,20,20
-Lokix,Bug,Dark,,30,30,30,30
-Naclstack,Rock,Rock,,80,80,80,80
-Gastrodon,Water,Ground,,20,20,20,20
-Palossand,Ghost,Ground,,20,20,20,20
-Pincurchin,Electric,Electric,,10,10,10,10
-Wugtrio,Water,Water,,20,20,20,20
-Mabosstiff,Dark,Dark,,30,30,30,30
+Mismagius (Violet),Ghost,Ghost,Lake,0,0,0,3
+Swalot (Violet),Poison,Poison,Lake,30,30,30,30
+Drakloak (Violet),Dragon,Ghost,Lake,25,25,25,25
+Drakloak (Violet),Dragon,Ghost,Riverside,5,5,5,5
+Clawitzer (Violet),Water,Water,Ocean,20,20,20,20
+Glalie,Ice,Ice,Snowfield,20,20,20,20
+Bronzong,Steel,Psychic,Snowfield,20,20,20,20
+Bronzong,Steel,Psychic,Ruins,20,20,20,20
+Glaceon,Ice,Ice,Snowfield,1,1,1,1
+Froslass,Ice,Ice,Snowfield,2,2,2,2
+Beartic,Ice,Ice,Snowfield,20,20,20,20
+Frosmoth,Ice,Bug,Snowfield,10,10,10,10
+Houndstone,Ghost,Ghost,Snowfield,10,10,10,10
+Houndstone,Ghost,Ghost,Ruins,5,5,5,5
+Cetitan,Ice,Ice,Snowfield,10,10,10,10
+Golduck,Water,Water,Lake,20,20,20,20
+Golduck,Water,Water,Riverside,20,20,20,20
+Slowpoke,Water,Psychic,Lake,60,60,60,60
+Slowpoke,Water,Psychic,Riverside,30,30,30,30
+Slowpoke,Water,Psychic,Beach,30,30,30,30
+Slowbro,Water,Psychic,Lake,15,15,15,15
+Scyther,Bug,Flying,Lake,30,30,30,30
+Gyarados,Water,Flying,Lake,150,150,150,150
+Vaporeon,Water,Water,Lake,1,1,1,1
+Dratini,Dragon,Dragon,Lake,40,40,40,40
+Dragonair,Dragon,Dragon,Lake,10,10,10,10
+Azumarill,Water,Water,Lake,30,30,30,30
+Altaria,Dragon,Flying,Lake,20,20,20,20
+Tropius,Grass,Flying,Lake,30,30,30,30
+Staraptor,Normal,Flying,Lake,10,10,10,0
+Skuntank (Scarlet),Poison,Dark,Lake,30,30,30,30
+Toxicroak,Poison,Fighting,Lake,30,30,30,30
+Sliggoo,Dragon,Dragon,Lake,50,50,50,50
+Bergmite,Ice,Ice,Lake,150,150,150,150
+Avalugg,Ice,Ice,Lake,100,100,100,100
+Drednaw,Water,Rock,Lake,20,20,20,20
+Flamigo,Flying,Fighting,Lake,60,60,60,60
+Veluza,Water,Psychic,Lake,30,30,30,30
+Dondozo,Water,Water,Lake,30,30,30,30
+Tatsugiri,Dragon,Water,Lake,60,60,60,60
+Slowbro,Water,Psychic,Riverside,15,15,15,15
+Vaporeon,Water,Water,Riverside,1,1,1,1
+Azumarill,Water,Water,Riverside,30,30,30,30
+Floatzel,Water,Water,Riverside,10,10,10,10
+Bellibolt,Electric,Electric,Riverside,5,5,5,5
+Cloyster,Water,Ice,Ocean,10,10,10,10
+Gyarados,Water,Flying,Ocean,5,5,5,5
+Skrelp (Scarlet),Poison,Water,Ocean,60,60,60,60
+Dragalge (Scarlet),Poison,Water,Ocean,20,20,20,20
+Floatzel,Water,Water,Ocean,40,40,40,40
+Kilowattrel,Electric,Flying,Ocean,30,30,30,30
+Veluza,Water,Psychic,Ocean,20,20,20,20
+Honchkrow,Dark,Flying,Rocky Area,0,0,20,20
+Gogoat,Grass,Grass,Rocky Area,30,30,30,30
+Hawlucha,Fighting,Flying,Rocky Area,60,60,60,60
+Copperajah,Steel,Steel,Rocky Area,20,20,20,20
+Lokix,Bug,Dark,Rocky Area,30,30,30,30
+Naclstack,Rock,Rock,Rocky Area,60,60,60,60
+Slowbro,Water,Psychic,Lake,25,25,25,25
+Floatzel,Water,Water,Beach,10,10,10,10
+Gastrodon,Water,Ground,Beach,20,20,20,20
+Palossand,Ghost,Ground,Beach,20,20,20,20
+Pincurchin,Electric,Electric,Beach,10,10,10,10
+Naclstack,Rock,Rock,Beach,20,20,20,20
+Kilowattrel,Electric,Flying,Beach,30,30,30,30
+Wugtrio,Water,Water,Beach,20,20,20,20
+Mabosstiff,Dark,Dark,Ruins,30,30,30,30

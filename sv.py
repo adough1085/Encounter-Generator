@@ -379,11 +379,18 @@ class Game:
 class Area:
     def __init__(self, name):
         self.name = name
+        self.file_format_name = ""
         self.pokemon = []
         self.dawn = {}
         self.day = {}
         self.dusk = {}
         self.night = {}
+
+        area_name_split=self.name.lower().split(" ")
+        area_name = ""
+        for token in area_name_split:
+            area_name += token + "_"
+        self.file_format_name = area_name[:len(area_name)-1]
 
     def power(self, power):
         upper_bound = 0
@@ -417,6 +424,10 @@ class Area:
             day = int(weight)
             dusk = int(weight)
             night = int(weight)
+
+        # For testing/reworking purposes
+        # self.raw_probability(name,weight)
+
         if self.f_key(name) == False:
             self.pokemon.append(name)
             self.dawn[name] = dawn
@@ -626,6 +637,7 @@ class Area:
             type2 = arr[1]
             if len(arr) == 3:
                 type2 = arr[2]
+
             pkmn_dawn = self.dawn[raw_pokemon]
             pkmn_day = self.day[raw_pokemon]
             pkmn_dusk = self.dusk[raw_pokemon]
@@ -633,6 +645,50 @@ class Area:
             line = "{0},{1},{2},{3},{4},{5},{6},{7}\n".format(pkmn_name,type1,type2,"",pkmn_dawn,pkmn_day,pkmn_dusk,pkmn_night)
             f1.write(line)
         f1.close()
+
+    def raw_probability(self, raw_pokemon, weight):
+        # Overwriting in case there is pre-existing text
+        # raw_pokemon should be a format like "Dugtrio_Ground"
+        # weight should be a like "60/60/20/0" or "5" 
+        file_name = "Raw Probability Lines/" + self.file_format_name + ".csv"
+        header_line = "Name,Type1,Type2,Biome,Dawn,Day,Dusk,Night\n"
+        header_line_present = False
+        
+        
+        with open(file_name, 'a+') as f1:
+            f1.seek(0)
+            lines = f1.readlines()
+            if len(lines) > 0:
+                if lines[0] != header_line:
+                    f1.write(header_line)
+            else:
+                f1.write(header_line)
+
+        with open(file_name, 'a') as f1:
+            arr = raw_pokemon.split("_")
+            pkmn_name = arr[0]
+            type1 = arr[1]
+            type2 = arr[1]
+            if len(arr) == 3:
+                type2 = arr[2]
+            dawn = 0
+            day = 0
+            dusk = 0
+            night = 0
+            if weight.find("/") != -1:
+                ws = weight.split("/")
+                dawn = int(ws[0])
+                day = int(ws[1])
+                dusk = int(ws[2])
+                night = int(ws[3])
+            else:
+                dawn = int(weight)
+                day = int(weight)
+                dusk = int(weight)
+                night = int(weight)
+
+            line = "{0},{1},{2},{3},{4},{5},{6},{7}\n".format(pkmn_name,type1,type2,"",dawn,day,dusk,night)
+            f1.write(line)
 
 alfornada_cavern = Area("Alfornada Cavern")
 alfornada_cavern.add("Dugtrio_Ground", "20")
@@ -2893,7 +2949,8 @@ chronological[30] = socarrat_trail
 chronological[31] = great_crater_of_paldea
 
 for area in chronological:
-    area.csv()
+    #area.csv()
+    pass
 
 #g = Game("Scarlet")
 #g.box = ["Crocalor","Clodsire","Gumshoos","Arrokuda","Klawf","Bombirdier", "Magikarp", "Gimmighoul","Azumarill","Oinkologne (Male)","Tauros (Combat Breed)", "Goomy","Basculin (Red-Striped)"]
