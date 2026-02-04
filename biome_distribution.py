@@ -30,15 +30,15 @@ class Area:
         
     def count(self):
         # For every biome, check if it exists in the region
-        image_folder = Path("data/image/")
-        area_folder = image_folder / self.image_name
+        image_folder = "data/image"
+        area_folder = f"{image_folder}/{self.image_name}"
         biomes_list = ["Bamboo_Forest","Beach","Cave","Desert","Flower","Forest","Lake","Mine","Mountain",
                        "Ocean","Olive","Prairie","Riverside","Rocky_Area","Ruins","Snowfield","Swamp","Town"]
         missing_biome_count = 0
         
         for biome in biomes_list:
-            file_name = f"{area_folder}_Map_{biome}.png"
-            file_path = area_folder / file_name
+            file_name = f"{self.image_name}_Map_{biome}.png"
+            file_path = f"{area_folder}/{file_name}"
             # Test if the region exists, if yes, add biome to existing biomes in region, and count pixels.
             try:
                 with open(file_path, 'r') as f:
@@ -68,7 +68,7 @@ class Area:
             self.distribution[biome] = percentage
 
     def csv(self):
-        subdirectory_path = Path("distributions")
+        subdirectory_path = Path("data/distribution")
         file_name = self.snake_case_name + ".csv"
         file_path = subdirectory_path / file_name
         subdirectory_path.mkdir(parents=True, exist_ok=True)
@@ -152,6 +152,3 @@ list.append(socarrat_trail)
 list.append(dalizapa_passage)
 list.append(pokemon_league)
 list.append(great_crater_of_paldea)
-
-for area in list:
-    area.run()

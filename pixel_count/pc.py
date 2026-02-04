@@ -21,8 +21,8 @@ def count_colour_pixels(image_path, target_colour_rgb):
     
     # Switch values from RGB to BGR, and setting strict bounds
     target_colour_bgr = (target_colour_rgb[2], target_colour_rgb[1], target_colour_rgb[0])
-    lower_bound_bgr = np.array(target_colour_bgr[0]-5,target_colour_bgr[1]-5,target_colour_bgr[2]-5)
-    upper_bound_bgr = np.array(target_colour_bgr[0]+5,target_colour_bgr[1]+5,target_colour_bgr[2]+5)
+    lower_bound_bgr = np.array([target_colour_bgr[0]-5,target_colour_bgr[1]-5,target_colour_bgr[2]-5])
+    upper_bound_bgr = np.array([target_colour_bgr[0]+5,target_colour_bgr[1]+5,target_colour_bgr[2]+5])
 
     # Creating a mask for target colour
     mask = cv2.inRange(img_bgr,lower_bound_bgr,upper_bound_bgr)
