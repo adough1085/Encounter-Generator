@@ -281,10 +281,10 @@ class Game:
             print("1 = alphabetical")
             return None
 
-        if 1 <= area and area <= 30:
+        if 1 <= area and area <= 31:
             area_chosen = area
         else:
-            print("Areas 1-30")
+            print("Areas 1-31")
             return None
 
         if time == 0:
@@ -595,6 +595,44 @@ class Area:
                         print("{0}: {1}".format(self.name, n))
                         return r.name
 
+    def test_raw(self, name):
+        if name in self.pokemon:
+            print("{0} is present.".format(name))
+            print("{0}: {1}/{2}/{3}/{4}".format(name,self.dawn[name],self.day[name],self.dusk[name],self.night[name]))
+        else:
+            print("{0} is not present.".format(name))
+        pass
+
+    def csv(self):
+        # Converting Area Name to area_name to keep it inline with other text file formats (ex. paldea_dex.txt)
+        area_name_split=self.name.lower().split(" ")
+        area_name = ""
+        for token in area_name_split:
+            area_name += token + "_"
+        area_name = area_name[:len(area_name)-1]
+
+        # Overwriting in case there is pre-existing text
+        file_name = "Area CSVs/" + area_name + ".csv"
+        f1 = open(file_name,"w")
+        f1.write("Name,Type1,Type2,Biome,Dawn,Day,Dusk,Night\n")
+        f1.close()
+
+        # Writing each Pokemon
+        f1 = open(file_name,"a")
+        for raw_pokemon in self.pokemon:
+            arr = raw_pokemon.split("_")
+            pkmn_name = arr[0]
+            type1 = arr[1]
+            type2 = arr[1]
+            if len(arr) == 3:
+                type2 = arr[2]
+            pkmn_dawn = self.dawn[raw_pokemon]
+            pkmn_day = self.day[raw_pokemon]
+            pkmn_dusk = self.dusk[raw_pokemon]
+            pkmn_night = self.night[raw_pokemon]
+            line = "{0},{1},{2},{3},{4},{5},{6},{7}\n".format(pkmn_name,type1,type2,"",pkmn_dawn,pkmn_day,pkmn_dusk,pkmn_night)
+            f1.write(line)
+        f1.close()
 
 alfornada_cavern = Area("Alfornada Cavern")
 alfornada_cavern.add("Dugtrio_Ground", "20")
@@ -667,10 +705,12 @@ asado_desert.add("Falinks_Fighting", "40")
 asado_desert.add("Stonjourner (Scarlet)_Rock", "15")
 asado_desert.add("Tinkatuff_Fairy_Steel", "15")
 
+
 cabo_poco = Area("Cabo Poco")
 cabo_poco.add("Sprigatito_Grass", "33")
 cabo_poco.add("Quaxley_Water", "33")
 cabo_poco.add("Fuecoco_Fire", "33")
+
 
 casseroya_lake = Area("Casseroya Lake")
 casseroya_lake.add("Mismagius (Violet)_Ghost", "0/0/0/3")
@@ -838,6 +878,7 @@ dalizapa_passage.add("Dedenne_Electric_Fairy", "20")
 dalizapa_passage.add("Dachsbun_Fairy", "30")
 dalizapa_passage.add("Bombirdier_Flying_Dark", "5")
 
+
 east_paldean_sea = Area("East Paldean Sea")
 east_paldean_sea.add("Clauncher (Violet)_Water", "60")
 east_paldean_sea.add("Shellder_Water", "60")
@@ -879,6 +920,7 @@ east_paldean_sea.add("Floette_Fairy", "55")
 east_paldean_sea.add("Floette_Fairy", "55")
 east_paldean_sea.add("Floette_Fairy", "3")
 east_paldean_sea.add("Dolliv_Grass_Normal", "10")
+
 
 east_province_area_one = Area("East Province (Area One)")
 east_province_area_one.add("Tauros (Combat Breed)_Fighting", "40")
@@ -984,6 +1026,7 @@ east_province_area_one.add("Wiglett_Water", "60")
 east_province_area_one.add("Wattrel_Electric_Flying", "60")
 east_province_area_one.add("Nacli_Rock", "15")
 
+
 east_province_area_two = Area("East Province (Area Two)")
 east_province_area_two.add("Magnemite_Electric_Steel", "50")
 east_province_area_two.add("Chansey_Normal", "1")
@@ -1079,6 +1122,7 @@ east_province_area_two.add("Bronzor_Steel_Psychic", "60")
 east_province_area_two.add("Mimikyu_Ghost_Fairy", "10")
 east_province_area_two.add("Tinkatink_Fairy_Steel", "15")
 east_province_area_two.add("Tinkatuff_Fairy_Steel", "15")
+
 
 east_province_area_three = Area("East Province (Area Three)")
 east_province_area_three.add("Meowth_Normal", "30")
@@ -1181,6 +1225,7 @@ east_province_area_three.add("Cufant_Steel", "60")
 east_province_area_three.add("Bramblin_Grass_Ghost", "60")
 east_province_area_three.add("Varoom_Steel_Poison", "15")
 east_province_area_three.add("Orthworm_Steel", "30")
+
 
 glaseado_mountain = Area("Glaseado Mountain")
 glaseado_mountain.add("Magneton_Electric_Steel", "20")
@@ -1385,6 +1430,7 @@ glaseado_mountain.add("Hypno_Psychic", "20")
 glaseado_mountain.add("Bronzong_Steel_Psychic", "20")
 glaseado_mountain.add("Tinkatuff_Fairy_Steel", "15")
 
+
 great_crater_of_paldea = Area("Great Crater of Paldea")
 great_crater_of_paldea.add("Raichu_Electric", "10")
 great_crater_of_paldea.add("Venomoth_Bug_Poison", "30")
@@ -1553,6 +1599,7 @@ great_crater_of_paldea.add("Iron Jugulis (Violet)_Dark_Flying", "3")
 great_crater_of_paldea.add("Roaring Moon (Scarlet)_Dragon_Dark", "1")
 great_crater_of_paldea.add("Iron Valiant (Violet)_Fairy_Fighting", "1")
 
+
 inlet_grotto = Area("Inlet Grotto")
 inlet_grotto.add("Diglett_Ground", "20")
 inlet_grotto.add("Houndour_Dark_Fire", "60")
@@ -1693,6 +1740,7 @@ north_province_area_one.add("Haunter_Ghost_Poison", "0/0/0/50")
 north_province_area_one.add("Bronzong_Steel_Psychic", "20")
 north_province_area_one.add("Houndstone_Ghost", "5")
 
+
 north_province_area_two = Area("North Province (Area Two)")
 north_province_area_two.add("Mismagius (Violet)_Ghost", "0/0/0/3")
 north_province_area_two.add("Drakloak (Violet)_Dragon_Ghost", "25")
@@ -1758,6 +1806,7 @@ north_province_area_two.add("Lokix_Bug_Dark", "60")
 north_province_area_two.add("Bronzong_Steel_Psychic", "20")
 north_province_area_two.add("Falinks_Fighting", "40")
 north_province_area_two.add("Houndstone_Ghost", "5")
+
 
 north_province_area_three = Area("North Province (Area Three)")
 north_province_area_three.add("Chansey_Normal", "1")
@@ -1846,6 +1895,7 @@ poco_path.add("Arrokuda_Water", "60")
 poco_path.add("Wingull_Water_Flying", "60")
 poco_path.add("Buizel_Water", "20")
 
+
 pokemon_league = Area("Pokemon League")
 pokemon_league.add("Igglybuff_Normal_Fairy","60")
 pokemon_league.add("Tandemaus_Normal","70")
@@ -1853,6 +1903,7 @@ pokemon_league.add("Fidough_Fairy","50")
 pokemon_league.add("Sunkern_Grass","60/60/60/0")
 pokemon_league.add("Combee_Bug_Flying","40")
 pokemon_league.add("Happiny_Normal","1")
+
 
 socarrat_trail = Area("Socarrat Trail")
 socarrat_trail.add("Raichu_Electric", "5")
@@ -2658,6 +2709,7 @@ west_province_area_two.add("Salandit_Poison_Fire", "60")
 west_province_area_two.add("Charcadet_Fire", "1")
 west_province_area_two.add("Glimmet_Rock_Poison", "1")
 
+
 west_province_area_three = Area("West Province (Area Three)")
 west_province_area_three.add("Misdreavus_Ghost", "60")
 west_province_area_three.add("Dreepy_Dragon_Ghost", "15")
@@ -2840,11 +2892,14 @@ chronological[29] = casseroya_lake
 chronological[30] = socarrat_trail
 chronological[31] = great_crater_of_paldea
 
-g = Game("Scarlet")
-g.box = ["Crocalor","Clodsire","Gumshoos","Arrokuda","Klawf","Bombirdier", "Magikarp", "Gimmighoul","Azumarill","Oinkologne (Male)","Tauros (Combat Breed)", "Goomy","Basculin (Red-Striped)"]
-g.dupe_out()
+for area in chronological:
+    area.csv()
+
+#g = Game("Scarlet")
+#g.box = ["Crocalor","Clodsire","Gumshoos","Arrokuda","Klawf","Bombirdier", "Magikarp", "Gimmighoul","Azumarill","Oinkologne (Male)","Tauros (Combat Breed)", "Goomy","Basculin (Red-Striped)"]
+#g.dupe_out()
 #g.distribution(0,8,1,"Flying",0)
 #g.generate(0,8,1,"Flying",0)
 #g.distribution(0,9,1,"Normal",0)
-g.generate(0,15,1,"Fairy",1)
+#g.generate(0,15,1,"Fairy",1)
 #g.locate(0, "Dratini")
