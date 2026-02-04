@@ -1,109 +1,109 @@
 Name,Type1,Type2,Biome,Dawn,Day,Dusk,Night
-Wigglytuff,Normal,Fairy,,5,5,5,5
-Haunter,Ghost,Poison,,0,0,0,40
-Chansey,Normal,Normal,,1,1,1,1
-Flareon,Fire,Fire,,1,1,1,1
-Ampharos,Electric,Electric,,10,10,10,10
-Ursaring,Normal,Normal,,20,20,20,20
-Grumpig,Psychic,Psychic,,20,20,20,20
-Altaria,Dragon,Flying,,20,20,20,20
-Drifblim (Scarlet),Ghost,Flying,,0,0,30,30
-Honchkrow,Dark,Flying,,0,0,20,20
-Lucario,Fighting,Steel,,3,3,3,3
-Gallade,Psychic,Fighting,,1,1,1,0
-Sawsbuck,Normal,Grass,,60,60,60,60
-Fraxure,Dragon,Dragon,,20,20,20,20
-Rufflet,Normal,Flying,,25,25,25,25
-Gogoat,Grass,Grass,,40,40,40,40
-Hawlucha,Fighting,Flying,,60,60,60,60
-Lycanroc (Midday),Rock,Rock,,20,20,0,0
-Lycanroc (Midnight),Rock,Rock,,0,0,0,20
-Lycanroc (Dusk),Rock,Rock,,0,0,1,0
-Mudsdale,Ground,Ground,,12,12,12,12
-Indeedee (Male),Psychic,Normal,,30,30,30,30
-Indeedee (Female),Psychic,Normal,,30,30,30,30
-Lokix,Bug,Dark,,20,20,20,20
-Pawmo,Electric,Fighting,,15,15,15,15
-Brambleghast,Grass,Ghost,,1,1,1,1
-Scovillain,Grass,Fire,,10,10,10,10
-Espathra,Psychic,Psychic,,20,20,20,20
-Tinkatuff,Fairy,Steel,,10,10,10,10
-Houndstone,Ghost,Ghost,,15,15,15,15
-Haunter,Ghost,Poison,,0,0,0,50
-Glalie,Ice,Ice,,20,20,20,20
-Bronzong,Steel,Psychic,,20,20,20,20
-Weavile,Dark,Ice,,15,15,15,15
-Glaceon,Ice,Ice,,1,1,1,1
-Froslass,Ice,Ice,,2,2,2,2
-Sawsbuck,Normal,Grass,,30,30,30,30
-Beartic,Ice,Ice,,20,20,20,20
-Frosmoth,Ice,Bug,,10,10,10,10
-Houndstone,Ghost,Ghost,,10,10,10,10
-Cetitan,Ice,Ice,,10,10,10,10
-Golduck,Water,Water,,20,20,20,20
-Vaporeon,Water,Water,,1,1,1,1
-Dratini,Dragon,Dragon,,15,15,15,15
-Altaria,Dragon,Flying,,20,20,20,20
-Whiscash,Water,Ground,,10,10,10,10
-Mismagius (Violet),Ghost,Ghost,,0,0,0,3
-Drakloak (Violet),Dragon,Ghost,,25,25,25,25
-Flamigo,Flying,Fighting,,10,10,10,10
-Clodsire,Poison,Ground,,30,30,30,30
-Golduck,Water,Water,,20,20,20,20
-Vaporeon,Water,Water,,1,1,1,1
-Floatzel,Water,Water,,10,10,10,10
-Fraxure,Dragon,Dragon,,5,5,5,5
-Drakloak (Violet),Dragon,Ghost,,5,5,5,5
-Bellibolt,Electric,Electric,,5,5,5,5
-Cloyster,Water,Ice,,10,10,10,10
-Gyarados,Water,Flying,,5,5,5,5
-Floatzel,Water,Water,,40,40,40,40
-Alomomola,Water,Water,,20,20,20,20
-Skrelp (Scarlet),Poison,Water,,60,60,60,60
-Dragalge (Scarlet),Poison,Water,,20,20,20,20
-Clawitzer (Violet),Water,Water,,20,20,20,20
-Eiscue (Violet),Ice,Ice,,50,50,50,50
-Kilowattrel,Electric,Flying,,30,30,30,30
-Primeape,Fighting,Fighting,,10,10,10,10
-Grumpig,Psychic,Psychic,,20,20,20,20
-Honchkrow,Dark,Flying,,0,0,20,20
-Lucario,Fighting,Steel,,3,3,3,3
-Gogoat,Grass,Grass,,30,30,30,30
-Hawlucha,Fighting,Flying,,60,60,60,60
-Noibat,Flying,Dragon,,10,10,10,10
-Noivern,Flying,Dragon,,20,20,20,20
-Copperajah,Steel,Steel,,20,20,20,20
-Lokix,Bug,Dark,,30,30,30,30
-Naclstack,Rock,Rock,,60,60,60,60
-Revavroom,Steel,Poison,,20,20,20,20
-Dugtrio,Ground,Ground,,20,20,20,20
-Umbreon,Dark,Dark,,0,0,0,1
-Sableye,Dark,Ghost,,20,20,20,20
-Gabite,Dragon,Ground,,10,10,10,10
-Deino (Scarlet),Dark,Dragon,,30,30,30,30
-Zweilous (Scarlet),Dark,Dragon,,10,10,10,10
-Noibat,Flying,Dragon,,60,60,60,60
-Noivern,Flying,Dragon,,30,30,30,30
-Salazzle,Poison,Fire,,5,5,5,5
-Glimmet,Rock,Poison,,1,1,1,1
-Floatzel,Water,Water,,10,10,10,10
-Pincurchin,Electric,Electric,,10,10,10,10
-Eiscue (Violet),Ice,Ice,,40,40,40,40
-Naclstack,Rock,Rock,,20,20,20,20
-Kilowattrel,Electric,Flying,,30,30,30,30
-Wugtrio,Water,Water,,20,20,20,20
-Chansey,Normal,Normal,,1,1,1,1
-Jumpluff,Grass,Flying,,20,20,20,20
-Sunflora,Grass,Grass,,30,30,30,0
-Blissey,Normal,Normal,,1,1,1,1
-Vespiquen,Bug,Flying,,20,20,20,20
-Vivillon,Bug,Flying,,30,30,30,30
-Floette,Fairy,Fairy,,55,55,55,55
-Floette,Fairy,Fairy,,55,55,55,55
-Floette,Fairy,Fairy,,55,55,55,55
-Floette,Fairy,Fairy,,55,55,55,55
-Floette,Fairy,Fairy,,3,3,3,3
-Lurantis,Grass,Grass,,30,30,30,30
-Haunter,Ghost,Poison,,0,0,0,50
-Bronzong,Steel,Psychic,,20,20,20,20
-Houndstone,Ghost,Ghost,,5,5,5,5
+Wigglytuff,Normal,Fairy,Mountain,5,5,5,5
+Haunter,Ghost,Poison,Mountain,0,0,0,40
+Chansey,Normal,Normal,Mountain,1,1,1,1
+Flareon,Fire,Fire,Mountain,1,1,1,1
+Ampharos,Electric,Electric,Mountain,10,10,10,10
+Ursaring,Normal,Normal,Mountain,20,20,20,20
+Grumpig,Psychic,Psychic,Mountain,20,20,20,20
+Altaria,Dragon,Flying,Mountain,20,20,20,20
+Drifblim (Scarlet),Ghost,Flying,Mountain,0,0,30,30
+Honchkrow,Dark,Flying,Mountain,0,0,20,20
+Lucario,Fighting,Steel,Mountain,3,3,3,3
+Gallade,Psychic,Fighting,Mountain,1,1,1,0
+Sawsbuck,Normal,Grass,Mountain,60,60,60,60
+Fraxure,Dragon,Dragon,Mountain,20,20,20,20
+Rufflet,Normal,Flying,Mountain,25,25,25,25
+Gogoat,Grass,Grass,Mountain,40,40,40,40
+Hawlucha,Fighting,Flying,Mountain,60,60,60,60
+Lycanroc (Midday),Rock,Rock,Mountain,20,20,0,0
+Lycanroc (Midnight),Rock,Rock,Mountain,0,0,0,20
+Lycanroc (Dusk),Rock,Rock,Mountain,0,0,1,0
+Mudsdale,Ground,Ground,Mountain,12,12,12,12
+Indeedee (Male),Psychic,Normal,Mountain,30,30,30,30
+Indeedee (Female),Psychic,Normal,Mountain,30,30,30,30
+Lokix,Bug,Dark,Mountain,20,20,20,20
+Pawmo,Electric,Fighting,Mountain,15,15,15,15
+Brambleghast,Grass,Ghost,Mountain,1,1,1,1
+Scovillain,Grass,Fire,Mountain,10,10,10,10
+Espathra,Psychic,Psychic,Mountain,20,20,20,20
+Tinkatuff,Fairy,Steel,Mountain,10,10,10,10
+Houndstone,Ghost,Ghost,Mountain,15,15,15,15
+Haunter,Ghost,Poison,Snowfield,0,0,0,50
+Glalie,Ice,Ice,Snowfield,20,20,20,20
+Bronzong,Steel,Psychic,Snowfield,20,20,20,20
+Weavile,Dark,Ice,Snowfield,15,15,15,15
+Glaceon,Ice,Ice,Snowfield,1,1,1,1
+Froslass,Ice,Ice,Snowfield,2,2,2,2
+Sawsbuck,Normal,Grass,Snowfield,30,30,30,30
+Beartic,Ice,Ice,Snowfield,20,20,20,20
+Frosmoth,Ice,Bug,Snowfield,10,10,10,10
+Houndstone,Ghost,Ghost,Snowfield,10,10,10,10
+Cetitan,Ice,Ice,Snowfield,10,10,10,10
+Golduck,Water,Water,Lake,20,20,20,20
+Vaporeon,Water,Water,Lake,1,1,1,1
+Dratini,Dragon,Dragon,Lake,15,15,15,15
+Altaria,Dragon,Flying,Lake,20,20,20,20
+Whiscash,Water,Ground,Lake,10,10,10,10
+Mismagius (Violet),Ghost,Ghost,Lake,0,0,0,3
+Drakloak (Violet),Dragon,Ghost,Lake,25,25,25,25
+Flamigo,Flying,Fighting,Lake,10,10,10,10
+Clodsire,Poison,Ground,Lake,30,30,30,30
+Golduck,Water,Water,Riverside,20,20,20,20
+Vaporeon,Water,Water,Riverside,1,1,1,1
+Floatzel,Water,Water,Riverside,10,10,10,10
+Fraxure,Dragon,Dragon,Riverside,5,5,5,5
+Drakloak (Violet),Dragon,Ghost,Riverside,5,5,5,5
+Bellibolt,Electric,Electric,Riverside,5,5,5,5
+Cloyster,Water,Ice,Cloyster,10,10,10,10
+Gyarados,Water,Flying,Cloyster,5,5,5,5
+Floatzel,Water,Water,Cloyster,40,40,40,40
+Alomomola,Water,Water,Cloyster,20,20,20,20
+Skrelp (Scarlet),Poison,Water,Cloyster,60,60,60,60
+Dragalge (Scarlet),Poison,Water,Cloyster,20,20,20,20
+Clawitzer (Violet),Water,Water,Cloyster,20,20,20,20
+Eiscue (Violet),Ice,Ice,Cloyster,50,50,50,50
+Kilowattrel,Electric,Flying,Cloyster,30,30,30,30
+Primeape,Fighting,Fighting,Rocky Area,10,10,10,10
+Grumpig,Psychic,Psychic,Rocky Area,20,20,20,20
+Honchkrow,Dark,Flying,Rocky Area,0,0,20,20
+Lucario,Fighting,Steel,Rocky Area,3,3,3,3
+Gogoat,Grass,Grass,Rocky Area,30,30,30,30
+Hawlucha,Fighting,Flying,Rocky Area,60,60,60,60
+Noibat,Flying,Dragon,Rocky Area,10,10,10,10
+Noivern,Flying,Dragon,Rocky Area,20,20,20,20
+Copperajah,Steel,Steel,Rocky Area,20,20,20,20
+Lokix,Bug,Dark,Rocky Area,30,30,30,30
+Naclstack,Rock,Rock,Rocky Area,60,60,60,60
+Revavroom,Steel,Poison,Rocky Area,20,20,20,20
+Dugtrio,Ground,Ground,Cave,20,20,20,20
+Umbreon,Dark,Dark,Cave,0,0,0,1
+Sableye,Dark,Ghost,Cave,20,20,20,20
+Gabite,Dragon,Ground,Cave,10,10,10,10
+Deino (Scarlet),Dark,Dragon,Cave,30,30,30,30
+Zweilous (Scarlet),Dark,Dragon,Cave,10,10,10,10
+Noibat,Flying,Dragon,Cave,60,60,60,60
+Noivern,Flying,Dragon,Cave,30,30,30,30
+Salazzle,Poison,Fire,Cave,5,5,5,5
+Glimmet,Rock,Poison,Cave,1,1,1,1
+Floatzel,Water,Water,Beach,10,10,10,10
+Pincurchin,Electric,Electric,Beach,10,10,10,10
+Eiscue (Violet),Ice,Ice,Beach,40,40,40,40
+Naclstack,Rock,Rock,Beach,20,20,20,20
+Kilowattrel,Electric,Flying,Beach,30,30,30,30
+Wugtrio,Water,Water,Beach,20,20,20,20
+Chansey,Normal,Normal,Flower,1,1,1,1
+Jumpluff,Grass,Flying,Flower,20,20,20,20
+Sunflora,Grass,Grass,Flower,30,30,30,0
+Blissey,Normal,Normal,Flower,1,1,1,1
+Vespiquen,Bug,Flying,Flower,20,20,20,20
+Vivillon,Bug,Flying,Flower,30,30,30,30
+Floette,Fairy,Fairy,Flower,55,55,55,55
+Floette,Fairy,Fairy,Flower,55,55,55,55
+Floette,Fairy,Fairy,Flower,55,55,55,55
+Floette,Fairy,Fairy,Flower,55,55,55,55
+Floette,Fairy,Fairy,Flower,3,3,3,3
+Lurantis,Grass,Grass,Flower,30,30,30,30
+Haunter,Ghost,Poison,Ruins,0,0,0,50
+Bronzong,Steel,Psychic,Ruins,20,20,20,20
+Houndstone,Ghost,Ghost,Ruins,5,5,5,5

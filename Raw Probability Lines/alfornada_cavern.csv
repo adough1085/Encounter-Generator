@@ -1,20 +1,20 @@
 Name,Type1,Type2,Biome,Dawn,Day,Dusk,Night
-Dugtrio,Ground,Ground,,20,20,20,20
-Umbreon,Dark,Dark,,0,0,0,1
-Dunsparce,Normal,Normal,,5,5,5,5
-Larvitar (Scarlet),Rock,Ground,,10,10,10,10
-Pupitar (Scarlet),Rock,Ground,,10,10,10,10
-Hariyama,Fighting,Fighting,,10,10,10,10
-Sableye,Dark,Ghost,,20,20,20,20
-Meditite,Fighting,Psychic,,60,60,60,60
-Medicham,Fighting,Psychic,,20,20,20,20
-Bagon (Violet),Dragon,Dragon,,10,10,10,10
-Shelgon (Violet),Dragon,Dragon,,10,10,10,10
-Gabite,Dragon,Ground,,10,10,10,10
-Deino (Scarlet),Dark,Dragon,,30,30,30,30
-Gumshoos,Normal,Normal,,30,30,30,30
-Salandit,Poison,Fire,,60,60,60,60
-Salazzle,Poison,Fire,,5,5,5,5
-Toxtricity,Electric,Poison,,15,15,15,15
-Toxtricity,Electric,Poison,,15,15,15,15
-Glimmet,Rock,Poison,,1,1,1,1
+Dugtrio,Ground,Ground,Cave,20,20,20,20
+Umbreon,Dark,Dark,Cave,0,0,0,1
+Dunsparce,Normal,Normal,Cave,5,5,5,5
+Larvitar (Scarlet),Rock,Ground,Cave,10,10,10,10
+Pupitar (Scarlet),Rock,Ground,Cave,10,10,10,10
+Hariyama,Fighting,Fighting,Cave,10,10,10,10
+Sableye,Dark,Ghost,Cave,20,20,20,20
+Meditite,Fighting,Psychic,Cave,60,60,60,60
+Medicham,Fighting,Psychic,Cave,20,20,20,20
+Bagon (Violet),Dragon,Dragon,Cave,10,10,10,10
+Shelgon (Violet),Dragon,Dragon,Cave,10,10,10,10
+Gabite,Dragon,Ground,Cave,10,10,10,10
+Deino (Scarlet),Dark,Dragon,Cave,30,30,30,30
+Gumshoos,Normal,Normal,Cave,30,30,30,30
+Salandit,Poison,Fire,Cave,60,60,60,60
+Salazzle,Poison,Fire,Cave,5,5,5,5
+Toxtricity,Electric,Poison,Cave,15,15,15,15
+Toxtricity,Electric,Poison,Cave,15,15,15,15
+Glimmet,Rock,Poison,Cave,1,1,1,1

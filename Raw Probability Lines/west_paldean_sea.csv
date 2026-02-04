@@ -1,26 +1,26 @@
 Name,Type1,Type2,Biome,Dawn,Day,Dusk,Night
-Shellder,Water,Water,,60,60,60,60
-Cloyster,Water,Ice,,10,10,10,10
-Magikarp,Water,Water,,60,60,60,60
-Gyarados,Water,Flying,,5,5,5,5
-Qwilfish,Water,Poison,,30,30,30,30
-Wingull,Water,Flying,,80,80,80,80
-Pelipper,Water,Flying,,40,40,40,40
-Luvdisc,Water,Water,,60,60,60,60
-Buizel,Water,Water,,20,20,20,20
-Floatzel,Water,Water,,40,40,40,40
-Finneon,Water,Water,,60,60,60,60
-Lumineon,Water,Water,,30,30,30,30
-Tynamo,Electric,Electric,,60,60,60,60
-Eelektrik,Electric,Electric,,30,30,30,30
-Skrelp (Scarlet),Poison,Water,,60,60,60,60
-Clauncher (Violet),Water,Water,,60,60,60,60
-Clawitzer (Violet),Water,Water,,20,20,20,20
-Bruxish,Water,Psychic,,30,30,30,30
-Arrokuda,Water,Water,,60,60,60,60
-Barraskewda,Water,Water,,20,20,20,20
-Veluza,Water,Psychic,,20,20,20,20
-Finizen,Water,Water,,30,30,30,30
-Wattrel,Electric,Flying,,60,60,60,60
-Kilowattrel,Electric,Flying,,30,30,30,30
-Bombirdier,Flying,Dark,,40,40,40,40
+Shellder,Water,Water,Ocean,60,60,60,60
+Cloyster,Water,Ice,Ocean,10,10,10,10
+Magikarp,Water,Water,Ocean,60,60,60,60
+Gyarados,Water,Flying,Ocean,5,5,5,5
+Qwilfish,Water,Poison,Ocean,30,30,30,30
+Wingull,Water,Flying,Ocean,80,80,80,80
+Pelipper,Water,Flying,Ocean,40,40,40,40
+Luvdisc,Water,Water,Ocean,60,60,60,60
+Buizel,Water,Water,Ocean,20,20,20,20
+Floatzel,Water,Water,Ocean,40,40,40,40
+Finneon,Water,Water,Ocean,60,60,60,60
+Lumineon,Water,Water,Ocean,30,30,30,30
+Tynamo,Electric,Electric,Ocean,60,60,60,60
+Eelektrik,Electric,Electric,Ocean,30,30,30,30
+Skrelp (Scarlet),Poison,Water,Ocean,60,60,60,60
+Clauncher (Violet),Water,Water,Ocean,60,60,60,60
+Clawitzer (Violet),Water,Water,Ocean,20,20,20,20
+Bruxish,Water,Psychic,Ocean,30,30,30,30
+Arrokuda,Water,Water,Ocean,60,60,60,60
+Barraskewda,Water,Water,Ocean,20,20,20,20
+Veluza,Water,Psychic,Ocean,20,20,20,20
+Finizen,Water,Water,Ocean,30,30,30,30
+Wattrel,Electric,Flying,Ocean,60,60,60,60
+Kilowattrel,Electric,Flying,Ocean,30,30,30,30
+Bombirdier,Flying,Dark,Ocean,40,40,40,40

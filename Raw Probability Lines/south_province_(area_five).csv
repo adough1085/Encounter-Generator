@@ -1,142 +1,138 @@
 Name,Type1,Type2,Biome,Dawn,Day,Dusk,Night
-Mankey,Fighting,Fighting,,60,60,60,60
-Skiploom,Grass,Flying,,40,40,40,40
-Murkrow,Dark,Flying,,0,0,40,40
-Dunsparce,Normal,Normal,,2,2,2,2
-Stantler,Normal,Normal,,20,20,20,20
-Shroomish,Grass,Grass,,30,30,30,30
-Slakoth,Normal,Normal,,10,10,10,10
-Vigoroth,Normal,Normal,,20,20,20,20
-Zangoose,Normal,Normal,,5,5,5,5
-Seviper,Poison,Poison,,15,15,15,15
-Luxio,Electric,Electric,,20,20,20,20
-Pachirisu,Electric,Electric,,10,10,10,10
-Stunky (Scarlet),Poison,Dark,,30,30,30,30
-Deerling,Normal,Grass,,40,40,40,40
-Fletchinder,Fire,Flying,,30,30,30,30
-Litleo,Fire,Normal,,60,60,60,60
-Rookidee,Flying,Flying,,30,30,30,30
-Corvisquire,Flying,Flying,,20,20,20,20
-Lechonk,Normal,Normal,,80,80,80,80
-Oinkologne (Male),Normal,Normal,,20,20,20,20
-Oinkologne (Female),Normal,Normal,,20,20,20,20
-Tarountula,Bug,Bug,,50,50,50,50
-Pawmo,Electric,Fighting,,10,10,10,10
-Toedscool,Ground,Grass,,2,2,2,2
-Mankey,Fighting,Fighting,,20,20,20,20
-Gastly,Ghost,Poison,,0,0,0,50
-Misdreavus (Violet),Ghost,Ghost,,0,0,0,15
-Larvitar (Scarlet),Rock,Ground,,50,50,50,50
-Vigoroth,Normal,Normal,,20,20,20,20
-Swablu,Normal,Flying,,70,70,70,70
-Bagon (Violet),Dragon,Dragon,,50,50,50,50
-Drifloon (Scarlet),Ghost,Flying,,0,0,30,30
-Axew,Dragon,Dragon,,60,60,60,60
-Larvitar (Scarlet),Rock,Ground,,25,25,25,25
-Litleo,Fire,Normal,,30,30,30,30
-Skiddo,Grass,Grass,,30,30,30,30
-Rockruff (Standard),Rock,Rock,,40,40,40,40
-Rockruff (Own Tempo),Rock,Rock,,2,2,2,2
-Mudbray,Ground,Ground,,60,60,60,60
-Rookidee,Flying,Flying,,30,30,30,30
-Corvisquire,Flying,Flying,,30,30,30,30
-Pawmo,Electric,Fighting,,15,15,15,15
-Charcadet,Fire,Fire,,1,1,1,1
-Flittle,Psychic,Psychic,,60,60,60,60
-Psyduck,Water,Water,,30,30,30,30
-Wooper,Poison,Ground,,80,80,80,80
-Croagunk,Poison,Fighting,,60,60,60,60
-Goomy,Dragon,Dragon,,60,60,60,60
-Mudbray,Ground,Ground,,15,15,15,15
-Chewtle,Water,Water,,60,60,60,60
-Drednaw,Water,Rock,,10,10,10,10
-Dreepy (Violet),Dragon,Ghost,,20,20,20,20
-Tadbulb,Electric,Electric,,70,70,70,70
-Flamigo,Flying,Fighting,,60,60,60,60
-Clodsire,Poison,Ground,,40,40,40,40
-Psyduck,Water,Water,,60,60,60,60
-Magikarp,Water,Water,,60,60,60,60
-Marill,Water,Fairy,,60,60,60,60
-Wooper,Poison,Ground,,60,60,60,60
-Misdreavus (Violet),Ghost,Ghost,,0,0,0,60
-Dunsparce,Normal,Normal,,5,5,5,5
-Surskit,Bug,Water,,60,60,60,60
-Zangoose,Normal,Normal,,40,40,40,40
-Seviper,Poison,Poison,,15,15,15,15
-Barboach,Water,Ground,,60,60,60,60
-Stunky (Scarlet),Poison,Dark,,30,30,30,30
-Croagunk,Poison,Fighting,,30,30,30,30
-Basculin (Red-Striped),Water,Water,,60,60,60,60
-Basculin (Blue-Striped),Water,Water,,60,60,60,60
-Goomy,Dragon,Dragon,,40,40,40,40
-Chewtle,Water,Water,,10,10,10,10
-Dreepy (Violet),Dragon,Ghost,,15,15,15,15
-Psyduck,Water,Water,,60,60,60,60
-Slowpoke,Water,Psychic,,30,30,30,30
-Magikarp,Water,Water,,20,20,20,20
-Marill,Water,Fairy,,60,60,60,60
-Surskit,Bug,Water,,60,60,60,60
-Masquerain,Bug,Flying,,20,20,20,20
-Buizel,Water,Water,,20,20,20,20
-Croagunk,Poison,Fighting,,20,20,20,20
-Basculin (Red-Striped),Water,Water,,60,60,60,60
-Basculin (Blue-Striped),Water,Water,,60,60,60,60
-Axew,Dragon,Dragon,,20,20,20,20
-Pawniard,Dark,Steel,,60,60,60,60
-Chewtle,Water,Water,,10,10,10,10
-Drednaw,Water,Rock,,10,10,10,10
-Arrokuda,Water,Water,,40,40,40,40
-Dreepy (Violet),Dragon,Ghost,,5,5,5,5
-Tadbulb,Electric,Electric,,50,50,50,50
-Shellder,Water,Water,,60,60,60,60
-Magikarp,Water,Water,,60,60,60,60
-Gyarados,Water,Flying,,5,5,5,5
-Qwilfish,Water,Poison,,30,30,30,30
-Luvdisc,Water,Water,,60,60,60,60
-Buizel,Water,Water,,20,20,20,20
-Clauncher (Violet),Water,Water,,60,60,60,60
-Arrokuda,Water,Water,,60,60,60,60
-Wattrel,Electric,Flying,,60,60,60,60
-Finizen,Water,Water,,30,30,30,30
-Stantler,Normal,Normal,,60,60,60,60
-Makuhita,Fighting,Fighting,,30,30,30,30
-Pawniard,Dark,Steel,,30,30,30,30
-Litleo,Fire,Normal,,50,50,50,50
-Skiddo,Grass,Grass,,50,50,50,50
-Yungoos,Normal,Normal,,20,20,20,20
-Gumshoos,Normal,Normal,,30,30,30,30
-Rookidee,Flying,Flying,,30,30,30,30
-Corvisquire,Flying,Flying,,30,30,30,30
-Nacli,Rock,Rock,,60,60,60,60
-Charcadet,Fire,Fire,,1,1,1,1
-Slowpoke,Water,Psychic,,30,30,30,30
-Shellder,Water,Water,,60,60,60,60
-Buizel,Water,Water,,20,20,20,20
-Shellos,Water,Ground (East Sea),,60,60,60,60
-Crabrawler,Fighting,Fighting,,30,30,30,30
-Sandygast,Ghost,Ground,,60,60,60,60
-Pincurchin,Electric,Electric,,10,10,10,10
-Wiglett,Water,Water,,60,60,60,60
-Nacli,Rock,Rock,,15,15,15,15
-Wattrel,Electric,Flying,,60,60,60,60
-Skiploom,Grass,Flying,,20,20,20,20
-Combee,Bug,Flying,,40,40,40,40
-Spewpa,Bug,Bug,,30,30,30,30
-Flabebe,Fairy,Fairy,,60,60,60,60
-Flabebe,Fairy,Fairy,,60,60,60,60
-Flabebe,Fairy,Fairy,,60,60,60,60
-Flabebe,Fairy,Fairy,,60,60,60,60
-Flabebe,Fairy,Fairy,,6,6,6,6
-Floette,Fairy,Fairy,,55,55,55,55
-Floette,Fairy,Fairy,,55,55,55,55
-Floette,Fairy,Fairy,,55,55,55,55
-Floette,Fairy,Fairy,,55,55,55,55
-Floette,Fairy,Fairy,,3,3,3,3
-Fomantis,Grass,Grass,,60,60,60,60
+Mankey,Fighting,Fighting,Prairie,60,60,60,60
+Skiploom,Grass,Flying,Prairie,40,40,40,40
+Murkrow,Dark,Flying,Prairie,0,0,40,40
+Dunsparce,Normal,Normal,Prairie,2,2,2,2
+Stantler,Normal,Normal,Prairie,20,20,20,20
+Shroomish,Grass,Grass,Prairie,30,30,30,30
+Slakoth,Normal,Normal,Prairie,10,10,10,10
+Vigoroth,Normal,Normal,Prairie,20,20,20,20
+Zangoose,Normal,Normal,Prairie,5,5,5,5
+Seviper,Poison,Poison,Prairie,15,15,15,15
+Luxio,Electric,Electric,Prairie,20,20,20,20
+Pachirisu,Electric,Electric,Prairie,10,10,10,10
+Stunky (Scarlet),Poison,Dark,Prairie,30,30,30,30
+Deerling,Normal,Grass,Prairie,40,40,40,40
+Fletchinder,Fire,Flying,Prairie,30,30,30,30
+Litleo,Fire,Normal,Prairie,60,60,60,60
+Rookidee,Flying,Flying,Prairie,30,30,30,30
+Corvisquire,Flying,Flying,Prairie,20,20,20,20
+Lechonk,Normal,Normal,Prairie,80,80,80,80
+Oinkologne (Male),Normal,Normal,Prairie,20,20,20,20
+Oinkologne (Female),Normal,Normal,Prairie,20,20,20,20
+Tarountula,Bug,Bug,Prairie,50,50,50,50
+Pawmo,Electric,Fighting,Prairie,10,10,10,10
+Toedscool,Ground,Grass,Prairie,2,2,2,2
+Mankey,Fighting,Fighting,Mountain,20,20,20,20
+Gastly,Ghost,Poison,Mountain,0,0,0,50
+Misdreavus (Violet),Ghost,Ghost,Mountain,0,0,0,15
+Larvitar (Scarlet),Rock,Ground,Mountain,50,50,50,50
+Vigoroth,Normal,Normal,Mountain,20,20,20,20
+Swablu,Normal,Flying,Mountain,70,70,70,70
+Bagon (Violet),Dragon,Dragon,Mountain,50,50,50,50
+Drifloon (Scarlet),Ghost,Flying,Mountain,0,0,30,30
+Axew,Dragon,Dragon,Mountain,60,60,60,60
+Larvitar (Scarlet),Rock,Ground,Mountain,25,25,25,25
+Litleo,Fire,Normal,Mountain,30,30,30,30
+Skiddo,Grass,Grass,Mountain,30,30,30,30
+Rockruff (Standard),Rock,Rock,Mountain,40,40,40,40
+Rockruff (Own Tempo),Rock,Rock,Mountain,2,2,2,2
+Mudbray,Ground,Ground,Mountain,60,60,60,60
+Rookidee,Flying,Flying,Mountain,30,30,30,30
+Corvisquire,Flying,Flying,Mountain,30,30,30,30
+Pawmo,Electric,Fighting,Mountain,15,15,15,15
+Charcadet,Fire,Fire,Mountain,1,1,1,1
+Flittle,Psychic,Psychic,Mountain,60,60,60,60
+Psyduck,Water,Water,Swamp,30,30,30,30
+Wooper,Poison,Ground,Swamp,80,80,80,80
+Croagunk,Poison,Fighting,Swamp,60,60,60,60
+Goomy,Dragon,Dragon,Swamp,60,60,60,60
+Mudbray,Ground,Ground,Swamp,15,15,15,15
+Chewtle,Water,Water,Swamp,60,60,60,60
+Drednaw,Water,Rock,Swamp,10,10,10,10
+Dreepy (Violet),Dragon,Ghost,Swamp,20,20,20,20
+Tadbulb,Electric,Electric,Swamp,70,70,70,70
+Flamigo,Flying,Fighting,Swamp,60,60,60,60
+Clodsire,Poison,Ground,Swamp,40,40,40,40
+Psyduck,Water,Water,Lake,60,60,60,60
+Magikarp,Water,Water,Lake,60,60,60,60
+Marill,Water,Fairy,Lake,60,60,60,60
+Wooper,Poison,Ground,Lake,60,60,60,60
+Misdreavus (Violet),Ghost,Ghost,Lake,0,0,0,60
+Dunsparce,Normal,Normal,Lake,5,5,5,5
+Surskit,Bug,Water,Lake,60,60,60,60
+Zangoose,Normal,Normal,Lake,40,40,40,40
+Seviper,Poison,Poison,Lake,15,15,15,15
+Barboach,Water,Ground,Lake,60,60,60,60
+Stunky (Scarlet),Poison,Dark,Lake,30,30,30,30
+Croagunk,Poison,Fighting,Lake,30,30,30,30
+Basculin (Red-Striped),Water,Water,Lake,60,60,60,60
+Basculin (Blue-Striped),Water,Water,Lake,60,60,60,60
+Goomy,Dragon,Dragon,Lake,40,40,40,40
+Chewtle,Water,Water,Lake,10,10,10,10
+Dreepy (Violet),Dragon,Ghost,Lake,15,15,15,15
+Psyduck,Water,Water,Riverside,60,60,60,60
+Slowpoke,Water,Psychic,Riverside,30,30,30,30
+Magikarp,Water,Water,Riverside,20,20,20,20
+Marill,Water,Fairy,Riverside,60,60,60,60
+Surskit,Bug,Water,Riverside,60,60,60,60
+Masquerain,Bug,Flying,Riverside,20,20,20,20
+Buizel,Water,Water,Riverside,20,20,20,20
+Croagunk,Poison,Fighting,Riverside,20,20,20,20
+Basculin (Red-Striped),Water,Water,Riverside,60,60,60,60
+Basculin (Blue-Striped),Water,Water,Riverside,60,60,60,60
+Axew,Dragon,Dragon,Riverside,20,20,20,20
+Pawniard,Dark,Steel,Riverside,60,60,60,60
+Chewtle,Water,Water,Riverside,10,10,10,10
+Drednaw,Water,Rock,Riverside,10,10,10,10
+Arrokuda,Water,Water,Riverside,40,40,40,40
+Dreepy (Violet),Dragon,Ghost,Riverside,5,5,5,5
+Tadbulb,Electric,Electric,Riverside,50,50,50,50
+Shellder,Water,Water,Ocean,60,60,60,60
+Magikarp,Water,Water,Ocean,60,60,60,60
+Gyarados,Water,Flying,Ocean,5,5,5,5
+Qwilfish,Water,Poison,Ocean,30,30,30,30
+Luvdisc,Water,Water,Ocean,60,60,60,60
+Buizel,Water,Water,Ocean,20,20,20,20
+Clauncher (Violet),Water,Water,Ocean,60,60,60,60
+Arrokuda,Water,Water,Ocean,60,60,60,60
+Wattrel,Electric,Flying,Ocean,60,60,60,60
+Finizen,Water,Water,Ocean,30,30,30,30
+Stantler,Normal,Normal,Rocky Area,60,60,60,60
+Makuhita,Fighting,Fighting,Rocky Area,30,30,30,30
+Pawniard,Dark,Steel,Rocky Area,30,30,30,30
+Litleo,Fire,Normal,Rocky Area,50,50,50,50
+Skiddo,Grass,Grass,Rocky Area,50,50,50,50
+Yungoos,Normal,Normal,Rocky Area,20,20,20,20
+Gumshoos,Normal,Normal,Rocky Area,30,30,30,30
+Rookidee,Flying,Flying,Rocky Area,30,30,30,30
+Corvisquire,Flying,Flying,Rocky Area,30,30,30,30
+Nacli,Rock,Rock,Rocky Area,60,60,60,60
+Charcadet,Fire,Fire,Rocky Area,1,1,1,1
+Slowpoke,Water,Psychic,Beach,30,30,30,30
+Shellder,Water,Water,Beach,60,60,60,60
+Buizel,Water,Water,Beach,20,20,20,20
+Shellos,Water,Ground (East Sea),Beach,60,60,60,60
+Crabrawler,Fighting,Fighting,Beach,30,30,30,30
+Sandygast,Ghost,Ground,Beach,60,60,60,60
+Pincurchin,Electric,Electric,Beach,10,10,10,10
+Wiglett,Water,Water,Beach,60,60,60,60
+Nacli,Rock,Rock,Beach,15,15,15,15
+Wattrel,Electric,Flying,Beach,60,60,60,60
+Skiploom,Grass,Flying,Flower,20,20,20,20
+Combee,Bug,Flying,Flower,40,40,40,40
+Spewpa,Bug,Bug,Flower,30,30,30,30
+Flabebe,Fairy,Fairy,Flower,60,60,60,60
+Flabebe,Fairy,Fairy,Flower,60,60,60,60
+Flabebe,Fairy,Fairy,Flower,60,60,60,60
+Flabebe,Fairy,Fairy,Flower,60,60,60,60
+Flabebe,Fairy,Fairy,Flower,6,6,6,6
+Floette,Fairy,Fairy,Flower,55,55,55,55
+Floette,Fairy,Fairy,Flower,55,55,55,55
+Floette,Fairy,Fairy,Flower,55,55,55,55
+Floette,Fairy,Fairy,Flower,55,55,55,55
+Floette,Fairy,Fairy,Flower,3,3,3,3
+Fomantis,Grass,Grass,Flower,60,60,60,60
 Gastly,Ghost,Poison,,15,15,15,15
 Bronzor,Steel,Psychic,,60,60,60,60
 Tinkatink,Fairy,Steel,,15,15,15,15
-Basculin (Red-Striped),Water,Water,,60,60,60,60
-Basculin (Blue-Striped),Water,Water,,60,60,60,60
-Basculin (Red-Striped),Water,Water,,60,60,60,60
-Basculin (Blue-Striped),Water,Water,,60,60,60,60

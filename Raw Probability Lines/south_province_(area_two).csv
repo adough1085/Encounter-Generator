@@ -1,53 +1,53 @@
 Name,Type1,Type2,Biome,Dawn,Day,Dusk,Night
-Mareep,Electric,Electric,,60,60,60,60
-Hoppip,Grass,Flying,,60,60,60,60
-Starly,Normal,Flying,,20,20,20,0
-Happiny,Normal,Normal,,1,1,1,1
-Fletchling,Normal,Flying,,60,60,60,60
-Maschiff,Dark,Dark,,30,30,30,30
-Pikachu,Electric,Electric,,10,10,10,10
-Pichu,Electric,Electric,,10,10,10,10
-Bonsly,Rock,Rock,,30,30,30,30
-Bounsweet,Grass,Grass,,60,60,60,60
-Skwovet,Normal,Normal,,50,50,50,50
-Applin,Grass,Dragon,,10,10,10,10
-Shroodle,Poison,Normal,,20,20,20,20
-Jigglypuff,Normal,Fairy,,60,60,60,60
-Igglybuff,Normal,Fairy,,60,60,60,60
-Fidough,Fairy,Fairy,,50,50,50,50
-Gastly,Ghost,Poison,,0,0,0,50
-Misdreavus (Violet),Ghost,Ghost,,0,0,0,15
-Skiddo,Grass,Grass,,60,60,60,60
-Rockruff (Standard),Rock,Rock,,40,40,40,40
-Rockruff (Own Tempo),Rock,Rock,,2,2,2,2
-Psyduck,Water,Water,,60,60,60,60
-Magikarp,Water,Water,,20,20,20,20
-Azurill,Normal,Fairy,,60,60,60,60
-Buizel,Water,Water,,20,20,20,20
-Chewtle,Water,Water,,10,10,10,10
-Arrokuda,Water,Water,,40,40,40,40
-Tadbulb,Electric,Electric,,50,50,50,50
-Makuhita,Fighting,Fighting,,30,30,30,30
-Yungoos,Normal,Normal,,20,20,20,20
-Nacli,Rock,Rock,,60,60,60,60
-Sunkern,Grass,Grass,,60,60,60,0
-Combee,Bug,Flying,,40,40,40,40
-Happiny,Normal,Normal,,1,1,1,1
-Flabebe,Fairy,Fairy,,60,60,60,60
-Flabebe,Fairy,Fairy,,60,60,60,60
-Flabebe,Fairy,Fairy,,60,60,60,60
-Flabebe,Fairy,Fairy,,60,60,60,60
-Flabebe,Fairy,Fairy,,6,6,6,6
-Diglett,Ground,Ground,,50,50,50,50
-Eevee,Normal,Normal,,5,5,5,5
-Mareep,Electric,Electric,,30,30,30,30
-Starly,Normal,Flying,,30,30,30,0
-Kricketot,Bug,Bug,,30,30,30,30
-Combee,Bug,Flying,,30,30,30,30
-Skwovet,Normal,Normal,,30,30,30,30
-Smoliv,Grass,Normal,,100,100,100,100
-Gastly,Ghost,Poison,,15,15,15,15
-Drowzee,Psychic,Psychic,,40,40,40,40
-Bronzor,Steel,Psychic,,60,60,60,60
-Maschiff,Dark,Dark,,50,50,50,50
-Tinkatink,Fairy,Steel,,15,15,15,15
+Mareep,Electric,Electric,Prairie,60,60,60,60
+Hoppip,Grass,Flying,Prairie,60,60,60,60
+Starly,Normal,Flying,Prairie,20,20,20,0
+Happiny,Normal,Normal,Prairie,1,1,1,1
+Fletchling,Normal,Flying,Prairie,60,60,60,60
+Maschiff,Dark,Dark,Prairie,30,30,30,30
+Pikachu,Electric,Electric,Forest,10,10,10,10
+Pichu,Electric,Electric,Forest,10,10,10,10
+Bonsly,Rock,Rock,Forest,30,30,30,30
+Bounsweet,Grass,Grass,Forest,60,60,60,60
+Skwovet,Normal,Normal,Forest,50,50,50,50
+Applin,Grass,Dragon,Forest,10,10,10,10
+Shroodle,Poison,Normal,Forest,20,20,20,20
+Jigglypuff,Normal,Fairy,Town,60,60,60,60
+Igglybuff,Normal,Fairy,Town,60,60,60,60
+Fidough,Fairy,Fairy,Town,50,50,50,50
+Gastly,Ghost,Poison,Mountain,0,0,0,50
+Misdreavus (Violet),Ghost,Ghost,Mountain,0,0,0,15
+Skiddo,Grass,Grass,Mountain,60,60,60,60
+Rockruff (Standard),Rock,Rock,Mountain,40,40,40,40
+Rockruff (Own Tempo),Rock,Rock,Mountain,2,2,2,2
+Psyduck,Water,Water,Psyduck,60,60,60,60
+Magikarp,Water,Water,Psyduck,20,20,20,20
+Azurill,Normal,Fairy,Psyduck,60,60,60,60
+Buizel,Water,Water,Psyduck,20,20,20,20
+Chewtle,Water,Water,Psyduck,10,10,10,10
+Arrokuda,Water,Water,Psyduck,40,40,40,40
+Tadbulb,Electric,Electric,Psyduck,50,50,50,50
+Makuhita,Fighting,Fighting,Rocky Area,30,30,30,30
+Yungoos,Normal,Normal,Rocky Area,20,20,20,20
+Nacli,Rock,Rock,Rocky Area,60,60,60,60
+Sunkern,Grass,Grass,Flower,60,60,60,0
+Combee,Bug,Flying,Flower,40,40,40,40
+Happiny,Normal,Normal,Flower,1,1,1,1
+Flabebe,Fairy,Fairy,Flower,60,60,60,60
+Flabebe,Fairy,Fairy,Flower,60,60,60,60
+Flabebe,Fairy,Fairy,Flower,60,60,60,60
+Flabebe,Fairy,Fairy,Flower,60,60,60,60
+Flabebe,Fairy,Fairy,Flower,6,6,6,6
+Diglett,Ground,Ground,Diglett,50,50,50,50
+Eevee,Normal,Normal,Diglett,5,5,5,5
+Mareep,Electric,Electric,Diglett,30,30,30,30
+Starly,Normal,Flying,Diglett,30,30,30,0
+Kricketot,Bug,Bug,Diglett,30,30,30,30
+Combee,Bug,Flying,Diglett,30,30,30,30
+Skwovet,Normal,Normal,Diglett,30,30,30,30
+Smoliv,Grass,Normal,Diglett,100,100,100,100
+Gastly,Ghost,Poison,Ruins,15,15,15,15
+Drowzee,Psychic,Psychic,Ruins,40,40,40,40
+Bronzor,Steel,Psychic,Ruins,60,60,60,60
+Maschiff,Dark,Dark,Ruins,50,50,50,50
+Tinkatink,Fairy,Steel,Ruins,15,15,15,15

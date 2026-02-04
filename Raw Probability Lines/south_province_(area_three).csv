@@ -1,34 +1,34 @@
 Name,Type1,Type2,Biome,Dawn,Day,Dusk,Night
-Murkrow,Dark,Flying,,0,0,40,40
-Dunsparce,Normal,Normal,,2,2,2,2
-Gulpin (Violet),Poison,Poison,,20,20,20,20
-Happiny,Normal,Normal,,1,1,1,1
-Rookidee,Flying,Flying,,30,30,30,30
-Nymble,Bug,Bug,,60,60,60,60
-Pawmi,Electric,Electric,,5,5,5,5
-Murkrow,Dark,Flying,,0,0,60,60
-Gulpin (Violet),Poison,Poison,,60,60,60,60
-Shuppet,Ghost,Ghost,,0,0,0,70
-Drifloon (Scarlet),Ghost,Flying,,0,0,40,40
-Oricorio (Baile Style),Fire,Flying,,40,40,40,40
-Rookidee,Flying,Flying,,30,30,30,30
-Tandemaus,Normal,Normal,,10,10,10,10
-Squawkabilly,Normal,Flying,,20,20,20,20
-Squawkabilly,Normal,Flying,,15,15,15,15
-Squawkabilly,Normal,Flying,,10,10,10,10
-Squawkabilly,Normal,Flying,,5,5,5,5
-Growlithe,Fire,Fire,,20,20,20,20
-Makuhita,Fighting,Fighting,,30,30,30,30
-Spoink,Psychic,Psychic,,20,20,20,20
-Shinx,Electric,Electric,,60,60,60,60
-Skiddo,Grass,Grass,,50,50,50,50
-Yungoos,Normal,Normal,,20,20,20,20
-Rookidee,Flying,Flying,,30,30,30,30
-Pawmi,Electric,Electric,,5,5,5,5
-Nacli,Rock,Rock,,60,60,60,60
-Charcadet,Fire,Fire,,1,1,1,1
-Klawf,Rock,Rock,,30,30,30,30
-Gastly,Ghost,Poison,,15,15,15,15
-Drowzee,Psychic,Psychic,,40,40,40,40
-Bronzor,Steel,Psychic,,60,60,60,60
-Tinkatink,Fairy,Steel,,15,15,15,15
+Murkrow,Dark,Flying,Prairie,0,0,40,40
+Dunsparce,Normal,Normal,Prairie,2,2,2,2
+Gulpin (Violet),Poison,Poison,Prairie,20,20,20,20
+Happiny,Normal,Normal,Prairie,1,1,1,1
+Rookidee,Flying,Flying,Prairie,30,30,30,30
+Nymble,Bug,Bug,Prairie,60,60,60,60
+Pawmi,Electric,Electric,Prairie,5,5,5,5
+Murkrow,Dark,Flying,Town,0,0,60,60
+Gulpin (Violet),Poison,Poison,Town,60,60,60,60
+Shuppet,Ghost,Ghost,Town,0,0,0,70
+Drifloon (Scarlet),Ghost,Flying,Town,0,0,40,40
+Oricorio (Baile Style),Fire,Flying,Town,40,40,40,40
+Rookidee,Flying,Flying,Town,30,30,30,30
+Tandemaus,Normal,Normal,Town,10,10,10,10
+Squawkabilly,Normal,Flying,Town,20,20,20,20
+Squawkabilly,Normal,Flying,Town,15,15,15,15
+Squawkabilly,Normal,Flying,Town,10,10,10,10
+Squawkabilly,Normal,Flying,Town,5,5,5,5
+Growlithe,Fire,Fire,Rocky Area,20,20,20,20
+Makuhita,Fighting,Fighting,Rocky Area,30,30,30,30
+Spoink,Psychic,Psychic,Rocky Area,20,20,20,20
+Shinx,Electric,Electric,Rocky Area,60,60,60,60
+Skiddo,Grass,Grass,Rocky Area,50,50,50,50
+Yungoos,Normal,Normal,Rocky Area,20,20,20,20
+Rookidee,Flying,Flying,Rocky Area,30,30,30,30
+Pawmi,Electric,Electric,Rocky Area,5,5,5,5
+Nacli,Rock,Rock,Rocky Area,60,60,60,60
+Charcadet,Fire,Fire,Rocky Area,1,1,1,1
+Klawf,Rock,Rock,Rocky Area,30,30,30,30
+Gastly,Ghost,Poison,Ruins,15,15,15,15
+Drowzee,Psychic,Psychic,Ruins,40,40,40,40
+Bronzor,Steel,Psychic,Ruins,60,60,60,60
+Tinkatink,Fairy,Steel,Ruins,15,15,15,15

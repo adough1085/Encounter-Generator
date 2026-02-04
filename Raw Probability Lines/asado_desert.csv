@@ -1,49 +1,49 @@
 Name,Type1,Type2,Biome,Dawn,Day,Dusk,Night
-Murkrow,Dark,Flying,,0,0,40,40
-Dunsparce,Normal,Normal,,2,2,2,2
-Pawmo,Electric,Fighting,,10,10,10,10
-Toedscool,Ground,Grass,,2,2,2,2
-Phanpy,Ground,Ground,,20,20,20,20
-Donphan,Ground,Ground,,20,20,20,20
-Cacnea,Grass,Grass,,90,90,90,90
-Hippopotas,Ground,Ground,,60,60,60,60
-Sandile,Ground,Dark,,100,100,100,100
-Rufflet,Normal,Flying,,60,60,60,60
-Larvesta,Bug,Fire,,5,5,5,5
-Silicobra,Ground,Ground,,30,30,30,30
-Stonjourner (Scarlet),Rock,Rock,,5,5,5,5
-Bramblin,Grass,Ghost,,30,30,30,30
-Capsakid,Grass,Grass,,30,30,30,30
-Rellor,Bug,Bug,,80,80,80,80
-Flittle,Psychic,Psychic,,40,40,40,40
-Orthworm,Steel,Steel,,20,20,20,20
-Psyduck,Water,Water,,60,60,60,60
-Marill,Water,Fairy,,60,60,60,60
-Buizel,Water,Water,,20,20,20,20
-Chewtle,Water,Water,,10,10,10,10
-Drednaw,Water,Rock,,10,10,10,10
-Dreepy (Violet),Dragon,Ghost,,5,5,5,5
-Tadbulb,Electric,Electric,,50,50,50,50
-Makuhita,Fighting,Fighting,,30,30,30,30
-Skiddo,Grass,Grass,,50,50,50,50
-Yungoos,Normal,Normal,,20,20,20,20
-Gumshoos,Normal,Normal,,30,30,30,30
-Lokix,Bug,Dark,,30,30,30,30
-Nacli,Rock,Rock,,60,60,60,60
-Charcadet,Fire,Fire,,1,1,1,1
-Combee,Bug,Flying,,40,40,40,40
-Flabebe,Fairy,Fairy,,60,60,60,60
-Flabebe,Fairy,Fairy,,60,60,60,60
-Flabebe,Fairy,Fairy,,60,60,60,60
-Flabebe,Fairy,Fairy,,60,60,60,60
-Flabebe,Fairy,Fairy,,6,6,6,6
-Floette,Fairy,Fairy,,55,55,55,55
-Floette,Fairy,Fairy,,55,55,55,55
-Floette,Fairy,Fairy,,55,55,55,55
-Floette,Fairy,Fairy,,55,55,55,55
-Floette,Fairy,Fairy,,3,3,3,3
-Gastly,Ghost,Poison,,15,15,15,15
-Bronzor,Steel,Psychic,,60,60,60,60
-Falinks,Fighting,Fighting,,40,40,40,40
-Stonjourner (Scarlet),Rock,Rock,,15,15,15,15
-Tinkatuff,Fairy,Steel,,15,15,15,15
+Murkrow,Dark,Flying,Prairie,0,0,40,40
+Dunsparce,Normal,Normal,Prairie,2,2,2,2
+Pawmo,Electric,Fighting,Prairie,10,10,10,10
+Toedscool,Ground,Grass,Prairie,2,2,2,2
+Phanpy,Ground,Ground,Desert,20,20,20,20
+Donphan,Ground,Ground,Desert,20,20,20,20
+Cacnea,Grass,Grass,Desert,90,90,90,90
+Hippopotas,Ground,Ground,Desert,60,60,60,60
+Sandile,Ground,Dark,Desert,100,100,100,100
+Rufflet,Normal,Flying,Desert,60,60,60,60
+Larvesta,Bug,Fire,Desert,5,5,5,5
+Silicobra,Ground,Ground,Desert,30,30,30,30
+Stonjourner (Scarlet),Rock,Rock,Desert,5,5,5,5
+Bramblin,Grass,Ghost,Desert,30,30,30,30
+Capsakid,Grass,Grass,Desert,30,30,30,30
+Rellor,Bug,Bug,Desert,80,80,80,80
+Flittle,Psychic,Psychic,Desert,40,40,40,40
+Orthworm,Steel,Steel,Desert,20,20,20,20
+Psyduck,Water,Water,Riverside,60,60,60,60
+Marill,Water,Fairy,Riverside,60,60,60,60
+Buizel,Water,Water,Riverside,20,20,20,20
+Chewtle,Water,Water,Riverside,10,10,10,10
+Drednaw,Water,Rock,Riverside,10,10,10,10
+Dreepy (Violet),Dragon,Ghost,Riverside,5,5,5,5
+Tadbulb,Electric,Electric,Riverside,50,50,50,50
+Makuhita,Fighting,Fighting,Rocky Area,30,30,30,30
+Skiddo,Grass,Grass,Rocky Area,50,50,50,50
+Yungoos,Normal,Normal,Rocky Area,20,20,20,20
+Gumshoos,Normal,Normal,Rocky Area,30,30,30,30
+Lokix,Bug,Dark,Rocky Area,30,30,30,30
+Nacli,Rock,Rock,Rocky Area,60,60,60,60
+Charcadet,Fire,Fire,Rocky Area,1,1,1,1
+Combee,Bug,Flying,Flower,40,40,40,40
+Flabebe,Fairy,Fairy,Flower,60,60,60,60
+Flabebe,Fairy,Fairy,Flower,60,60,60,60
+Flabebe,Fairy,Fairy,Flower,60,60,60,60
+Flabebe,Fairy,Fairy,Flower,60,60,60,60
+Flabebe,Fairy,Fairy,Flower,6,6,6,6
+Floette,Fairy,Fairy,Flower,55,55,55,55
+Floette,Fairy,Fairy,Flower,55,55,55,55
+Floette,Fairy,Fairy,Flower,55,55,55,55
+Floette,Fairy,Fairy,Flower,55,55,55,55
+Floette,Fairy,Fairy,Flower,3,3,3,3
+Gastly,Ghost,Poison,Ruins,15,15,15,15
+Bronzor,Steel,Psychic,Ruins,60,60,60,60
+Falinks,Fighting,Fighting,Ruins,40,40,40,40
+Stonjourner (Scarlet),Rock,Rock,Ruins,15,15,15,15
+Tinkatuff,Fairy,Steel,Ruins,15,15,15,15
