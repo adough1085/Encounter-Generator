@@ -45,6 +45,7 @@ class Area:
             return False
 
     def parse_insert(self, insert_string):
+        # insert_string should look something like: Dugtrio,Ground,Ground,Cave,20,20,20,20
         line = insert_string.split(",")
         name = line[0]
         type1 = line[1]
@@ -60,9 +61,11 @@ class Area:
         if type1 != type2:
             type_string = f"{type_string}_{type2}"
 
+        # identifier will end up looking something like: Dugtrio_Ground
         identifier = f"{name}_{type_string}"
 
-        if self.f_key(identifier) == False:
+        
+        if self.find_key(identifier) == False:
             self.pokemon.append(identifier)
             self.dawn[identifier] = dawn
             self.day[identifier] = day
@@ -85,21 +88,61 @@ class Area:
             line = line[:len(line)-1]
             self.parse_insert(line)
 
-    def f_key(self, name):
-        found = False
-        for s in self.pokemon:
-            if name.lower().strip() == s.lower().strip():
-                found = True
-                break
+    def find_key(self, pkmn_to_check):
+        """
+        Docstring for find_key
+        
+        :param self: Area object.
+        :param pkmn_to_check: String representing the Pokemon that is being checked if it already exists.
+
+        This function will check if this self.pokemon being inquired has already been recorded in this area.
+        This function is used because dictionaries are used in the case of sum + addend.
+        Dictionaries will throw an error in the case above if the key does not already exist.
+        Hence, the need for this function.
+        """
+        # Compare the Pokemon to be checked to every Pokemon recorded in the area
+        # Return whether or not the Pokemon was found
+        # Names are compared in lowercase in case of any strange case input errors. 
+        found = any(pkmn_to_check.lower() == recorded_pkmn.lower() for recorded_pkmn in self.pokemon)
         return found
     
-    def f_dupe(self,dupes, name):
-        for pkmn in dupes:
-            if pkmn.strip().lower() == name.strip().lower():
-                return True
-        return False
+    def find_dupe(self, dupes, pkmn_to_check, rule_enabled):
+        """
+        Docstring for find_dupe
+        
+        :param self: Area object.
+        :param dupes: List of Strings representing Pokemon in the form "Name_Typestring" such as "Pikachu_Electric" or "Charizard_Fire_Flying".
+        :param pkmn_to_check: String representing the Pokemon that is being checked if it already exists.
+        :param rule_enabled: Boolean that signifies if the function will perform any operations. 
 
-    def distribution(self, game, time, type, power, dupes):
+        "Dupe" is short for "duplication", and is in reference to a Pokemon (or evolutionary related Pokemon) that you already have CAPTURED before.
+        This is related to a common optional rule called "Dupes Clause", which is explained below.which means if you encounter a Pokemon,
+        if it is a duplicate then you can ignore it and encounter a different Pokemon, 
+        where that Pokemon can also be ignored as per Dupes Clause rules.
+        This continues until you encounter a Pokemon (nor any of its evolutionary related Pokemon) that has not been CAPTURED before.
+
+        Dupes Clause is a common optional rule that states:
+            - A Pokemon (or its evolutionary-related Pokemon) that you have already captured before are "dupes" or duplicates
+            - If encountering a dupe, the dupe can be ignored and you can attempt another encounter
+            - This continues until finding a non-dupe
+        
+        Dupes Clause is used to:
+            - Add uniqueness to the roster that you build
+            - Add difficulty by making Pokemon irreplaceable
+        """
+        # Redundancy to check if rule_enabled is a Boolean 
+        rule_enabled = (rule_enabled) if (True | False) else (False)
+
+        if rule_enabled == False:
+            return False
+
+        # Compare the Pokemon to be checked to every Pokemon in the dupes list
+        # Return whether or not the Pokemon is a dupe
+        # Names are compared in lowercase in case of any strange case input errors.
+        found = any(pkmn_to_check.lower() == dupe.lower() for dupe in dupes)
+        return found
+
+    def distribution(self, game, time, type, power, dupes, check_dupes):
 
         # Choosing all possible wild Pokemon that are present within the day part selected.
         time = time.lower().strip()
@@ -141,7 +184,7 @@ class Area:
         sum = 0
         keys = selected.keys() # Keys are possible wild Pokemon present in the day part selected.
         for k in keys: # For every while Pokemon
-            if self.f_dupe(dupes,k.split("_")[0]) == False: # Proceed if neither the Pokemon (or related Pokemon) have already been captured
+            if self.find_dupe(dupes, k.split("_")[0], check_dupes) == False: # Proceed if neither the Pokemon (or related Pokemon) have already been captured
                 if game == "Scarlet" and k.find("Violet") == -1: # Proceed if the Pokemon is not an opposite version exclusive 
                     if valid_type == True and upper_bound != 0 and k.find(type) == -1: # If there is an Encounter Power in use and the Pokemon is not of the correct type,
                         sum = sum + selected[k]*multiplier # Apply the multiplier (actually makes chances worse for incorrect type pokemon)
@@ -156,7 +199,7 @@ class Area:
         names = []
         percents = []
         for k in keys:
-            if self.f_dupe(dupes,k.split("_")[0]) == False:
+            if self.find_dupe(dupes, k.split("_")[0], check_dupes) == False:
                 if game == "Scarlet" and k.find("Violet") == -1:
                     n = k.split("_")[0]
                     percent = 0
@@ -203,7 +246,7 @@ class Area:
         for x in range(len(names)):
             print("{0}: {1}%".format(names[x],percents[x]))        
 
-    def generate(self, game, time, type, power, dupes):
+    def generate(self, game, time, type, power, dupes, check_dupes):
         class Range:
             def __init__(self, name, lower, upper):
                 self.name = name
@@ -243,7 +286,7 @@ class Area:
         ranges = []
 
         for k in keys: # For every wild Pokemon
-            if self.f_dupe(dupes, k.split("_")[0]) == False: # Proceed if neither the Pokemon (or related Pokemon) have already been captured
+            if self.find_dupe(dupes, k.split("_")[0], check_dupes) == False: # Proceed if neither the Pokemon (or related Pokemon) have already been captured
                 if game == "Scarlet" and k.find("Violet") == -1: # Proceed if the Pokemon is not an opposite version exclusive 
                     if power_activated == True and k.find(type) == -1: # Skip if a specific type is enforced, and the Pokemon does not match the type.
                         continue
@@ -608,7 +651,7 @@ class Game:
                     found = False
                     break 
 
-    def generate(self, pkmn_set_int, area, time, type, power):
+    def generate(self, pkmn_set_int, area, time, type, power, check_dupes):
         pkmn_set = {}
         area_chosen = -1
         daypart = ""
@@ -642,9 +685,9 @@ class Game:
             print("3 = Night")
             return None
         
-        pkmn_set[area_chosen].generate(self.game, daypart, type, power, self.dupes)
+        pkmn_set[area_chosen].generate(self.game, daypart, type, power, self.dupes, check_dupes)
 
-    def distribution(self, pkmn_set_int, area, time, type, power):
+    def distribution(self, pkmn_set_int, area, time, type, power, check_dupes):
         pkmn_set = {}
         area_chosen = -1
         daypart = ""
@@ -678,7 +721,7 @@ class Game:
             print("3 = Night")
             return None
         
-        pkmn_set[area_chosen].distribution(self.game, daypart, type, power, self.dupes)
+        pkmn_set[area_chosen].distribution(self.game, daypart, type, power, self.dupes, check_dupes)
 
     def locate(self, pkmn_set_int, pkmn):
         if pkmn_set_int == 0:
@@ -755,8 +798,8 @@ class Game:
 g = Game("Scarlet")
 g.box = ["Crocalor","Clodsire","Gumshoos","Arrokuda","Klawf","Bombirdier", "Magikarp", "Gimmighoul","Azumarill","Oinkologne (Male)","Tauros (Combat Breed)", "Goomy","Basculin (Red-Striped)"]
 g.dupe_out()
-g.distribution(0,15,1,"Flying",0)
-g.generate(0,15,1,"Flying",0)
+g.distribution(0,15,1,"Flying",0,True)
+g.generate(0,15,1,"Flying",0,True)
 #g.generate(0,8,1,"Flying",0)
 #g.distribution(0,9,1,"Normal",0)
 #g.generate(0,15,1,"Fairy",1)
