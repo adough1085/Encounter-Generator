@@ -75,13 +75,28 @@ class Area:
             self.pixel_total += 100
 
     def calculate_distribution(self):
-        # For every biome, access their pixels within the biome_pixels dictionary and compare it to pixel_total.
-        # Write the percentage within the distribution dictionary.
+        """
+        Docstring for calculate_distribution
+        
+        :param self: Area object.
+
+        For every biome, access their pixels within the biome_pixels dictionary and compare it to pixel_total.
+        Write the percentage within the distribution dictionary.
+        """
         for biome in self.biomes:
             percentage = self.biome_pixels[biome] / self.pixel_total
             self.distribution[biome] = percentage
 
     def csv(self):
+        """
+        Docstring for csv
+        
+        :param self: Area object.
+
+        Creates a CSV file named for example "alfornada_cavern.csv" that contains headers: "Biome", and "Percentage".
+        Biome represents the biome name/type.
+        Percentage represents what percent the particular biome covers in comparison to all covered biome space.
+        """
         subdirectory_path = Path("data/distribution")
         file_name = self.snake_case_name + ".csv"
         file_path = subdirectory_path / file_name
@@ -98,6 +113,13 @@ class Area:
                 f1.write(line)
 
     def run(self):
+        """
+        Docstring for run
+        
+        :param self: Area object.
+
+        Executes count, calculate_distribution, and csv methods for this area.
+        """
         self.count()
         self.calculate_distribution()
         self.csv()

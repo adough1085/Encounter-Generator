@@ -1,5 +1,4 @@
 from models.game import Game as Game
-   
 
 g = Game("Scarlet")
 g.box = ["Crocalor","Clodsire","Gumshoos","Arrokuda","Klawf","Bombirdier", "Magikarp", "Gimmighoul","Azumarill","Oinkologne (Male)","Tauros (Combat Breed)", "Goomy","Basculin (Red-Striped)"]
