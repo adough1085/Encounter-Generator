@@ -118,16 +118,24 @@ class Game:
         :param self: Game object.
         :param pkmn_to_find: String representing name of Pokemon to be found.
         :param print_boolean: Boolean that determines whether to print or not.
+
+        Given a Pokemon name, every daypart in every area is checked if the Pokemon is listed to exist.
+        If it does, then 
         """
         pkmn_to_find = pkmn_to_find.strip().lower()
         areas = self.alphabetical
         habitats = [] # A list is used instead of a set because a set does not print in the same order every time.
 
         for area in areas.values():
-            
             # areas is a dictionary with K: "Area Name", V: Area object.
             # areas.values() represents Area objects, therefore area is an Area object.
-            # native_pkmn are String objects representing the Pokemon that can be found in an area's daypart.
+            # native_pkmn are String objects representing the Pokemon that can be found in an area or its dayparts.
+            # First, immediately rule out areas.
+            pkmn_found = any(native_pkmn.strip().lower().split("_")[0] == pkmn_to_find for native_pkmn in area.pokemon)
+            if pkmn_found == False:
+                continue
+
+            # Second, check dayparts.
             dawn_found = any(native_pkmn.strip().lower().split("_")[0] == pkmn_to_find for native_pkmn in area.dawn.keys())
             day_found = any(native_pkmn.strip().lower().split("_")[0] == pkmn_to_find for native_pkmn in area.day.keys())
             dusk_found = any(native_pkmn.strip().lower().split("_")[0] == pkmn_to_find for native_pkmn in area.dusk.keys())
