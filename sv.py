@@ -1,6 +1,7 @@
 import random
 import modules.name_conventions.nc as nc
-            
+import modules.validation.v as v
+
 class Area:
     def __init__(self, name):
         self.name = nc.standard(name)
@@ -335,74 +336,73 @@ class Area:
         west_province_area_two = Area("West Province (Area Two)")
         west_province_area_three = Area("West Province (Area Three)")
 
-        alphabetical = {}
-        alphabetical[1] = alfornada_cavern
-        alphabetical[2] = asado_desert
-        alphabetical[3] = cabo_poco
-        alphabetical[4] = casseroya_lake
-        alphabetical[5] = dalizapa_passage
-        alphabetical[6] = east_paldean_sea
-        alphabetical[7] = east_province_area_one
-        alphabetical[8] = east_province_area_two
-        alphabetical[9] = east_province_area_three
-        alphabetical[10] = glaseado_mountain
-        alphabetical[11] = great_crater_of_paldea
-        alphabetical[12] = inlet_grotto
-        alphabetical[13] = north_paldean_sea
-        alphabetical[14] = north_province_area_one
-        alphabetical[15] = north_province_area_two
-        alphabetical[16] = north_province_area_three
-        alphabetical[17] = poco_path
-        alphabetical[18] = pokemon_league
-        alphabetical[19] = socarrat_trail
-        alphabetical[20] = south_paldean_sea
-        alphabetical[21] = south_province_area_one
-        alphabetical[22] = south_province_area_two
-        alphabetical[23] = south_province_area_three
-        alphabetical[24] = south_province_area_four
-        alphabetical[25] = south_province_area_five
-        alphabetical[26] = south_province_area_six
-        alphabetical[27] = tagtree_thicket
-        alphabetical[28] = west_paldean_sea
-        alphabetical[29] = west_province_area_one
-        alphabetical[30] = west_province_area_two
-        alphabetical[31] = west_province_area_three
+        numerical = {}
+        numerical[1] = alfornada_cavern
+        numerical[2] = asado_desert
+        numerical[3] = cabo_poco
+        numerical[4] = casseroya_lake
+        numerical[5] = dalizapa_passage
+        numerical[6] = east_paldean_sea
+        numerical[7] = east_province_area_one
+        numerical[8] = east_province_area_two
+        numerical[9] = east_province_area_three
+        numerical[10] = glaseado_mountain
+        numerical[11] = great_crater_of_paldea
+        numerical[12] = inlet_grotto
+        numerical[13] = north_paldean_sea
+        numerical[14] = north_province_area_one
+        numerical[15] = north_province_area_two
+        numerical[16] = north_province_area_three
+        numerical[17] = poco_path
+        numerical[18] = pokemon_league
+        numerical[19] = socarrat_trail
+        numerical[20] = south_paldean_sea
+        numerical[21] = south_province_area_one
+        numerical[22] = south_province_area_two
+        numerical[23] = south_province_area_three
+        numerical[24] = south_province_area_four
+        numerical[25] = south_province_area_five
+        numerical[26] = south_province_area_six
+        numerical[27] = tagtree_thicket
+        numerical[28] = west_paldean_sea
+        numerical[29] = west_province_area_one
+        numerical[30] = west_province_area_two
+        numerical[31] = west_province_area_three
 
-
-        chronological = {}
-        chronological[1] = cabo_poco
-        chronological[2] = poco_path
-        chronological[3] = inlet_grotto
-        chronological[4] = south_province_area_one
-        chronological[5] = south_province_area_two
-        chronological[6] = pokemon_league
-        chronological[7] = south_province_area_three
-        chronological[8] = west_province_area_one
-        chronological[9] = south_paldean_sea
-        chronological[10] = south_province_area_four
-        chronological[11] = south_province_area_five
-        chronological[12] = east_province_area_one
-        chronological[13] = east_province_area_two
-        chronological[14] = east_province_area_three
-        chronological[15] = tagtree_thicket
-        chronological[16] = west_province_area_two
-        chronological[17] = west_province_area_three
-        chronological[18] = east_paldean_sea
-        chronological[19] = west_paldean_sea
-        chronological[20] = dalizapa_passage
-        chronological[21] = glaseado_mountain
-        chronological[22] = alfornada_cavern
-        chronological[23] = south_province_area_six
-        chronological[24] = asado_desert
-        chronological[25] = north_province_area_three
-        chronological[26] = north_province_area_two
-        chronological[27] = north_province_area_one
-        chronological[28] = north_paldean_sea
-        chronological[29] = casseroya_lake
-        chronological[30] = socarrat_trail
-        chronological[31] = great_crater_of_paldea
+        alpha = {}
+        alpha["Alfornada Cavern"] = alfornada_cavern
+        alpha["Asado Desert"] = asado_desert
+        alpha["Cabo Poco"] = cabo_poco
+        alpha["Casseroya Lake"] = casseroya_lake
+        alpha["Dalizapa Passage"] = dalizapa_passage
+        alpha["East Paldean Sea"] = east_paldean_sea
+        alpha["East Province (Area One)"] = east_province_area_one
+        alpha["East Province (Area Two)"] = east_province_area_two
+        alpha["East Province (Area Three)"] = east_province_area_three
+        alpha["Glaseado Mountain"] = glaseado_mountain
+        alpha["Great Crater of Paldea"] = great_crater_of_paldea
+        alpha["Inlet Grotto"] = inlet_grotto
+        alpha["North Paldean Sea"] = north_paldean_sea
+        alpha["North Province (Area One)"] = north_province_area_one
+        alpha["North Province (Area Two)"] = north_province_area_two
+        alpha["North Province (Area Three)"] = north_province_area_three
+        alpha["Poco Path"] = poco_path
+        alpha["Pokemon League"] = pokemon_league
+        alpha["Socarrat Trail"] = socarrat_trail
+        alpha["South Paldean Sea"] = south_paldean_sea
+        alpha["South Province (Area One)"] = south_province_area_one
+        alpha["South Province (Area Two)"] = south_province_area_two
+        alpha["South Province (Area Three)"] = south_province_area_three
+        alpha["South Province (Area Four)"] = south_province_area_four
+        alpha["South Province (Area Five)"] = south_province_area_five
+        alpha["South Province (Area Six)"] = south_province_area_six
+        alpha["Tagtree Thicket"] = tagtree_thicket
+        alpha["West Paldean Sea"] = west_paldean_sea
+        alpha["West Province (Area One)"] = west_province_area_one
+        alpha["West Province (Area Two)"] = west_province_area_two
+        alpha["West Province (Area Three)"] = west_province_area_three
         
-        pair = [chronological, alphabetical]
+        pair = [numerical, alpha]
         return pair
 
 class Game:
@@ -414,7 +414,7 @@ class Game:
         self.dupes = set()
         self.pokedex = []
         self.alphabetical = {}
-        self.chronological = {}
+        self.numerical = {}
 
         with open("data/pokedex/paldea_dex.txt","r") as f1:
             self.pokedex = f1.readlines()
@@ -441,157 +441,128 @@ class Game:
             for pkmn in link:
                 self.dupes.add(pkmn)
 
-    def generate(self, pkmn_set_int, area, time, type, power, check_dupes):
+    def generate(self, area, time, type, power, check_dupes):
         pkmn_set = {}
-        area_chosen = -1
-        daypart = ""
-        if pkmn_set_int == 0:
-            pkmn_set = self.chronological
-        elif pkmn_set_int == 1:
-            pkmn_set = self.alphabetical
-        else:
-            print("0 = chronological")
-            print("1 = alphabetical")
-            return None
+        if isinstance(area, str):
+            area = area.strip()
+        if isinstance(time, str):
+            time = time.strip()
+        
 
-        if 1 <= area and area <= 31:
-            area_chosen = area
-        else:
-            print("Areas 1-31")
-            return None
-
-        if time == 0:
-            daypart = "Dawn"
-        elif time == 1:
-            daypart = "Day"
-        elif time == 2:
-            daypart = "Dusk"
-        elif time == 3:
-            daypart = "Night"
-        else:
+        # Making sure that area input is valid
+        if isinstance(area, str):
+            if area.isnumeric():
+                area = int(area)
+            if self.valid_area(area) == False:
+                print("Invalid Area")
+                return None
+        if isinstance(area, int):
+            if (1 <= area and area <= 31) == False:
+                print("Areas 1-31")
+                return None
+        
+        # Making sure that time input is valid
+        daypart = v.resolve_daypart(time)
+        if daypart == False:
             print("0 = Dawn")
             print("1 = Day")
             print("2 = Dusk")
             print("3 = Night")
             return None
-        
-        pkmn_set[area_chosen].generate(self.game, daypart, type, power, self.dupes, check_dupes)
 
-    def distribution(self, pkmn_set_int, area, time, type, power, check_dupes):
-        pkmn_set = {}
-        area_chosen = -1
-        daypart = ""
-        if pkmn_set_int == 0:
-            pkmn_set = self.chronological
-        elif pkmn_set_int == 1:
+        # Setting area set
+        if isinstance(area, int):
+            pkmn_set = self.numerical
+        else:
             pkmn_set = self.alphabetical
-        else:
-            print("0 = chronological")
-            print("1 = alphabetical")
-            return None
+        
+        pkmn_set[area].generate(self.game, daypart, type, power, self.dupes, check_dupes)
 
-        if 1 <= area and area <= 31:
-            area_chosen = area
-        else:
-            print("Areas 1-31")
-            return None
+    def distribution(self, area, time, type, power, check_dupes):
+        pkmn_set = {}
+        if isinstance(area, str):
+            area = area.strip()
+        if isinstance(time, str):
+            time = time.strip()
+        
 
-        if time == 0:
-            daypart = "Dawn"
-        elif time == 1:
-            daypart = "Day"
-        elif time == 2:
-            daypart = "Dusk"
-        elif time == 3:
-            daypart = "Night"
-        else:
+        # Making sure that area input is valid
+        if isinstance(area, str):
+            if area.isnumeric():
+                area = int(area)
+            if self.valid_area(area) == False:
+                print("Invalid Area")
+                return None
+        if isinstance(area, int):
+            if (1 <= area and area <= 31) == False:
+                print("Areas 1-31")
+                return None
+        
+        # Making sure that time input is valid
+        daypart = v.resolve_daypart(time)
+        if daypart == False:
             print("0 = Dawn")
             print("1 = Day")
             print("2 = Dusk")
             print("3 = Night")
             return None
-        
-        pkmn_set[area_chosen].distribution(self.game, daypart, type, power, self.dupes, check_dupes)
 
-    def locate(self, pkmn_set_int, pkmn):
-        if pkmn_set_int == 0:
-            pkmn_set = self.chronological
-        elif pkmn_set_int == 1:
-            pkmn_set = self.alphabetical
+        # Setting area set
+        if isinstance(area, int):
+            pkmn_set = self.numerical
         else:
-            print("0 = chronological")
-            print("1 = alphabetical")
-            return None
+            pkmn_set = self.alphabetical
         
+        pkmn_set[area].distribution(self.game, daypart, type, power, self.dupes, check_dupes)
+
+    def locate(self, pkmn):
+        pkmn = pkmn.strip().lower()
+        areas_dict = self.alphabetical
         habitats = []
-        for x in range(len(pkmn_set)):
-            pkmn_found = False
-            dawn_found = False
-            day_found = False
-            dusk_found = False
-            night_found = False
-            for k in pkmn_set[x+1].dawn.keys():
-                if k.lower().find(pkmn.lower().strip()) != -1:
-                    pkmn_found = True
-                    break
-            if pkmn_found == False:
-                continue
-            elif pkmn_found == True:
-                for k in pkmn_set[x+1].dawn.keys():
-                    if k.lower().find(pkmn.lower().strip()) == -1:
-                        continue
-                    if pkmn_set[x+1].dawn[k] > 0:
-                        dawn_found = True
-                        break
-                for k in pkmn_set[x+1].day.keys():
-                    if k.lower().find(pkmn.lower().strip()) == -1:
-                        continue
-                    if pkmn_set[x+1].day[k] > 0:
-                        day_found = True
-                        break
-                for k in pkmn_set[x+1].dusk.keys():
-                    if k.lower().find(pkmn.lower().strip()) == -1:
-                        continue
-                    if pkmn_set[x+1].dusk[k] > 0:
-                        dusk_found = True
-                        break
-                for k in pkmn_set[x+1].night.keys():
-                    if k.lower().find(pkmn.lower().strip()) == -1:
-                        continue
-                    if pkmn_set[x+1].night[k] > 0:
-                        night_found = True
-                        break
-            if (dawn_found == True) and (day_found == True) and (dusk_found == True) and (night_found == True):
-                habitats.append(pkmn_set[x+1].name)
+
+        for area in areas_dict.values():
+            dawn_found = any(native_pkmn.strip().lower().find(pkmn) for native_pkmn in area.dawn.keys())
+            day_found = any(native_pkmn.strip().lower().find(pkmn) for native_pkmn in area.day.keys())
+            dusk_found = any(native_pkmn.strip().lower().find(pkmn) for native_pkmn in area.dusk.keys())
+            night_found = any(native_pkmn.strip().lower().find(pkmn) for native_pkmn in area.night.keys())
+
+            if dawn_found and day_found and dusk_found and night_found:
+                habitats.append(area.name)
             else:
-                string = pkmn_set[x+1].name + " ("
-                if dawn_found == True:
-                    string = string + "Dawn, "
-                if day_found == True:
-                    string = string + "Day, "
-                if dusk_found == True:
-                    string = string + "Dusk, "
-                if night_found == True:
-                    string = string + "Night, "
+                string = f"{area.name} ("
+                if dawn_found:
+                    string = f"{string}Dawn, "
+
+                if day_found:
+                    string = f"{string}Day, "
+
+                if dusk_found:
+                    string = f"{string}Dusk, "
+
+                if night_found:
+                    string = f"{string}Night, "
+
                 string = string[0:len(string)-2] + ")"
                 habitats.append(string)
+
         if len(habitats) >= 1:
-            print("{0} is located in:".format(pkmn))
+            print(f"{pkmn.title()} is located in:")
             for x in habitats:
                 print(x)
 
     def load_areas(self):
         duo = Area.load_areas()
         self.alphabetical = duo[1]
-        self.chronological = duo[0]
+        self.numerical = duo[0]
 
+            
 
 g = Game("Scarlet")
 g.box = ["Crocalor","Clodsire","Gumshoos","Arrokuda","Klawf","Bombirdier", "Magikarp", "Gimmighoul","Azumarill","Oinkologne (Male)","Tauros (Combat Breed)", "Goomy","Basculin (Red-Striped)"]
 g.populate_dupes()
-g.distribution(0,15,1,"Flying",0,True)
-g.generate(0,15,1,"Flying",0,True)
-#g.generate(0,8,1,"Flying",0)
-#g.distribution(0,9,1,"Normal",0)
-#g.generate(0,15,1,"Fairy",1)
-#g.locate(0, "Dratini")
+g.distribution(15,1,"Flying",0,True)
+g.generate(15,1,"Flying",0,True)
+#g.generate(8,1,"Flying",0)
+#g.distribution(9,1,"Normal",0)
+#g.generate(15,1,"Fairy",1)
+g.locate("Dratini")
