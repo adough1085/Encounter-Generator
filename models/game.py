@@ -119,8 +119,9 @@ class Game:
         :param pkmn_to_find: String representing name of Pokemon to be found.
         :param print_boolean: Boolean that determines whether to print or not.
 
-        Given a Pokemon name, every daypart in every area is checked if the Pokemon is listed to exist.
-        If it does, then 
+        Given a Pokemon name, every area is quickly checked if the Pokemon is listed to exist.
+        If it does, then check every daypart.
+        Print the areas and its dayparts that a Pokemon can be found in.
         """
         pkmn_to_find = pkmn_to_find.strip().lower()
         areas = self.alphabetical
@@ -131,15 +132,21 @@ class Game:
             # areas.values() represents Area objects, therefore area is an Area object.
             # native_pkmn are String objects representing the Pokemon that can be found in an area or its dayparts.
             # First, immediately rule out areas.
-            pkmn_found = any(native_pkmn.strip().lower().split("_")[0] == pkmn_to_find for native_pkmn in area.pokemon)
+
+            # This immensely long logic is broken down as follows:
+            # a) The Find function searches a string for a substring, and returns -1 if False. Find is more inclusive than the equality operator.
+            # b) The Ternary Statement is similar to an if statement
+            # c) Any statement allows for modification of an iteratable's values, and evaluates to False if all values are False, empty, or 0, otherwise True.
+            pkmn_found = any(False if (native_pkmn.strip().lower().split("_")[0].find(pkmn_to_find) == -1) else True for native_pkmn in area.pokemon)
             if pkmn_found == False:
                 continue
 
             # Second, check dayparts.
-            dawn_found = any(native_pkmn.strip().lower().split("_")[0] == pkmn_to_find for native_pkmn in area.dawn.keys())
-            day_found = any(native_pkmn.strip().lower().split("_")[0] == pkmn_to_find for native_pkmn in area.day.keys())
-            dusk_found = any(native_pkmn.strip().lower().split("_")[0] == pkmn_to_find for native_pkmn in area.dusk.keys())
-            night_found = any(native_pkmn.strip().lower().split("_")[0] == pkmn_to_find for native_pkmn in area.night.keys())
+            # False if area.dawn[native_pkmn] == 0.0 else True
+            dawn_found = any(False if (native_pkmn.strip().lower().split("_")[0].find(pkmn_to_find) == -1) else False if area.dawn[native_pkmn] == 0.0 else True for native_pkmn in area.dawn.keys())
+            day_found = any(False if (native_pkmn.strip().lower().split("_")[0].find(pkmn_to_find) == -1) else False if area.day[native_pkmn] == 0.0 else True for native_pkmn in area.day.keys())
+            dusk_found = any(False if (native_pkmn.strip().lower().split("_")[0].find(pkmn_to_find) == -1) else False if area.dusk[native_pkmn] == 0.0 else True for native_pkmn in area.dusk.keys())
+            night_found = any(False if (native_pkmn.strip().lower().split("_")[0].find(pkmn_to_find) == -1) else False if area.night[native_pkmn] == 0.0 else True for native_pkmn in area.night.keys())
 
             # If a Pokemon are found in every daypart, then simply the Area is named.
             if dawn_found and day_found and dusk_found and night_found:
@@ -181,3 +188,9 @@ class Game:
         duo = Area.load_areas()
         self.numerical = duo[0]
         self.alphabetical = duo[1]
+
+    def print_box(self):
+        pass
+
+    def load_box(self):
+        pass
