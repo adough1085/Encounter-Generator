@@ -13,7 +13,10 @@ class Game:
         self.alphabetical = {}
         self.numerical = {}
 
-        with open("data/pokedex/paldea_dex.txt","r") as f1:
+
+        #with open("data/pokedex/paldea_dex.txt","r") as f1:
+        #encounter_generator\backend\data\pokedex\paldea_dex.txt
+        with open(r"data/pokedex/paldea_dex.txt","r") as f1:
             self.pokedex = f1.readlines()
         
         for x in range(len(self.pokedex)):
@@ -32,7 +35,7 @@ class Game:
         These links will be parsed and added to a dictionary.
         """
         links = ""
-        with open("data/pokedex/links.txt", "r") as f1:
+        with open(r"data/pokedex/links.txt", "r") as f1:
             links = f1.readlines()
         for line in links:
             pkmn_list = line.strip().split(",")
