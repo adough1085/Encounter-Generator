@@ -71,11 +71,15 @@ class Generation_Input(BaseModel):
     pkmnType: str
     power: str
     dupes: str
+    sharedText: str
 
 class Generation_Output(BaseModel):
     area: str
     time: str
     pkmn_name: str
+
+class Test_Model(BaseModel):
+    string: str
 
 def convert_generation(old_generation: List):
     return Generation_Output(area=old_generation[0],time=old_generation[1],pkmn_name=old_generation[2])
@@ -114,8 +118,11 @@ memory = {"s1" : [Pokemon(name="Bulbasaur")]}
 
 @app.get("/", response_model=Pokemons)
 def get_pokemons():
-    return Pokemons(pokemons=memory["s1"])
+    empty_pkmns = [Pokemon(name="Placeholder")]
+    return Pokemons(pokemons=empty_pkmns)
+    return None
 
+"""
 @app.get("/pokemons", response_model=Pokemons)
 def get_pokemons():
     return Pokemons(pokemons=memory["s1"])
@@ -126,13 +133,37 @@ def add_pokemon(pokemon: Pokemon):
         pokemon.name = add_exclusive_tag(pokemon.name)
         memory["s1"].append(pokemon)   
     return pokemon
+"""
+@app.post("/test", response_model=Test_Model)
+def test(list_of_all: Test_Model): # In this case, Pokemon is actually used to store a string representing many
+    print("HERE")
+    pkmn_list = list_of_all.string.split(",")
+    pkmn_list = list(map(lambda x: x.strip(), pkmn_list))
+    pkmn_list = list(map(lambda x: add_exclusive_tag(x) if real_pokemon(x) else False, pkmn_list)) # Checks Pokemon name, filters out fake names, add tag if applicable
+    pkmn_list = [pkmn for pkmn in pkmn_list if pkmn] # Filters out False 
+    return_string = ""
+    for x in pkmn_list:
+        print(x)
+        return_string += f"{x}, "
+    return Test_Model(string=return_string)
+
+@app.post("/pokemons", response_model=Pokemons)
+def add_pokemon(pokemon: Pokemon): # In this case, Pokemon is actually used to store a string representing many
+    pkmn_list = pokemon.name.split(",")
+    pkmn_list = list(map(lambda x: x.strip(), pkmn_list))
+    pkmn_list = list(map(lambda x: add_exclusive_tag(x) if real_pokemon(x) else False, pkmn_list)) # Checks Pokemon name, filters out fake names, add tag if applicable
+    pkmn_list = [pkmn for pkmn in pkmn_list if pkmn] # Filters out False 
+    pkmn_list = list(map(lambda x: Pokemon(name=x), pkmn_list))
+    return Pokemons(pokemons=pkmn_list)
 
 @app.post("/generate", response_model=Generation_Output)
 def generate(gen_input: Generation_Input):
+    print("HEREEEEE")
+    print(gen_input.sharedText)
     g = Game(gen_input.game)
     g.box = convert_box(memory["s1"])
-    #for x in g.box:
-    #    print(x)
+    for x in g.box:
+        print(x)
     g.populate_dupes()
     area = gen_input.area
     time = gen_input.time
@@ -175,7 +206,8 @@ Production
 """
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", 
+    uvicorn.run(app,
+                #"main:app",
                 host="0.0.0.0",
                 port=8000,
                 proxy_headers=True, 

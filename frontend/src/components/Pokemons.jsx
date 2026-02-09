@@ -7,6 +7,7 @@ import GenerationForm from './GenerationForm.jsx';
 
 const PokemonList = () => {
   const [pokemons, setPokemons] = useState([]);
+  const [testString, setTest] = useState([]);
   const [locations, setLocations] = useState([]);
   const [locateName, setLocateName] = useState([]);
   const [distributions, setDistributions] = useState([]);
@@ -17,6 +18,30 @@ const PokemonList = () => {
     setSharedText(e.target.value)
   };
 
+
+  const test = async (sharedText) => {
+    try {
+      console.log("HEHE".valueOf)
+      const response = await api.post('/test', { string: sharedText });
+      console.log("HEHE".valueOf)
+      setTest(response.data.testString);
+    } catch (error) {
+      console.log("HEHE".valueOf)
+      console.log("HEHE".valueOf)
+      console.error("Error fetching Pokémon TEST", error);
+    }
+  };
+
+  const fetchPokemons = async (sharedText) => {
+    try {
+      await api.post('/pokemons', { name: sharedText });
+      setPokemons(response.data.pokemons);
+    } catch (error) {
+      console.error("Error fetching Pokémon", error);
+    }
+  };
+
+  /*
   const fetchPokemons = async () => {
     try {
       const response = await api.get('/pokemons');
@@ -34,21 +59,22 @@ const PokemonList = () => {
       console.error("Error adding Pokémon", error);
     }
   };
-
+  */
   const generate = async (game, area, time, pkmnType, power, dupes) => {
     try {
+      //test(sharedText)
       const response = await api.post('/generate', {
         game: game,
         area: area, 
         time: time, 
         pkmnType: pkmnType, 
         power: power, 
-        dupes: dupes
+        dupes: dupes,
+        sharedText: sharedText
     });
     setGeneration(response.data)
     //console.log(response.data)
     } catch (error) {
-        c
         console.error("Error generating Pokémon", error);
     }
   };
@@ -80,9 +106,16 @@ const PokemonList = () => {
     }
   };
 
+  const allProps = {
+    sharedProp: sharedText,
+    locatePokemon: locatePokemon,
+    generate: generate,
+    distribution: distribution,
+  }
+
 
   useEffect(() => {
-    fetchPokemons();
+    //fetchPokemons();
   }, []);
 
   return (
@@ -105,8 +138,10 @@ const PokemonList = () => {
           <li key={index}>{pokemon.name}</li>
         ))}
       </ul>
-      <AddPokemonForm addPokemon={[addPokemon, sharedText]} />
-      <GenerationForm generate={generate} />
+      {testString}
+      {/*<AddPokemonForm addPokemon={[addPokemon]} />*/}
+      <GenerationForm generate={generate} 
+      />
         <div>{generation !== null ? <p>{generation.area} ({generation.time}): {generation.pkmn_name}</p> : <p></p>}</div>
 
       <DistributionForm distribution={distribution}/>
