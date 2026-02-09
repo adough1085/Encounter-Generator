@@ -15,10 +15,17 @@ class Pokemons(BaseModel):
 def pkmn_to_str(pkmn: Pokemon):
     return pkmn.name
 
-def convert_box(box: Pokemons):
+def filter_request_str(string: str):
+    pkmn_list = string.split(",")
+    pkmn_list = list(map(lambda x: x.strip(), pkmn_list))
+    pkmn_list = list(map(lambda x: add_exclusive_tag(x) if real_pokemon(x) else False, pkmn_list)) # Checks Pokemon name, filters out fake names, add tag if applicable
+    pkmn_list = [pkmn for pkmn in pkmn_list if pkmn] # Filters out False
+    return pkmn_list
+
+def convert_pkmns_to_str(pkmns: Pokemons):
     list = []
-    for pkmn in box:
-        list.append(pkmn_to_str(pkmn))
+    for pkmn in pkmns:
+        list.append(pkmn_to_str(pkmn.name))
     return list
 
 class Location(BaseModel):
@@ -95,6 +102,12 @@ def add_exclusive_tag(string):
         string = f"{string.strip().title()} (Violet)"
     return string.strip().title()
 
+def distinguish_game(string_of_game):
+    string_of_game = string_of_game.strip().lower()
+    if string_of_game == "scarlet":
+        return base_scarlet
+    elif string_of_game == "violet":
+        return base_violet
 
 app = FastAPI()
 
@@ -114,6 +127,8 @@ app.add_middleware(
 
 
 game_file = ""
+base_scarlet = Game("Scarlet") # Held in server memory such that games are not recompiled every request, only copied
+base_violet = Game("Violet")   # Held in server memory such that games are not recompiled every request, only copied
 memory = {"s1" : [Pokemon(name="Bulbasaur")]}
 
 @app.get("/", response_model=Pokemons)
@@ -158,25 +173,24 @@ def add_pokemon(pokemon: Pokemon): # In this case, Pokemon is actually used to s
 
 @app.post("/generate", response_model=Generation_Output)
 def generate(gen_input: Generation_Input):
-    print("HEREEEEE")
-    print(gen_input.sharedText)
-    g = Game(gen_input.game)
-    g.box = convert_box(memory["s1"])
-    for x in g.box:
-        print(x)
-    g.populate_dupes()
+    g = distinguish_game(gen_input.game)
+    g.box = filter_request_str(gen_input.sharedText)
+
+    dupes = True if gen_input.dupes == "Yes" else False
+    if dupes:
+        g.populate_dupes()
+        
     area = gen_input.area
     time = gen_input.time
     pkmnType = gen_input.pkmnType
     power = int(gen_input.power)
-    dupes = True if gen_input.dupes == "Yes" else False
     generated_pkmn = g.generate(area, time, pkmnType, power, dupes, True)
     return convert_generation(generated_pkmn)
 
 @app.post("/distribution", response_model=Distributions)
 def distribution(dist_input: Distribution_Input):
     g = Game(dist_input.game)
-    g.box = convert_box(memory["s1"])
+    g.box = convert_pkmns_to_str(memory["s1"])
     #for x in g.box:
     #    print(x)
     g.populate_dupes()
@@ -192,7 +206,7 @@ def distribution(dist_input: Distribution_Input):
 @app.post("/locate", response_model=Locations)
 def locate_pokemon(pokemon: Pokemon):
     g = Game("Scarlet")
-    g.box = convert_box(memory["s1"])
+    g.box = convert_pkmns_to_str(memory["s1"])
     habitats = g.locate(pokemon.name, False)
     return Locations(pkmn_name=pokemon.name.title(), locations=convert_locations(habitats))
 
