@@ -62,7 +62,6 @@ const PokemonList = () => {
   */
   const generate = async (game, area, time, pkmnType, power, dupes) => {
     try {
-      //test(sharedText)
       const response = await api.post('/generate', {
         game: game,
         area: area, 
@@ -73,7 +72,6 @@ const PokemonList = () => {
         sharedText: sharedText
     });
     setGeneration(response.data)
-    //console.log(response.data)
     } catch (error) {
         console.error("Error generating Pokémon", error);
     }
@@ -88,7 +86,8 @@ const PokemonList = () => {
         time: time, 
         pkmnType: pkmnType, 
         power: power, 
-        dupes: dupes
+        dupes: dupes,
+        sharedText: sharedText
     });
     setDistributions(response.data.distributions)
     } catch (error) {

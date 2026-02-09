@@ -51,6 +51,7 @@ class Distribution_Input(BaseModel):
     pkmnType: str
     power: str
     dupes: str
+    sharedText: str
 
 class Distribution(BaseModel):
     pkmn_name: str
@@ -179,7 +180,7 @@ def generate(gen_input: Generation_Input):
     dupes = True if gen_input.dupes == "Yes" else False
     if dupes:
         g.populate_dupes()
-        
+
     area = gen_input.area
     time = gen_input.time
     pkmnType = gen_input.pkmnType
@@ -189,16 +190,17 @@ def generate(gen_input: Generation_Input):
 
 @app.post("/distribution", response_model=Distributions)
 def distribution(dist_input: Distribution_Input):
-    g = Game(dist_input.game)
-    g.box = convert_pkmns_to_str(memory["s1"])
-    #for x in g.box:
-    #    print(x)
-    g.populate_dupes()
+    g = distinguish_game(dist_input.game)
+    g.box = filter_request_str(dist_input.sharedText)
+
+    dupes = True if dist_input.dupes == "Yes" else False
+    if dupes:
+        g.populate_dupes()
+    
     area = dist_input.area
     time = dist_input.time
     pkmnType = dist_input.pkmnType
     power = int(dist_input.power)
-    dupes = True if dist_input.dupes == "Yes" else False
     calculated_dist = g.distribution(area, time, pkmnType, power, dupes, True)
     return Distributions(location_name=area, distributions=convert_distributions(calculated_dist))
 
