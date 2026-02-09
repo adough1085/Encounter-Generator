@@ -11,6 +11,11 @@ const PokemonList = () => {
   const [locateName, setLocateName] = useState([]);
   const [distributions, setDistributions] = useState([]);
   const [generation, setGeneration] = useState([]);
+  const [sharedText, setSharedText] = useState("");
+
+  const handleChange = (e) => {
+    setSharedText(e.target.value)
+  };
 
   const fetchPokemons = async () => {
     try {
@@ -83,12 +88,24 @@ const PokemonList = () => {
   return (
     <div>
       <h2>Pokémon Box</h2>
+      <textarea 
+        type="text"
+        value={sharedText}
+        onChange={handleChange}
+        placeholder="Separate Pokémon by Commas..."
+        style={{
+          width: '600px',
+          height: '400px',
+          fontSize: '16px',
+          padding: '10px'
+        }}
+      />
       <ul>
         {pokemons.map((pokemon, index) => (
           <li key={index}>{pokemon.name}</li>
         ))}
       </ul>
-      <AddPokemonForm addPokemon={addPokemon} />
+      <AddPokemonForm addPokemon={[addPokemon, sharedText]} />
       <GenerationForm generate={generate} />
         <div>{generation !== null ? <p>{generation.area} ({generation.time}): {generation.pkmn_name}</p> : <p></p>}</div>
 
