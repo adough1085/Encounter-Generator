@@ -25,7 +25,7 @@ def filter_request_str(string: str):
 def convert_pkmns_to_str(pkmns: Pokemons):
     list = []
     for pkmn in pkmns:
-        list.append(pkmn_to_str(pkmn.name))
+        list.append(pkmn_to_str(pkmn))
     return list
 
 class Location(BaseModel):
@@ -136,41 +136,6 @@ memory = {"s1" : [Pokemon(name="Bulbasaur")]}
 def get_pokemons():
     empty_pkmns = [Pokemon(name="Placeholder")]
     return Pokemons(pokemons=empty_pkmns)
-    return None
-
-"""
-@app.get("/pokemons", response_model=Pokemons)
-def get_pokemons():
-    return Pokemons(pokemons=memory["s1"])
-
-@app.post("/pokemons", response_model=Pokemon)
-def add_pokemon(pokemon: Pokemon):
-    if real_pokemon(pokemon.name):
-        pokemon.name = add_exclusive_tag(pokemon.name)
-        memory["s1"].append(pokemon)   
-    return pokemon
-"""
-@app.post("/test", response_model=Test_Model)
-def test(list_of_all: Test_Model): # In this case, Pokemon is actually used to store a string representing many
-    print("HERE")
-    pkmn_list = list_of_all.string.split(",")
-    pkmn_list = list(map(lambda x: x.strip(), pkmn_list))
-    pkmn_list = list(map(lambda x: add_exclusive_tag(x) if real_pokemon(x) else False, pkmn_list)) # Checks Pokemon name, filters out fake names, add tag if applicable
-    pkmn_list = [pkmn for pkmn in pkmn_list if pkmn] # Filters out False 
-    return_string = ""
-    for x in pkmn_list:
-        print(x)
-        return_string += f"{x}, "
-    return Test_Model(string=return_string)
-
-@app.post("/pokemons", response_model=Pokemons)
-def add_pokemon(pokemon: Pokemon): # In this case, Pokemon is actually used to store a string representing many
-    pkmn_list = pokemon.name.split(",")
-    pkmn_list = list(map(lambda x: x.strip(), pkmn_list))
-    pkmn_list = list(map(lambda x: add_exclusive_tag(x) if real_pokemon(x) else False, pkmn_list)) # Checks Pokemon name, filters out fake names, add tag if applicable
-    pkmn_list = [pkmn for pkmn in pkmn_list if pkmn] # Filters out False 
-    pkmn_list = list(map(lambda x: Pokemon(name=x), pkmn_list))
-    return Pokemons(pokemons=pkmn_list)
 
 @app.post("/generate", response_model=Generation_Output)
 def generate(gen_input: Generation_Input):
@@ -192,6 +157,8 @@ def generate(gen_input: Generation_Input):
 def distribution(dist_input: Distribution_Input):
     g = distinguish_game(dist_input.game)
     g.box = filter_request_str(dist_input.sharedText)
+    for x in g.box:
+        print(x)
 
     dupes = True if dist_input.dupes == "Yes" else False
     if dupes:
@@ -207,8 +174,8 @@ def distribution(dist_input: Distribution_Input):
 
 @app.post("/locate", response_model=Locations)
 def locate_pokemon(pokemon: Pokemon):
-    g = Game("Scarlet")
-    g.box = convert_pkmns_to_str(memory["s1"])
+    g = distinguish_game("Scarlet") # Does not check for dupes 
+    #g.box = convert_pkmns_to_str(memory["s1"])
     habitats = g.locate(pokemon.name, False)
     return Locations(pkmn_name=pokemon.name.title(), locations=convert_locations(habitats))
 

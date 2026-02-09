@@ -6,8 +6,6 @@ import DistributionForm from './DistributionForm.jsx';
 import GenerationForm from './GenerationForm.jsx';
 
 const PokemonList = () => {
-  const [pokemons, setPokemons] = useState([]);
-  const [testString, setTest] = useState([]);
   const [locations, setLocations] = useState([]);
   const [locateName, setLocateName] = useState([]);
   const [distributions, setDistributions] = useState([]);
@@ -18,48 +16,6 @@ const PokemonList = () => {
     setSharedText(e.target.value)
   };
 
-
-  const test = async (sharedText) => {
-    try {
-      console.log("HEHE".valueOf)
-      const response = await api.post('/test', { string: sharedText });
-      console.log("HEHE".valueOf)
-      setTest(response.data.testString);
-    } catch (error) {
-      console.log("HEHE".valueOf)
-      console.log("HEHE".valueOf)
-      console.error("Error fetching Pokémon TEST", error);
-    }
-  };
-
-  const fetchPokemons = async (sharedText) => {
-    try {
-      await api.post('/pokemons', { name: sharedText });
-      setPokemons(response.data.pokemons);
-    } catch (error) {
-      console.error("Error fetching Pokémon", error);
-    }
-  };
-
-  /*
-  const fetchPokemons = async () => {
-    try {
-      const response = await api.get('/pokemons');
-      setPokemons(response.data.pokemons);
-    } catch (error) {
-      console.error("Error fetching pokemons", error);
-    }
-  };
-
-  const addPokemon = async (pokemonName) => {
-    try {
-      await api.post('/pokemons', { name: pokemonName });
-      fetchPokemons();  // Refresh the list after adding a pokemon
-    } catch (error) {
-      console.error("Error adding Pokémon", error);
-    }
-  };
-  */
   const generate = async (game, area, time, pkmnType, power, dupes) => {
     try {
       const response = await api.post('/generate', {
@@ -105,16 +61,9 @@ const PokemonList = () => {
     }
   };
 
-  const allProps = {
-    sharedProp: sharedText,
-    locatePokemon: locatePokemon,
-    generate: generate,
-    distribution: distribution,
-  }
-
-
+  // Not actually sure what this snippet does, used to run something on launch presumably
   useEffect(() => {
-    //fetchPokemons();
+    //
   }, []);
 
   return (
@@ -132,12 +81,7 @@ const PokemonList = () => {
           padding: '10px'
         }}
       />
-      <ul>
-        {pokemons.map((pokemon, index) => (
-          <li key={index}>{pokemon.name}</li>
-        ))}
-      </ul>
-      {testString}
+      
       {/*<AddPokemonForm addPokemon={[addPokemon]} />*/}
       <GenerationForm generate={generate} 
       />

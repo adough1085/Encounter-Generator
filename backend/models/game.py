@@ -181,9 +181,19 @@ class Game:
             for x in range(len(daypart_keys)):
                 dp = daypart_keys[x]
                 for pkmn in dp:
+                    # pkmn format = "Bronzong_Steel_Psychic"
                     name = pkmn.strip().lower().split("_")[0]
-                    name = name if (name.find("scarlet") == -1 and name.find("violet") == -1) else name.split(" ")[0]
-                    if name == pkmn_to_find:
+                    segmented_name = name.strip().lower().split(" ")
+                    segmented_name = list(map(lambda x: x.strip(), segmented_name))
+                    new_name = ""
+                    if name.find("scarlet") != -1 or name.find("violet") != -1:
+                        for token in segmented_name[:-1]:
+                            new_name = f"{new_name} {token}"
+                    else:
+                        new_name = name
+                    new_name = new_name.strip()
+
+                    if new_name == pkmn_to_find:
                         daypart_found[x] = True
                         break
 
@@ -265,5 +275,5 @@ class Game:
         print(len(pkmns))
         pass
 
-    def real_pokemon(self, string):
-        return any(string.strip().lower() == pkmn.strip().lower() for pkmn in self.pokedex)
+    def real_pokemon(string):
+        return v.valid_pokemon(string)

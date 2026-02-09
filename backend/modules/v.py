@@ -113,10 +113,9 @@ def resolve_daypart(time):
 
 def valid_pokemon(string_input):
     pokedex = set()
-    with open(r"data/pokedex/paldea_dex.txt","r") as f1:
-        temp = f1.readlines()
-        for x in range(len(temp)):
-            pokedex.add(temp[x][0:len(temp[x])-1].strip())
+    with open(r"data/pokedex/links.txt","r") as f1:
+        lines = f1.readlines()
+    pokedex = set(map(lambda x: x.split(",")[0], lines))
     return any(string_input.strip().lower() == pkmn.strip().lower() for pkmn in pokedex)
 
 def version_exclusive(string_input):
