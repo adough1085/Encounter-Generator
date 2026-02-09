@@ -95,15 +95,10 @@ def add_exclusive_tag(string):
 app = FastAPI()
 
 origins = [
-    "https://localhost:5173"
+    "http://localhost:5173", # origin for testing 
+    "https://3.137.101.123" # origin for deployment
 ]
 
-"""
-origins = [
-    "https://localhost:5173",
-    "https://172.17.0.2:5173"
-]
-"""
 
 app.add_middleware(
     CORSMiddleware,
@@ -113,8 +108,13 @@ app.add_middleware(
     allow_headers=["*"]
                    )
 
+
 game_file = ""
-memory = {"s1" : []}
+memory = {"s1" : [Pokemon(name="Bulbasaur")]}
+
+@app.get("/", response_model=Pokemons)
+def get_pokemons():
+    return Pokemons(pokemons=memory["s1"])
 
 @app.get("/pokemons", response_model=Pokemons)
 def get_pokemons():
@@ -146,8 +146,8 @@ def generate(gen_input: Generation_Input):
 def distribution(dist_input: Distribution_Input):
     g = Game(dist_input.game)
     g.box = convert_box(memory["s1"])
-    for x in g.box:
-        print(x)
+    #for x in g.box:
+    #    print(x)
     g.populate_dupes()
     area = dist_input.area
     time = dist_input.time
@@ -164,39 +164,21 @@ def locate_pokemon(pokemon: Pokemon):
     g.box = convert_box(memory["s1"])
     habitats = g.locate(pokemon.name, False)
     return Locations(pkmn_name=pokemon.name.title(), locations=convert_locations(habitats))
-    
-"""
-Backend
-    cd to backend
-    Upgrade pip with pip install --upgrade pip
-    Download dependencies with pip install -r requirements.txt
-    Linux: python main.py
-    Windows: ./main.py
-
-Frontend
-    cd to frontend
-    nvm install --lts
-    nvm install node
-    sudo apt install nodejs npm
-    npm install
-    npm run dev
 
 """
-# Run backend with ./main.py
-# Run frontend with npm run dev
+Testing
+    Run backend with ./main.py
+    Run frontend with npm run dev
+Production
+    Run backend with python .\main.py
+    Deploy frontend with npm run build
+"""
+
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
-
-"""
-g = Game("Scarlet")
-g.box = ["Crocalor","Clodsire","Gumshoos","Arrokuda","Klawf","Bombirdier", "Magikarp", "Gimmighoul","Azumarill","Oinkologne (Male)","Tauros (Combat Breed)", "Goomy","Basculin (Red-Striped)"]
-g.print_box()
-#g.load_box_string("Crocalor,Clodsire,Gumshoos,Arrokuda,Klawf,Bombirdier,Magikarp,Gimmighoul,Azumarill,Oinkologne (Male),Tauros (Combat Breed),Goomy,Basculin (Red-Striped),")
-g.populate_dupes()
-g.distribution("Great Crater of Paldea","Day","Flying",0,True)
-g.generate("Alfornada Cavern","Night","Dark",3,True)
-#g.generate(8,1,"Flying",0)
-#g.distribution(9,1,"Normal",0)
-#g.generate(15,1,"Fairy",1)
-g.locate("misdreavus", True)
-"""
+    uvicorn.run("main:app", 
+                host="0.0.0.0",
+                port=8000,
+                proxy_headers=True, 
+                forwarded_allow_ips="*",
+                log_level="info", 
+                access_log=True)
