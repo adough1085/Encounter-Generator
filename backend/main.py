@@ -95,7 +95,7 @@ def add_exclusive_tag(string):
 app = FastAPI()
 
 origins = [
-    "http://localhost:5173", # origin for testing 
+    "https://localhost:5173", # origin for testing 
     "https://3.137.101.123" # origin for deployment
 ]
 
@@ -131,8 +131,8 @@ def add_pokemon(pokemon: Pokemon):
 def generate(gen_input: Generation_Input):
     g = Game(gen_input.game)
     g.box = convert_box(memory["s1"])
-    for x in g.box:
-        print(x)
+    #for x in g.box:
+    #    print(x)
     g.populate_dupes()
     area = gen_input.area
     time = gen_input.time
@@ -179,6 +179,5 @@ if __name__ == "__main__":
                 host="0.0.0.0",
                 port=8000,
                 proxy_headers=True, 
-                forwarded_allow_ips="*",
-                log_level="info", 
-                access_log=True)
+                forwarded_allow_ips="*"
+                )
