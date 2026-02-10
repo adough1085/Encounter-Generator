@@ -148,7 +148,7 @@ class Game:
         
         return pkmn_set[area].distribution(self.game, daypart, type, power, self.dupes, check_dupes, specific_pkmn, print_boolean)
 
-    def locate(self, pkmn_to_find, print_boolean):
+    def locate(self, pkmn_to_find, print_boolean=False):
         """
         Docstring for locate
         
@@ -174,7 +174,8 @@ class Game:
             # a) The Find function searches a string for a substring, and returns -1 if False. Find is more inclusive than the equality operator.
             # b) The Ternary Statement is similar to an if statement
             # c) Any statement allows for modification of an iteratable's values, and evaluates to False if all values are False, empty, or 0, otherwise True.
-            pkmn_found = any(False if (native_pkmn.strip().lower().split("_")[0].find(pkmn_to_find) == -1) else True for native_pkmn in area.pokemon)
+
+            pkmn_found = any(v.remove_version_exclusive_tag(native_pkmn.strip().lower().split("_")[0]).lower() == v.remove_version_exclusive_tag(pkmn_to_find).lower() for native_pkmn in area.pokemon)
             if pkmn_found == False:
                 continue
 
@@ -187,17 +188,10 @@ class Game:
                 for pkmn in dp:
                     # pkmn format = "Bronzong_Steel_Psychic"
                     name = pkmn.strip().lower().split("_")[0]
-                    segmented_name = name.strip().lower().split(" ")
-                    segmented_name = list(map(lambda x: x.strip(), segmented_name))
-                    new_name = ""
-                    if name.find("scarlet") != -1 or name.find("violet") != -1:
-                        for token in segmented_name[:-1]:
-                            new_name = f"{new_name} {token}"
-                    else:
-                        new_name = name
-                    new_name = new_name.strip()
+                    refactored_native = v.remove_version_exclusive_tag(name).lower()
+                    refactored_pkmn_to_find = v.remove_version_exclusive_tag(pkmn_to_find).lower()
 
-                    if new_name == pkmn_to_find:
+                    if refactored_native == refactored_pkmn_to_find:
                         daypart_found[x] = True
                         break
 

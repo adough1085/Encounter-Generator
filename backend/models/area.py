@@ -283,7 +283,10 @@ class Area:
                 val = selected[allowed.name]*demultiplier
             else:
                 val = selected[allowed.name]
-            allowed.sp(val/sum)
+            if (sum == 0.0):
+                allowed.percentage = 0.0
+            else:
+                allowed.sp(val/sum)
 
         allowed_pkmn = sorted(allowed_pkmn, key=lambda wild: wild.percentage, reverse=True)
 

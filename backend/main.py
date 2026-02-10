@@ -18,7 +18,7 @@ def pkmn_to_str(pkmn: Pokemon):
 def filter_request_str(string: str):
     pkmn_list = string.split(",")
     pkmn_list = list(map(lambda x: x.strip(), pkmn_list))
-    pkmn_list = list(map(lambda x: add_exclusive_tag(x) if real_pokemon(x) else False, pkmn_list)) # Checks Pokemon name, filters out fake names, add tag if applicable
+    pkmn_list = list(map(lambda x: Validator.add_version_exclusive_tag(x) if Validator.valid_pokemon(x) else False, pkmn_list)) # Checks Pokemon name, filters out fake names, add tag if applicable
     pkmn_list = [pkmn for pkmn in pkmn_list if pkmn] # Filters out False
     return pkmn_list
 
@@ -93,17 +93,6 @@ class Test_Model(BaseModel):
 
 def convert_generation(old_generation: List):
     return Generation_Output(area=old_generation[0],time=old_generation[1],pkmn_name=old_generation[2])
-
-def real_pokemon(string):
-    return Validator.valid_pokemon(string)
-
-def add_exclusive_tag(string):
-    status = Validator.version_exclusive(string)
-    if status == "scarlet":
-        string = f"{string.strip().title()} (Scarlet)"
-    elif status == "violet":
-        string = f"{string.strip().title()} (Violet)"
-    return string.strip().title()
 
 def distinguish_game(string_of_game):
     string_of_game = string_of_game.strip().lower()
@@ -184,7 +173,7 @@ def distribution(dist_input: Distribution_Input):
 
 @app.post("/locate", response_model=Locations)
 def locate_pokemon(pokemon: Pokemon):
-    g = distinguish_game("Scarlet") # Does not check for dupes 
+    g = distinguish_game("Scarlet") # Does not check for dupes or version exclusives, just need this to initialize a game 
     #g.box = convert_pkmns_to_str(memory["s1"])
     habitats = g.locate(pokemon.name, False)
     return Locations(pkmn_name=pokemon.name.title(), locations=convert_locations(habitats))

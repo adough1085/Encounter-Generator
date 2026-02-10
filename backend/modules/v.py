@@ -112,13 +112,35 @@ def resolve_daypart(time):
             return daypart
 
 def valid_pokemon(string_input):
-    pokedex = set()
+    pokedex = list()
     with open(r"data/pokedex/links.txt","r") as f1:
         lines = f1.readlines()
-    pokedex = set(map(lambda x: x.split(",")[0], lines))
-    return any(string_input.strip().lower() == pkmn.strip().lower() for pkmn in pokedex)
+    pokedex = list(map(lambda x: x.split(",")[0], lines))
+    new_list = []
+    for pkmn in pokedex:
+        pkmn = pkmn.strip().lower()
+        if pkmn.find("scarlet") != -1 or pkmn.find("violet") != -1:
+            pkmn = pkmn.replace("(scarlet)", " ")
+            pkmn = pkmn.replace("(violet)", " ")
+            pkmn = pkmn.strip()
+        new_list.append(pkmn)
+    
+    string_input = string_input.strip().lower()
+    
+    if string_input.find("scarlet") != -1 or string_input.find("violet") != -1:
+            string_input = string_input.replace("(scarlet)", " ")
+            string_input = string_input.replace("(violet)", " ")
+            string_input = string_input.strip()
+
+    pokedex = set(new_list)
+
+    return any(string_input == pkmn for pkmn in pokedex)
+
 
 def version_exclusive(string_input):
+    if valid_pokemon(string_input) == False:
+        return "none"
+    
     scarlet = set()
     violet = set()
 
@@ -192,6 +214,8 @@ def version_exclusive(string_input):
     violet.add("Iron Boulder")
     violet.add("Iron Crown")
 
+    #scarlet_pkmn = any(pkmn.strip().lower().find(string_input.strip().lower()) != -1 for pkmn in scarlet)
+    #violet_pkmn = any(pkmn.strip().lower().find(string_input.strip().lower()) != -1 for pkmn in violet)
     scarlet_pkmn = any(string_input.strip().lower() == pkmn.strip().lower() for pkmn in scarlet)
     violet_pkmn = any(string_input.strip().lower() == pkmn.strip().lower() for pkmn in violet)
     if scarlet_pkmn:
@@ -200,3 +224,20 @@ def version_exclusive(string_input):
         return "violet"
     else:
         return "none"
+    
+def add_version_exclusive_tag(string_input):
+    scarlet_pkmn = version_exclusive(string_input) == "scarlet"
+    violet_pkmn = version_exclusive(string_input) == "violet"
+    if scarlet_pkmn and string_input.strip().lower().find("(scarlet)") == -1:
+        return f"{string_input.strip().title()} (Scarlet)" 
+    elif violet_pkmn and string_input.strip().lower().find("(violet)") == -1:
+        return f"{string_input.strip().title()} (Violet)" 
+    else:
+        return string_input
+    
+def remove_version_exclusive_tag(string_input):
+    if string_input.find("scarlet") != -1 or string_input.find("violet") != -1:
+            string_input = string_input.replace("(scarlet)", " ")
+            string_input = string_input.replace("(violet)", " ")
+            string_input = string_input.strip()
+    return string_input
