@@ -1,18 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import PokemonList from './components/Pokemons';
 
 const App = () => {
-
   useEffect(() => {
-    // Set the document title when the component mounts or updates
-    document.title = "Pokémon Scarlet and Violet Pokémon Picker Tool"
-    
-    // Optional: Reset the title when the component unmounts
-    return () => {
-      // document.title = "Original App Title"; 
-    };
-  }, []); // The empty dependency array [] ensures this runs once when mounted
+    // This runs after the component mounts
+    document.title = "Pokémon Scarlet and Violet Pokémon Picker Tool";
+  }, []); // Empty dependency array means it runs once on mount
+
 
   return (
     <div className="App">
