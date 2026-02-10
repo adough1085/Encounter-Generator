@@ -180,7 +180,7 @@ class Area:
         # Names are compared in lowercase in case of any strange case input errors.
         return any(pkmn_to_check.lower() == dupe.lower() for dupe in dupes)
 
-    def distribution(self, game, time, type, power, dupes, check_dupes, print_boolean=False):
+    def distribution(self, game, time, type, power, dupes, check_dupes, specific_pkmn, print_boolean):
         """
         Docstring for distribution
         
@@ -197,7 +197,8 @@ class Area:
         This function will do the following:
         1) Select daypart based on time value.
         2) Check if type value and power value are valid, if so, set multiplier. multiplier increases the chance of specific Type Pokemon of appearing, and decreases chance of other Type Pokemon of appearing.
-        3) Filter out Pokemon in the daypart based on Dupes Clause, and version exclusivity
+        3a) Filter out Pokemon in the daypart based on Dupes Clause, and version exclusivity, these is what normally happens
+        3b) If specific_pkmn is a
         4) Calculate float sum of Pokemon values
         5) Calculate each Pokemon's percentage chance of appearing
         6) Print list of Pokemon in descending order of percentage value
@@ -251,12 +252,20 @@ class Area:
         sum = 0.0
         keys = selected.keys()
         allowed_pkmn = []
-        for k in keys:
-            is_dupe = self.find_dupe(dupes, k.split("_")[0], check_dupes)
-            correct_version_ex = v.correct_version(game, k)
-            if is_dupe == False and correct_version_ex == True:
-                correct_type = (k.find(type) != -1)
-                allowed_pkmn.append(Wild(k,0,correct_type))
+        if len(specific_pkmn) == 0: # Normal operations, do not calculate for specific Pokemon only 
+            for k in keys:
+                is_dupe = self.find_dupe(dupes, k.split("_")[0], check_dupes)
+                correct_version_ex = v.correct_version(game, k)
+                if is_dupe == False and correct_version_ex == True:
+                    correct_type = (k.find(type) != -1) # Check if Pokemon is equal to Encounter Power type
+                    allowed_pkmn.append(Wild(k,0,correct_type))
+        else: # If length of specific_pkmn is greater than 0, than calculate for specific Pokemon only
+            for k in keys: # Compared to above, no need to check for dupes, as this specific Pokemon set is already filtering out Pokemon
+                contained_in_subset = any(False if k.strip().lower().find(subset_pkmn.strip().lower()) == -1 else True for subset_pkmn in specific_pkmn)
+                correct_version_ex = v.correct_version(game, k)
+                if correct_version_ex and contained_in_subset:
+                    correct_type = (k.find(type) != -1) # Check if Pokemon is equal to Encounter Power type
+                    allowed_pkmn.append(Wild(k,0,correct_type))
 
         for allowed in allowed_pkmn:
             val = 0.0

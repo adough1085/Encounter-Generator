@@ -52,6 +52,7 @@ class Distribution_Input(BaseModel):
     power: str
     dupes: str
     sharedText: str
+    specificPkmn: bool
 
 class Distribution(BaseModel):
     pkmn_name: str
@@ -168,7 +169,11 @@ def distribution(dist_input: Distribution_Input):
     time = dist_input.time
     pkmnType = dist_input.pkmnType
     power = int(dist_input.power)
-    calculated_dist = g.distribution(area, time, pkmnType, power, dupes, True)
+
+    subset = set()
+    if dist_input.specificPkmn:
+        subset = set(g.box)
+    calculated_dist = g.distribution(area, time, pkmnType, power, dupes, subset, False)
     return Distributions(location_name=area, distributions=convert_distributions(calculated_dist))
 
 

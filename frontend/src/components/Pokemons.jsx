@@ -11,9 +11,14 @@ const PokemonList = () => {
   const [distributions, setDistributions] = useState([]);
   const [generation, setGeneration] = useState([]);
   const [sharedText, setSharedText] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleChange = (e) => {
     setSharedText(e.target.value)
+  };
+
+  const checkboxHandleChange = (event) => {
+    setIsChecked(event.target.checked); // 'event.target.checked' is a boolean (true/false)
   };
 
   const generate = async (game, area, time, pkmnType, power, dupes) => {
@@ -43,7 +48,8 @@ const PokemonList = () => {
         pkmnType: pkmnType, 
         power: power, 
         dupes: dupes,
-        sharedText: sharedText
+        sharedText: sharedText,
+        specificPkmn: isChecked
     });
     setDistributions(response.data.distributions)
     } catch (error) {
@@ -81,6 +87,15 @@ const PokemonList = () => {
           padding: '10px'
         }}
       />
+      <br/>
+      <label>
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={checkboxHandleChange}
+        />
+        Only Include Pokémon Above
+      </label>
       
       {/*<AddPokemonForm addPokemon={[addPokemon]} />*/}
       <GenerationForm generate={generate} 

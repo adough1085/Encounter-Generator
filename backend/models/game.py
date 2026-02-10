@@ -97,7 +97,7 @@ class Game:
         
         return pkmn_set[area].generate(self.game, daypart, type, power, self.dupes, check_dupes)
 
-    def distribution(self, area, time, type, power, check_dupes, print_boolean=False):
+    def distribution(self, area, time, type, power, check_dupes, specific_pkmn=set(), print_boolean=False):
         """
         Docstring for distribution
         
@@ -107,6 +107,8 @@ class Game:
         :param type: String object representing the Pokemon Type (Grass, Water, etc.).
         :param power: Integer object related to Encounter Power (Levels 1, 2, or 3).
         :param check_dupes: Boolean object that checks whether or not to exclude dupes. Defaults to False later if non-boolean object.
+        :param specific_pkmn: Set object that if greater than one signifies that instead of calculating for all Pokemon in an area, only calculate for the ones in the set. Ignores check_dupes if non-empty set.
+        :param print_boolean: Boolean object that checks whether or not to print.
         """
         pkmn_set = {}
         if isinstance(area, str):
@@ -142,7 +144,7 @@ class Game:
         else:
             pkmn_set = self.alphabetical
         
-        return pkmn_set[area].distribution(self.game, daypart, type, power, self.dupes, check_dupes, print_boolean)
+        return pkmn_set[area].distribution(self.game, daypart, type, power, self.dupes, check_dupes, specific_pkmn, print_boolean)
 
     def locate(self, pkmn_to_find, print_boolean):
         """
@@ -227,7 +229,7 @@ class Game:
 
         # If the print boolean is flagged True, then print
         pkmn_to_find = pkmn_to_find.title()
-        if print_boolean == True:
+        if print_boolean:
             if len(habitats) >= 1:
                 print(f"{pkmn_to_find} is located in:")
                 for x in habitats:
