@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './InputField.css'; // Import your CSS file
 
 const LocatePokemonForm = ({ locatePokemon }) => {
   const [pokemonName, setPokemonName] = useState('');

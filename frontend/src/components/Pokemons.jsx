@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import api from "../api.js";
-import AddPokemonForm from './AddPokemonForm';
 import LocatePokemonForm from './LocatePokemonForm.jsx';
 import DistributionForm from './DistributionForm.jsx';
 import GenerationForm from './GenerationForm.jsx';

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './InputField.css'; // Import your CSS file
 
 const GenerationForm = ({ generate }) => {
   const [game, setGame] = useState('Scarlet');

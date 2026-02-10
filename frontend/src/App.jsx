@@ -6,7 +6,7 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Pokémon Scarlet and Violet Random Generator</h1>
+        <h1>Pokémon Scarlet and Violet Random Generator and Distribution Calculator</h1>
       </header>
       <main>
         <PokemonList />

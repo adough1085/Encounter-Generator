@@ -1,0 +1,16 @@
+.form-group {
+  margin-bottom: 1rem; /* Adds space between different input groups */
+}
+
+.input-label {
+  display: block; /* Forces the label to take up its own line */
+  font-weight: bold;
+  margin-bottom: 0.5rem; /* Adds space between the label and the input */
+}
+
+.form-input {
+  display: block; /* Forces the input to take up its own line */
+  width: 100%; /* Makes the input stretch to fill its container */
+  padding: 0.5rem;
+  box-sizing: border-box; /* Ensures padding doesn't increase total width */
+}
