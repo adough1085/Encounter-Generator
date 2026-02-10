@@ -16,6 +16,7 @@ const App = () => {
       </header>
       <main>
         <PokemonList />
+        Link to GitHub repository: https://github.com/andydo835/Encounter-Generator
       </main>
     </div>
   );
