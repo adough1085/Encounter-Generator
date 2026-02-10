@@ -131,7 +131,7 @@ const GenerationForm = ({ generate }) => {
           <option value="Yes">Yes</option>
         </select>
       </div>
-        <button className="span-all" type="submit">Generate Generation</button>
+        <button className="span-all" type="submit">Generate Pokémon</button>
     </form>
   );
 };
