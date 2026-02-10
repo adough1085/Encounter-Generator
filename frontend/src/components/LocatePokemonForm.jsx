@@ -8,19 +8,25 @@ const LocatePokemonForm = ({ locatePokemon }) => {
     event.preventDefault();
     if (pokemonName) {
       locatePokemon(pokemonName);
-      setPokemonName('');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={pokemonName}
-        onChange={(e) => setPokemonName(e.target.value)}
-        placeholder="Enter Pokémon name"
-      />
-      <button type="submit">Locate Pokémon</button>
+    <form className="form-grid" onSubmit={handleSubmit}>
+      <div className="form-group-locate">
+        <label htmlFor="pokemonName">Find Pokémon's Habitats</label>
+        <input
+          
+          id="pokemonName"
+          type="text"
+          value={pokemonName}
+          onChange={(e) => setPokemonName(e.target.value)}
+          autoComplete="off"
+          placeholder="Enter Pokémon name"
+        />
+      </div>
+      <br/>
+      <button className="start-at-second-col" type="submit">Locate Pokémon</button>
     </form>
   );
 };

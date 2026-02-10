@@ -30,3 +30,29 @@
   border-radius: 4px;
   grid-column: span 3;
 }
+
+
+/* related to locate section of form*/
+
+.form-group-locate {
+  display: flex;
+  flex-direction: column; /* Stacks label on top of select */
+  grid-column: 2 / 3; /* Starts the item at the 2rd column line and ends at the 3rd */
+}
+
+.form-group-locate label {
+  margin-bottom: 8px; /* Space between label and select */
+  font-weight: bold;
+}
+
+.form-group-locate select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+}
+
+
+.start-at-second-col {
+  grid-column: 2 / 3; /* Starts the item at the 2rd column line and ends at the 3rd */
+}
