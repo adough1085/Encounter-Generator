@@ -131,10 +131,12 @@ def get_pokemons():
 @app.post("/generate", response_model=Generation_Output)
 def generate(gen_input: Generation_Input):
     g = distinguish_game(gen_input.game)
+    g.box = []
     g.box = filter_request_str(gen_input.sharedText)
 
     dupes = True if gen_input.dupes == "Yes" else False
     if dupes:
+        g.dupes = set()
         g.populate_dupes()
 
     subset = set()
@@ -151,12 +153,14 @@ def generate(gen_input: Generation_Input):
 @app.post("/distribution", response_model=Distributions)
 def distribution(dist_input: Distribution_Input):
     g = distinguish_game(dist_input.game)
+    g.box = []
     g.box = filter_request_str(dist_input.sharedText)
     #for x in g.box:
     #    print(x)
 
     dupes = True if dist_input.dupes == "Yes" else False
     if dupes:
+        g.dupes = set()
         g.populate_dupes()
     
     area = dist_input.area
