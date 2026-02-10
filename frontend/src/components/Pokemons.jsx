@@ -30,7 +30,8 @@ const PokemonList = () => {
         pkmnType: pkmnType, 
         power: power, 
         dupes: dupes,
-        sharedText: sharedText
+        sharedText: sharedText,
+        specificPkmn: isChecked
     });
     setGeneration(response.data)
     } catch (error) {

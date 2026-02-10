@@ -81,6 +81,7 @@ class Generation_Input(BaseModel):
     power: str
     dupes: str
     sharedText: str
+    specificPkmn: bool
 
 class Generation_Output(BaseModel):
     area: str
@@ -147,19 +148,23 @@ def generate(gen_input: Generation_Input):
     if dupes:
         g.populate_dupes()
 
+    subset = set()
+    if gen_input.specificPkmn:
+        subset = set(g.box)
+
     area = gen_input.area
     time = gen_input.time
     pkmnType = gen_input.pkmnType
     power = int(gen_input.power)
-    generated_pkmn = g.generate(area, time, pkmnType, power, dupes, True)
+    generated_pkmn = g.generate(area, time, pkmnType, power, dupes, subset, False)
     return convert_generation(generated_pkmn)
 
 @app.post("/distribution", response_model=Distributions)
 def distribution(dist_input: Distribution_Input):
     g = distinguish_game(dist_input.game)
     g.box = filter_request_str(dist_input.sharedText)
-    for x in g.box:
-        print(x)
+    #for x in g.box:
+    #    print(x)
 
     dupes = True if dist_input.dupes == "Yes" else False
     if dupes:
