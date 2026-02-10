@@ -1,16 +1,32 @@
+.form-grid {
+  display: grid;
+  /* Automatically fits as many 200px+ columns as possible */
+  /*grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));*/
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px; /* Spacing between grid items */
+  padding: 20px;
+}
+
 .form-group {
-  margin-bottom: 1rem; /* Adds space between different input groups */
+  display: flex;
+  flex-direction: column; /* Stacks label on top of select */
 }
 
-.input-label {
-  display: block; /* Forces the label to take up its own line */
+.form-group label {
+  margin-bottom: 8px; /* Space between label and select */
   font-weight: bold;
-  margin-bottom: 0.5rem; /* Adds space between the label and the input */
 }
 
-.form-input {
-  display: block; /* Forces the input to take up its own line */
-  width: 100%; /* Makes the input stretch to fill its container */
-  padding: 0.5rem;
-  box-sizing: border-box; /* Ensures padding doesn't increase total width */
+.form-group select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.span-all {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  grid-column: span 3;
 }
