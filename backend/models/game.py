@@ -40,6 +40,7 @@ class Game:
 
         For every Pokemon in "the box", search its name in the links dictionary, and add all of those linked Pokemon to the dupes dictionary.
         """
+        self.dupes = set()
         for boxed_pkmn in self.box:
             try:
                 link = self.links[boxed_pkmn]
@@ -106,6 +107,7 @@ class Game:
         If it does, then check every daypart.
         Print the areas and its dayparts that a Pokemon can be found in.
         """
+
         areas = self.alphabetical
         habitats = [] # A list is used instead of a set because a set does not print in the same order every time.
 
@@ -119,8 +121,8 @@ class Game:
             # Additionally there are Pokémon with different various such as Tauros (with various Combat, Blaze, and Aqua Breed).
             # Logic to transform a diminutive form into a full form would transform into unintended forms. 
 
-            pkmn_to_find = Area.remove_version_exclusive_tag(pkmn_to_find)
-            pkmn_found = any(Area.remove_version_exclusive_tag(native_pkmn.split("_")[0]) == pkmn_to_find for native_pkmn in area.pokemon)
+            pkmn_to_find = Game.remove_version_exclusive_tag(pkmn_to_find)
+            pkmn_found = any(Game.remove_version_exclusive_tag(native_pkmn.split("_")[0]) == pkmn_to_find for native_pkmn in area.pokemon)
             if pkmn_found == False:
                 continue
 
@@ -130,13 +132,13 @@ class Game:
             daypart_keys = [area.dawn.keys(), area.day.keys(), area.dusk.keys(), area.night.keys()]
             for x in range(len(daypart_keys)):
                 dp = daypart_keys[x]
-                daypart_found[x] = any(Area.remove_version_exclusive_tag(native_pkmn.split("_")[0]) == pkmn_to_find for native_pkmn in dp)
+                daypart_found[x] = any(Game.remove_version_exclusive_tag(native_pkmn.split("_")[0]) == pkmn_to_find for native_pkmn in dp)
 
             dawn_found = daypart_found[0]
             day_found = daypart_found[1]
             dusk_found = daypart_found[2]
             night_found = daypart_found[3]
-            
+
             # If a Pokemon are found in every daypart, then simply the Area is named.
             if dawn_found and day_found and dusk_found and night_found:
                 habitats.append(area.name)
@@ -162,7 +164,6 @@ class Game:
 
         # If the print boolean is flagged True, then print
         if print_boolean:
-            pkmn_to_find = Area.add_version_exclusive_tag(pkmn_to_find)
             if len(habitats) >= 1:
                 print(f"{pkmn_to_find} is located in:")
                 for x in habitats:
@@ -185,8 +186,8 @@ class Game:
         self.alphabetical = areas
 
     def validate_pokemon(self, pkmn_name):
-        pokedex = list(map(lambda x: Area.remove_version_exclusive_tag(x.split(",")[0]), self.links))
-        return any(Area.remove_version_exclusive_tag(pkmn_name) == pkmn for pkmn in pokedex)
+        pokedex = list(map(lambda x: Game.remove_version_exclusive_tag(x.split(",")[0]), self.links))
+        return any(Game.remove_version_exclusive_tag(pkmn_name) == pkmn for pkmn in pokedex)
     
     def validate_generate_distribution_input(area: str, daypart: str, type: str, power: int):
         """
@@ -210,9 +211,73 @@ class Game:
             print("Invalid Type")
             return False
 
-        if power > 0 or power < 3: # While an optional feature, it should be ensured the value is at least correct for later processes. 
+        if not (0 <= power or power <= 3): # While an optional feature, it should be ensured the value is at least correct for later processes. 
             print("Invalid Power")
             return False
 
         # Else if all checks are passed, return True
         return True
+
+    def process_generate_request(self, global_text: str, area: str, daypart: str, pkmn_type: str, encounter_power_level: int, dupes_clause_enabled: bool, specific_pkmn_set_enabled: bool, print_enabled: bool):
+        """
+        Docstring for process_generate_request
+        
+        :param self: Game object.
+        :param global_text: String object meant to represent the Pokémon that the user owns; if specific_pkmn_set_enabled is True, then it represents the specific kind of Pokémon to include.
+        :param area: String object that is the area name.
+        :param daypart: String object that represents the time of day.
+        :param pkmn_type: String object that represents the specific Pokémon Type that the Encounter Power will force more Pokémon of the same type to spawn.
+        :param encounter_power_level: String object at that represents Encounter Power Level ranging from 0 to 3.
+        :param dupes_clause_enabled: Boolean object that represents whether or not Dupes Clause is to be used.
+        :param specific_pkmn_set_enabled: Boolean object that represents whether or not a specific subset of Pokémon are to be used instead of all of the Pokémon in an area and time.
+        :param print_enabled: Boolean object that represents whether or not to print the result in the console.
+        """
+        self.box = []
+        pkmn_list = global_text.split(",")
+        pkmn_list = list(map(lambda x: x.strip(), pkmn_list))
+        pkmn_list = list(map(lambda x: Area.add_version_exclusive_tag(x) if self.validate_pokemon(x) else False, pkmn_list)) # Checks Pokemon name, filters out fake names, add tag if applicable
+        pkmn_list = [pkmn for pkmn in pkmn_list if pkmn] # Filters out False
+        
+        if dupes_clause_enabled:
+            self.populate_dupes()
+
+        subset = set()
+        if specific_pkmn_set_enabled:
+            subset = set(self.box)
+    
+        return self.generate(area, daypart, pkmn_type, encounter_power_level, self.dupes, subset, print_enabled)
+    
+    def process_distribution_request(self, global_text: str, area: str, daypart: str, pkmn_type: str, encounter_power_level: int, dupes_clause_enabled: bool, specific_pkmn_set_enabled: bool, print_enabled: bool):
+        """
+        Docstring for process_distribution_request
+        
+        :param self: Game object.
+        :param global_text: String object meant to represent the Pokémon that the user owns; if specific_pkmn_set_enabled is True, then it represents the specific kind of Pokémon to include.
+        :param area: String object that is the area name.
+        :param daypart: String object that represents the time of day.
+        :param pkmn_type: String object that represents the specific Pokémon Type that the Encounter Power will force more Pokémon of the same type to spawn.
+        :param encounter_power_level: String object at that represents Encounter Power Level ranging from 0 to 3.
+        :param dupes_clause_enabled: Boolean object that represents whether or not Dupes Clause is to be used.
+        :param specific_pkmn_set_enabled: Boolean object that represents whether or not a specific subset of Pokémon are to be used instead of all of the Pokémon in an area and time.
+        :param print_enabled: Boolean object that represents whether or not to print the result in the console.
+        """
+        self.box = []
+        pkmn_list = global_text.split(",")
+        pkmn_list = list(map(lambda x: x.strip(), pkmn_list))
+        pkmn_list = list(map(lambda x: Area.add_version_exclusive_tag(x) if self.validate_pokemon(x) else False, pkmn_list)) # Checks Pokemon name, filters out fake names, add tag if applicable
+        pkmn_list = [pkmn for pkmn in pkmn_list if pkmn] # Filters out False
+        
+        if dupes_clause_enabled:
+            self.populate_dupes()
+
+        subset = set()
+        if specific_pkmn_set_enabled:
+            subset = set(self.box)
+    
+        return self.distribution(area, daypart, pkmn_type, encounter_power_level, self.dupes, subset, print_enabled)
+    
+    def add_version_exclusive_tag(pkmn_name: str):
+        return Area.add_version_exclusive_tag(pkmn_name)
+    
+    def remove_version_exclusive_tag(pkmn_name: str):
+        return Area.remove_version_exclusive_tag(pkmn_name)

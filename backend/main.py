@@ -4,7 +4,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 from models.game import Game as Game
-from modules import v as Validator
 
 class Pokemon(BaseModel):
     name: str
@@ -14,13 +13,6 @@ class Pokemons(BaseModel):
 
 def pkmn_to_str(pkmn: Pokemon):
     return pkmn.name
-
-def filter_request_str(string: str):
-    pkmn_list = string.split(",")
-    pkmn_list = list(map(lambda x: x.strip(), pkmn_list))
-    pkmn_list = list(map(lambda x: Validator.add_version_exclusive_tag(x) if Validator.valid_pokemon(x) else False, pkmn_list)) # Checks Pokemon name, filters out fake names, add tag if applicable
-    pkmn_list = [pkmn for pkmn in pkmn_list if pkmn] # Filters out False
-    return pkmn_list
 
 def convert_pkmns_to_str(pkmns: Pokemons):
     list = []
@@ -94,12 +86,6 @@ class Test_Model(BaseModel):
 def convert_generation(old_generation: List):
     return Generation_Output(area=old_generation[0],time=old_generation[1],pkmn_name=old_generation[2])
 
-def distinguish_game(string_of_game):
-    string_of_game = string_of_game.strip().lower()
-    if string_of_game == "scarlet":
-        return base_scarlet
-    elif string_of_game == "violet":
-        return base_violet
 
 app = FastAPI()
 
@@ -130,57 +116,27 @@ def get_pokemons():
 
 @app.post("/generate", response_model=Generation_Output)
 def generate(gen_input: Generation_Input):
-    g = distinguish_game(gen_input.game)
-    g.box = []
-    g.box = filter_request_str(gen_input.sharedText)
-
-    dupes = True if gen_input.dupes == "Yes" else False
-    if dupes:
-        g.dupes = set()
-        g.populate_dupes()
-
-    subset = set()
-    if gen_input.specificPkmn:
-        subset = set(g.box)
-
-    area = gen_input.area
-    time = gen_input.time
-    pkmnType = gen_input.pkmnType
-    power = int(gen_input.power)
-    generated_pkmn = g.generate(area, time, pkmnType, power, dupes, subset, False)
+    g = Game(gen_input.game)
+    generated_pkmn = g.process_generate_request(gen_input.sharedText, gen_input.area, gen_input.time, gen_input.pkmnType, int(gen_input.power), gen_input.dupes, gen_input.specificPkmn, False)
     return convert_generation(generated_pkmn)
 
 @app.post("/distribution", response_model=Distributions)
 def distribution(dist_input: Distribution_Input):
-    g = distinguish_game(dist_input.game)
-    g.box = []
-    g.box = filter_request_str(dist_input.sharedText)
-    #for x in g.box:
-    #    print(x)
-
-    dupes = True if dist_input.dupes == "Yes" else False
-    if dupes:
-        g.dupes = set()
-        g.populate_dupes()
-    
-    area = dist_input.area
-    time = dist_input.time
-    pkmnType = dist_input.pkmnType
-    power = int(dist_input.power)
-
-    subset = set()
-    if dist_input.specificPkmn:
-        subset = set(g.box)
-    calculated_dist = g.distribution(area, time, pkmnType, power, dupes, subset, False)
-    return Distributions(location_name=area, distributions=convert_distributions(calculated_dist))
+    g = Game(dist_input.game)
+    calculated_dist = g.process_distribution_request(dist_input.sharedText, dist_input.area, dist_input.time, dist_input.pkmnType, int(dist_input.power), dist_input.dupes, dist_input.specificPkmn, False)
+    return Distributions(location_name=dist_input.area, distributions=convert_distributions(calculated_dist))
 
 
 @app.post("/locate", response_model=Locations)
 def locate_pokemon(pokemon: Pokemon):
-    g = distinguish_game("Scarlet") # Does not check for dupes or version exclusives, just need this to initialize a game 
-    #g.box = convert_pkmns_to_str(memory["s1"])
-    habitats = g.locate(pokemon.name, False)
-    return Locations(pkmn_name=pokemon.name.title(), locations=convert_locations(habitats))
+    g = Game("Scarlet") # Does not check for dupes or version exclusives, just need this to initialize a game
+    habitats = g.locate(pokemon.name, False) # habitats[last index] = Pokémon name
+    
+    real_pkmn_name = pokemon.name.title()
+    if len(habitats) > 0: # If a location was found...
+        real_pkmn_name = Game.add_version_exclusive_tag(real_pkmn_name)
+
+    return Locations(pkmn_name=real_pkmn_name, locations=convert_locations(habitats))
 
 """
 Testing

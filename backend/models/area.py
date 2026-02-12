@@ -235,7 +235,7 @@ class Area:
         if len(specific_pkmn) == 0:
             for key in pkmn_keys:
                 is_dupe = self.find_dupe(dupes, key.split("_")[0], check_dupes) # Boolean
-                correct_version_exclusive = Area.correct_version(game, key) # Boolean
+                correct_version_exclusive = Area.validate_compatible_version(game, key) # Boolean
                 correct_type = (key.find(type) != -1) # Boolean
 
                 # Check if Pokémon is not considered a duplicate, and that the Pokémon is compatible with the game version; if not, continue to next Pokémon
@@ -354,11 +354,8 @@ class Area:
             def set_percentage(self, new_percentage: float):
                     new_percentage = new_percentage * 10000 # Multiplying to 5 whole digits
                     new_percentage = new_percentage // 1 # Truncating
-                    new_percentage = new_percentage / 10000 # Dividing down to 5 decimal places
+                    new_percentage = new_percentage / 100 # Dividing down to 5 decimal places
                     self.percentage = new_percentage
-            
-            def percentage_print_format(self):
-                return str(self.percentage*100)
                 
 
 
@@ -418,7 +415,7 @@ class Area:
         if print_boolean:
             for allowed in allowed_pkmn:
                 pkmn_name = allowed.name.split("_")[0]
-                print(f"{pkmn_name}: {allowed.percentage_print_format()}%")
+                print(f"{pkmn_name}: {allowed.percentage}%")
         return allowed_pkmn # list object
  
     def load_areas():
