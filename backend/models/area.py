@@ -207,7 +207,7 @@ class Area:
 
         """
         # Choosing all possible wild Pokemon that are present within the day part selected.
-        time = v.resolve_daypart(time).lower()
+        time = v.validate_daypart(time).lower()
         print(f"{self.name} ({time.capitalize()})")
         selected = {}
         if time == "dawn":
@@ -330,7 +330,7 @@ class Area:
                 return (self.lower <= number and number <= self.upper)             
 
         # Select a day part
-        time = v.resolve_daypart(time).lower()
+        time = v.validate_daypart(time).lower()
         selected = {}
         if time == "dawn":
             selected = self.dawn

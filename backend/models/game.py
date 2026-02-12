@@ -54,7 +54,7 @@ class Game:
         Docstring for generate
         
         :param self: Game object.
-        :param area: String or Integer object representing the area.
+        :param area: String object representing the area.
         :param time: String or Integer object representing the daypart.
         :param type: String object representing the Pokemon Type (Grass, Water, etc.).
         :param power: Integer object related to Encounter Power (Levels 1, 2, or 3).
@@ -62,48 +62,34 @@ class Game:
         :param specific_pkmn: Set object that if greater than one signifies that instead of calculating for all Pokemon in an area, only calculate for the ones in the set. Ignores check_dupes if non-empty set.
         :param print_boolean: Boolean object that checks whether or not to print.
         """
-        pkmn_set = {}
-        if isinstance(area, str):
-            area = area.strip()
-        if isinstance(time, str):
-            time = time.strip()
+        
+        
         
         # Making sure that area input is valid
-        # Expected forms of input
-        if isinstance(area, str):
-            if area.isnumeric():
-                area = int(area)
-            if v.valid_area(area) == False:
-                print("Invalid Area")
-                return None
-        if isinstance(area, int) or (isinstance(area, str) and area.isnumeric()):
-            if (1 <= area and area <= 31) == False:
-                print("Areas 1-31")
-                return None
+        area = area.strip()
+        if v.valid_area(area) == False:
+            print("Invalid Area")
+            return None
         
         # Making sure that time input is valid
-        daypart = v.resolve_daypart(time)
+        if isinstance(time, str):
+            time = time.strip()
+        daypart = v.validate_daypart(time)
         if daypart == False:
             print("0 = Dawn")
             print("1 = Day")
             print("2 = Dusk")
             print("3 = Night")
             return None
-
-        # Setting area set
-        if isinstance(area, int):
-            pass
-        else:
-            pkmn_set = self.alphabetical
         
-        return pkmn_set[area].generate(self.game, daypart, type, power, self.dupes, check_dupes, specific_pkmn, print_boolean)
+        return self.alphabetical[area].generate(self.game, daypart, type, power, self.dupes, check_dupes, specific_pkmn, print_boolean)
 
     def distribution(self, area, time, type, power, check_dupes, specific_pkmn=set(), print_boolean=False):
         """
         Docstring for distribution
         
         :param self: Game object.
-        :param area: String or Integer object representing the area.
+        :param area: String object representing the area.
         :param time: String or Integer object representing the daypart.
         :param type: String object representing the Pokemon Type (Grass, Water, etc.).
         :param power: Integer object related to Encounter Power (Levels 1, 2, or 3).
@@ -112,25 +98,20 @@ class Game:
         :param print_boolean: Boolean object that checks whether or not to print.
         """
         # Getting rid of whitespace for string inputs
-        area = area.strip()
+        
         if isinstance(time, str):
             time = time.strip()
         
-
         # Making sure that area input is valid
-        if isinstance(area, str):
-            if area.isnumeric():
-                area = int(area)
-            if v.valid_area(area) == False:
-                print("Invalid Area")
-                return None
-        if isinstance(area, int):
-            if (1 <= area and area <= 31) == False:
-                print("Areas 1-31")
-                return None
+        area = area.strip()
+        if v.valid_area(area) == False:
+            print("Invalid Area")
+            return None
         
         # Making sure that time input is valid
-        daypart = v.resolve_daypart(time)
+        if isinstance(time, str):
+            time = time.strip()
+        daypart = v.validate_daypart(time)
         if daypart == False:
             print("0 = Dawn")
             print("1 = Day")
