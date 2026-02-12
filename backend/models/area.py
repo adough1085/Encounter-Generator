@@ -180,15 +180,15 @@ class Area:
         # Names are compared in lowercase in case of any strange case input errors.
         return any(pkmn_to_check.lower() == dupe.lower() for dupe in dupes)
            
-    def generate(self, game, daypart, type, power_int, dupes, check_dupes, specific_pkmn, print_boolean):
+    def generate(self, game: str, daypart: str, type: str , encounter_power: int, dupes: set, check_dupes: bool, specific_pkmn: set, print_boolean: bool):
         """
         Docstring for generate
         
         :param self: Area object.
-        :param game: String object representing game, either "Scarlet" or "Violet"
+        :param game: String object representing game version, possible values are: "Scarlet" or "Violet"
         :param daypart: Precleaned string object that represents the daypart, possible values are: "Dawn", "Day", "Dusk", and "Night".
-        :param type: String object that represents a Pokemon Type (Grass, Water, etc.).
-        :param power: Integer object ranging from 1, 2, or 3; represents an Encounter Power which increases likelihood of a Pokemon of a specific Type (Water-type Pokemon, etc.).
+        :param type: String object that represents a Pokemon Type, possible values are "Grass", "Water", etc.
+        :param encounter_power: Integer object ranging from 0, 1, 2, or 3; represents an Encounter Power which increases likelihood of a Pokemon of a specific Type (Water-type Pokemon, etc.).
         :param dupes: Set object storing String representations of Pokemon names; typically Game.dupes object. Set contains Pokemon that are considered "duplicates" and should be excluded, see Area.find_dupe(). 
         :param check_dupes: Boolean flag that represents whether or not to exclude duplicate Pokemon.
         :param specific_pkmn: Set object that if greater than one signifies that instead of calculating for all Pokemon in an area, only calculate for the ones in the set. Ignores check_dupes if non-empty set.
@@ -229,7 +229,7 @@ class Area:
         # If the type entered is real, then check if the Encounter Power is activated
         power_activated = False
         if valid_type == True:
-            power_activated = v.power(power_int)
+            power_activated = v.power(encounter_power)
 
         
         sum = 0.0
@@ -268,15 +268,15 @@ class Area:
                     print(f"{self.name} ({daypart.title()}): {pkmn_name}")
                 return return_list
 
-    def distribution(self, game, daypart, type, power, dupes, check_dupes, specific_pkmn, print_boolean):
+    def distribution(self, game: str, daypart: str, type: str, encounter_power: int, dupes: set, check_dupes: bool, specific_pkmn: set, print_boolean: bool):
         """
         Docstring for distribution
         
         :param self: Area object.
         :param game: String object representing game, either "Scarlet" or "Violet".
         :param daypart: Precleaned string object that represents the daypart, possible values are: "Dawn", "Day", "Dusk", and "Night".
-        :param type: String object that represents a Pokemon Type (Grass, Water, etc.).
-        :param power: Integer object ranging from 1, 2, or 3; represents an Encounter Power which increases likelihood of a Pokemon of a specific Type (Water-type Pokemon, etc.).
+        :param type: String object that represents a Pokemon Type, possible values are "Grass", "Water", etc.
+        :param encounter_power: Integer object ranging from 0, 1, 2, or 3; represents an Encounter Power which increases likelihood of a Pokemon of a specific Type (Water-type Pokemon, etc.).
         :param dupes: Set object storing String representations of Pokemon names; typically Game.dupes object. Set contains Pokemon that are considered "duplicates" and should be excluded, see Area.find_dupe(). 
         :param check_dupes: Boolean flag that represents whether or not to exclude duplicate Pokemon.
         :param specific_pkmn: Set object that if greater than one signifies that instead of calculating for all Pokemon in an area, only calculate for the ones in the set. Ignores check_dupes if non-empty set.
@@ -295,19 +295,16 @@ class Area:
 
         """
         # Choosing all possible wild Pokemon that are present within the daypart selected.
-        selected = {}
-        if daypart == "dawn":
-            selected = self.dawn
-        elif daypart == "day":
-            selected = self.day
-        elif daypart == "dusk":
-            selected = self.dusk
-        elif daypart == "night":
-            selected = self.night
+        daypart_selected = {}
+        if daypart == "Dawn":
+            daypart_selected = self.dawn
+        elif daypart == "Day":
+            daypart_selected = self.day
+        elif daypart == "Dusk":
+            daypart_selected = self.dusk
+        elif daypart == "Night":
+            daypart_selected = self.night
 
-        # Ensures that types entered are legitimate types, and will ignore typos.
-        valid_type = v.valid_type(type)
-        
         """
         I am under the assumption that the way Encounter Powers works is: 
         whatever % of encounters will be the enforced type, while the other % will always be a different type.
@@ -315,72 +312,97 @@ class Area:
         compared to the possibility that the other % still having a chance to spawn the enforced type.
         """
         upper_bound = 0
-        if power >= 1 and power <= 3 and valid_type == True:
-            if power == 1:
-                upper_bound = 0.50
-            elif power == 2:
-                upper_bound = 0.75
-            elif power == 3: 
-                upper_bound = 1
-        demultiplier = (1-upper_bound)
+        if encounter_power == 1:
+            upper_bound = 0.50
+        elif encounter_power == 2:
+            upper_bound = 0.75
+        elif encounter_power == 3: 
+            upper_bound = 1
+        demultiplier = (1-upper_bound) # demultipler will be used to reduce likelihood of Pokémon that do not match the specified type when an Encounter Power is active.
 
         # Short lived class for the purpose of the following section
         class Wild:
-            def __init__(self, name, percentage, matching_type):
-                self.name = name # string value
-                self.percentage = percentage # float value
-                self.matching_type = matching_type # boolean value
+            def __init__(self, name: str, percentage: float, matching_type: bool):
+                """
+                Docstring for __init__
+                
+                :param self: Description
+                :param name: String value representing Pokémon name.
+                :param percentage: Float value representing percentage chance that a Pokémon could be chosen.
+                :param matching_type: Boolean value representing whether or not the Pokémon matches the specified type.
+                """
+                self.name = name
+                self.percentage = percentage
+                self.matching_type = matching_type
 
-            def sp(self, new_percentage): # stands for set_percentage
-                    new_percentage = new_percentage * 10000
-                    new_percentage = new_percentage // 1
-                    new_percentage = new_percentage / 100
+            def set_percentage(self, new_percentage: float):
+                    new_percentage = new_percentage * 10000 # Multiplying to 5 whole digits
+                    new_percentage = new_percentage // 1 # Truncating
+                    new_percentage = new_percentage / 10000 # Dividing down to 5 decimal places
                     self.percentage = new_percentage
+            
+            def percentage_print_format(self):
+                return str(self.percentage*100)
+                
 
-        sum = 0.0
-        keys = selected.keys()
+
+        # Filter the Pokémon to calculate for based on Dupes Clause, version exclusivity, Encounter Power, and whether a specific subset was called for.
+        pkmn_keys = daypart_selected.keys()
         allowed_pkmn = []
-        if len(specific_pkmn) == 0: # Normal operations, do not calculate for specific Pokemon only 
-            for k in keys:
-                is_dupe = self.find_dupe(dupes, k.split("_")[0], check_dupes)
-                correct_version_ex = v.correct_version(game, k)
-                if is_dupe == False and correct_version_ex == True:
-                    correct_type = (k.find(type) != -1) # Check if Pokemon is equal to Encounter Power type
-                    allowed_pkmn.append(Wild(k,0,correct_type))
-        else: # If length of specific_pkmn is greater than 0, than calculate for specific Pokemon only
-            for k in keys: # Compared to above, no need to check for dupes, as this specific Pokemon set is already filtering out Pokemon
-                contained_in_subset = any(False if k.strip().lower().find(subset_pkmn.strip().lower()) == -1 else True for subset_pkmn in specific_pkmn)
-                correct_version_ex = v.correct_version(game, k)
-                if correct_version_ex and contained_in_subset:
-                    correct_type = (k.find(type) != -1) # Check if Pokemon is equal to Encounter Power type
-                    allowed_pkmn.append(Wild(k,0,correct_type))
 
+        # Normal operations, do not calculate for specific Pokemon only 
+        if len(specific_pkmn) == 0:
+            for key in pkmn_keys:
+                is_dupe = self.find_dupe(dupes, key.split("_")[0], check_dupes)
+                correct_version_exclusive = v.correct_version(game, key)
+
+                if is_dupe == False and correct_version_exclusive == True:
+                    correct_type = (key.find(type) != -1) # Check if Pokemon is equal to Encounter Power type
+                    allowed_pkmn.append(Wild(key, 0.0, correct_type))
+        
+        # If length of specific_pkmn is greater than 0, then calculate for specific Pokemon only
+        # No need to check for dupes, as this specific Pokemon set is already filtering out Pokemon
+        if len(specific_pkmn) > 0: 
+            for key in pkmn_keys:
+                contained_in_specific_subset = any(False if key.strip().lower().find(subset_pkmn.strip().lower()) == -1 else True for subset_pkmn in specific_pkmn)
+                correct_version_exclusive = v.correct_version(game, key)
+
+                if correct_version_exclusive and contained_in_specific_subset:
+                    correct_type = (key.find(type) != -1) # Check if Pokemon is equal to Encounter Power type
+                    allowed_pkmn.append(Wild(key, 0.0, correct_type))
+
+        
+
+        # First, calculate sum of all probability weight
+        sum = 0.0
         for allowed in allowed_pkmn:
             val = 0.0
-            if demultiplier != 1 and allowed.matching_type == False: 
-                val = selected[allowed.name]*demultiplier
+            if demultiplier != 1 and not allowed.matching_type:
+                val = daypart_selected[allowed.name]*demultiplier
             else:
-                val = selected[allowed.name]
+                val = daypart_selected[allowed.name]
             sum = sum + val
 
+        # Second, calculate each Pokémon
         for allowed in allowed_pkmn:
             val = 0.0
-            if demultiplier != 1 and allowed.matching_type == False: 
-                val = selected[allowed.name]*demultiplier
+            if demultiplier != 1 and not allowed.matching_type: 
+                val = daypart_selected[allowed.name]*demultiplier
             else:
-                val = selected[allowed.name]
-            if (sum == 0.0):
+                val = daypart_selected[allowed.name]
+            if (sum == 0.0): # Prevents division by 0
                 allowed.percentage = 0.0
             else:
-                allowed.sp(val/sum)
+                allowed.set_percentage(val/sum)
 
+        # Sort based on percentage values starting from largest to smallest
         allowed_pkmn = sorted(allowed_pkmn, key=lambda wild: wild.percentage, reverse=True)
 
         if print_boolean:
             for allowed in allowed_pkmn:
                 pkmn_name = allowed.name.split("_")[0]
-                print(f"{pkmn_name}: {allowed.percentage}%")
-        return allowed_pkmn
+                print(f"{pkmn_name}: {allowed.percentage_print_format()}%")
+        return allowed_pkmn # list object
  
     def load_areas():
         """

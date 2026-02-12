@@ -49,7 +49,7 @@ class Game:
             for pkmn in link:
                 self.dupes.add(pkmn)
 
-    def generate(self, area, daypart, type, power, check_dupes, specific_pkmn=set(), print_boolean=False):
+    def generate(self, area, daypart, type, encounter_power, check_dupes, specific_pkmn=set(), print_boolean=False):
         """
         Docstring for generate
         
@@ -57,7 +57,7 @@ class Game:
         :param area: String object representing the area.
         :param daypart: String object representing the daypart.
         :param type: String object representing the Pokemon Type (Grass, Water, etc.).
-        :param power: Integer object related to Encounter Power (Levels 0, 1, 2, or 3).
+        :param encounter_power: Integer object related to Encounter Power (Levels 0, 1, 2, or 3).
         :param check_dupes: Boolean object that checks whether or not to exclude dupes. Defaults to False later if non-boolean object.
         :param specific_pkmn: Set object that if greater than one signifies that instead of calculating for all Pokemon in an area, only calculate for the ones in the set. Ignores check_dupes if non-empty set.
         :param print_boolean: Boolean object that checks whether or not to print.
@@ -66,13 +66,13 @@ class Game:
         area = area.strip().title()
         daypart = daypart.strip().title()
         type = type.strip().title()
-        if not Game.validate_gen_dis_input(area, daypart, type, power, check_dupes):
+        if not Game.validate_generate_distribution_input(area, daypart, type, encounter_power):
             print("Generate arguments invalid.")
             return False
         
-        return self.alphabetical[area].generate(self.game, daypart, type, power, self.dupes, check_dupes, specific_pkmn, print_boolean)
+        return self.alphabetical[area].generate(self.game, daypart, type, encounter_power, self.dupes, check_dupes, specific_pkmn, print_boolean)
 
-    def distribution(self, area, daypart, type, power, check_dupes, specific_pkmn=set(), print_boolean=False):
+    def distribution(self, area, daypart, type, encounter_power, check_dupes, specific_pkmn=set(), print_boolean=False):
         """
         Docstring for distribution
         
@@ -80,7 +80,7 @@ class Game:
         :param area: String object representing the area.
         :param time: String or Integer object representing the daypart.
         :param type: String object representing the Pokemon Type (Grass, Water, etc.).
-        :param power: Integer object related to Encounter Power (Levels 1, 2, or 3).
+        :param encounter_power: Integer object related to Encounter Power (Levels 1, 2, or 3).
         :param check_dupes: Boolean object that checks whether or not to exclude dupes. Defaults to False later if non-boolean object.
         :param specific_pkmn: Set object that if greater than one signifies that instead of calculating for all Pokemon in an area, only calculate for the ones in the set. Ignores check_dupes if non-empty set.
         :param print_boolean: Boolean object that checks whether or not to print.
@@ -89,11 +89,11 @@ class Game:
         area = area.strip().title()
         daypart = daypart.strip().title()
         type = type.strip().title()
-        if not Game.validate_gen_dis_input(area, daypart, type, power, check_dupes):
+        if not Game.validate_generate_distribution_input(area, daypart, type, encounter_power):
             print("Distribution arguments invalid.")
             return False
         
-        return self.alphabetical[area].distribution(self.game, daypart, type, power, self.dupes, check_dupes, specific_pkmn, print_boolean)
+        return self.alphabetical[area].distribution(self.game, daypart, type, encounter_power, self.dupes, check_dupes, specific_pkmn, print_boolean)
 
     def locate(self, pkmn_to_find, print_boolean=False):
         """
@@ -194,7 +194,7 @@ class Game:
         areas = Area.load_areas()
         self.alphabetical = areas
 
-    def validate_gen_dis_input(area: str, daypart: str, type: str, power: int, check_dupes: bool):
+    def validate_generate_distribution_input(area: str, daypart: str, type: str, power: int):
         """
         Docstring for validate_gen_dis_input
         All string inputs are expected to have been precleaned with strip() and title() prior to being passed into function.
@@ -212,14 +212,14 @@ class Game:
             print("Invalid Daypart")
             return False
         
-        if not v.valid_type(type): # Does not return False and stop program as this is an optional feature.
+        if not v.valid_type(type): # While an optional feature, it should be ensured the value is at least correct for later processes. 
             print("Invalid Type")
+            return False
 
-        if power > 0 or power < 3: # Does not return False and stop program as this is an optional feature.
+        if power > 0 or power < 3: # While an optional feature, it should be ensured the value is at least correct for later processes. 
             print("Invalid Power")
+            return False
 
-        # No check required for check_dupes, expected bool data type should already prevent invalid entry.
-        # If all conditions at least area and daypart are valid, then return True and allow program to proceed.
         return True
 
     def real_pokemon(string):
