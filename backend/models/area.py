@@ -179,6 +179,94 @@ class Area:
         # Return whether or not the Pokemon is a dupe
         # Names are compared in lowercase in case of any strange case input errors.
         return any(pkmn_to_check.lower() == dupe.lower() for dupe in dupes)
+           
+    def generate(self, game, daypart, type, power_int, dupes, check_dupes, specific_pkmn, print_boolean):
+        """
+        Docstring for generate
+        
+        :param self: Area object.
+        :param game: String object representing game, either "Scarlet" or "Violet"
+        :param daypart: Precleaned string object that represents the daypart, possible values are: "Dawn", "Day", "Dusk", and "Night".
+        :param type: String object that represents a Pokemon Type (Grass, Water, etc.).
+        :param power: Integer object ranging from 1, 2, or 3; represents an Encounter Power which increases likelihood of a Pokemon of a specific Type (Water-type Pokemon, etc.).
+        :param dupes: Set object storing String representations of Pokemon names; typically Game.dupes object. Set contains Pokemon that are considered "duplicates" and should be excluded, see Area.find_dupe(). 
+        :param check_dupes: Boolean flag that represents whether or not to exclude duplicate Pokemon.
+        :param specific_pkmn: Set object that if greater than one signifies that instead of calculating for all Pokemon in an area, only calculate for the ones in the set. Ignores check_dupes if non-empty set.
+        :param print_boolean: Boolean object that checks whether or not to print.
+        
+
+        This function is only meant to be used within the Game.distribution() function.
+
+        This function will do the following:
+        1) Select daypart based on time value.
+        2) Check if type value and power value are valid, if so, set multiplier. multiplier increases the chance of specific Type Pokemon of appearing, and decreases chance of other Type Pokemon of appearing.
+        3) Filter out Pokemon in the daypart based on Dupes Clause, version exclusivity, and Encounter Power; and create number ranges that will consider a Pokemon "chosen" or "encountered".
+        4) Generate a random value, and check which Pokemon was "chosen"/"encountered"
+        """
+        # Short lived class for the purpose of this function.
+        class Range:
+            def __init__(self, name, lower, upper):
+                self.name = name
+                self.lower = lower
+                self.upper = upper
+
+            def enclosed(self, number):
+                return (self.lower <= number and number <= self.upper)             
+
+        # Select a day part
+        if daypart == "dawn":
+            selected = self.dawn
+        elif daypart == "day":
+            selected = self.day
+        elif daypart == "dusk":
+            selected = self.dusk
+        elif daypart == "night":
+            selected = self.night
+
+        # Ensures that types entered are legitimate types, and will ignore typos.
+        valid_type = v.valid_type(type)
+        
+        # If the type entered is real, then check if the Encounter Power is activated
+        power_activated = False
+        if valid_type == True:
+            power_activated = v.power(power_int)
+
+        
+        sum = 0.0
+        keys = selected.keys() # Keys are possible wild Pokemon present in the day part selected.
+        ranges = []
+
+        if len(specific_pkmn) == 0:
+            for k in keys:
+                is_dupe = self.find_dupe(dupes, k.split("_")[0], check_dupes) # Boolean
+                correct_version_ex = v.correct_version(game, k) # Boolean
+                correct_type = (k.find(type) != -1) # Boolean
+                if is_dupe == False and correct_version_ex == True: # First filter
+                    if power_activated == True and correct_type == False: # Second filter
+                        continue
+                    ranges.append(Range(k, sum, sum + selected[k])) # Otherwise, create ranges with bounds like: [(0, 15.7563), (15.7563, 26.0), etc.]
+                    sum = sum + selected[k]
+        else:
+            for k in keys: # Compared to above, no need to check for dupes, as this specific Pokemon set is already filtering out Pokemon
+                correct_version_ex = v.correct_version(game, k) # Boolean
+                correct_type = (k.find(type) != -1) # Boolean
+                contained_in_subset = any(False if k.strip().lower().find(subset_pkmn.strip().lower()) == -1 else True for subset_pkmn in specific_pkmn) # Boolean
+                if correct_version_ex and contained_in_subset: # First filter
+                    if power_activated == True and correct_type == False: # Second filter
+                        continue
+                    ranges.append(Range(k, sum, sum + selected[k])) # Otherwise, create ranges with bounds like: [(0, 15.7563), (15.7563, 26.0), etc.]
+                    sum = sum + selected[k]
+
+        if len(ranges) == 0:
+            return [self.name, daypart.title(), "None"]
+        rng = random.uniform(0, sum) # Generate a value
+        for r in ranges: # For every range created...
+            if r.enclosed(rng): # Proceed if the value falls within the range
+                pkmn_name = r.name.split("_")[0]
+                return_list = [self.name, daypart.title(), pkmn_name]
+                if print_boolean:
+                    print(f"{self.name} ({daypart.title()}): {pkmn_name}")
+                return return_list
 
     def distribution(self, game, daypart, type, power, dupes, check_dupes, specific_pkmn, print_boolean):
         """
@@ -293,95 +381,7 @@ class Area:
                 pkmn_name = allowed.name.split("_")[0]
                 print(f"{pkmn_name}: {allowed.percentage}%")
         return allowed_pkmn
-            
-    def generate(self, game, daypart, type, power_int, dupes, check_dupes, specific_pkmn, print_boolean):
-        """
-        Docstring for generate
-        
-        :param self: Area object.
-        :param game: String object representing game, either "Scarlet" or "Violet"
-        :param daypart: Precleaned string object that represents the daypart, possible values are: "Dawn", "Day", "Dusk", and "Night".
-        :param type: String object that represents a Pokemon Type (Grass, Water, etc.).
-        :param power: Integer object ranging from 1, 2, or 3; represents an Encounter Power which increases likelihood of a Pokemon of a specific Type (Water-type Pokemon, etc.).
-        :param dupes: Set object storing String representations of Pokemon names; typically Game.dupes object. Set contains Pokemon that are considered "duplicates" and should be excluded, see Area.find_dupe(). 
-        :param check_dupes: Boolean flag that represents whether or not to exclude duplicate Pokemon.
-        :param specific_pkmn: Set object that if greater than one signifies that instead of calculating for all Pokemon in an area, only calculate for the ones in the set. Ignores check_dupes if non-empty set.
-        :param print_boolean: Boolean object that checks whether or not to print.
-        
-
-        This function is only meant to be used within the Game.distribution() function.
-
-        This function will do the following:
-        1) Select daypart based on time value.
-        2) Check if type value and power value are valid, if so, set multiplier. multiplier increases the chance of specific Type Pokemon of appearing, and decreases chance of other Type Pokemon of appearing.
-        3) Filter out Pokemon in the daypart based on Dupes Clause, version exclusivity, and Encounter Power; and create number ranges that will consider a Pokemon "chosen" or "encountered".
-        4) Generate a random value, and check which Pokemon was "chosen"/"encountered"
-        """
-        # Short lived class for the purpose of this function.
-        class Range:
-            def __init__(self, name, lower, upper):
-                self.name = name
-                self.lower = lower
-                self.upper = upper
-
-            def enclosed(self, number):
-                return (self.lower <= number and number <= self.upper)             
-
-        # Select a day part
-        if daypart == "dawn":
-            selected = self.dawn
-        elif daypart == "day":
-            selected = self.day
-        elif daypart == "dusk":
-            selected = self.dusk
-        elif daypart == "night":
-            selected = self.night
-
-        # Ensures that types entered are legitimate types, and will ignore typos.
-        valid_type = v.valid_type(type)
-        
-        # If the type entered is real, then check if the Encounter Power is activated
-        power_activated = False
-        if valid_type == True:
-            power_activated = v.power(power_int)
-
-        
-        sum = 0.0
-        keys = selected.keys() # Keys are possible wild Pokemon present in the day part selected.
-        ranges = []
-
-        if len(specific_pkmn) == 0:
-            for k in keys:
-                is_dupe = self.find_dupe(dupes, k.split("_")[0], check_dupes) # Boolean
-                correct_version_ex = v.correct_version(game, k) # Boolean
-                correct_type = (k.find(type) != -1) # Boolean
-                if is_dupe == False and correct_version_ex == True: # First filter
-                    if power_activated == True and correct_type == False: # Second filter
-                        continue
-                    ranges.append(Range(k, sum, sum + selected[k])) # Otherwise, create ranges with bounds like: [(0, 15.7563), (15.7563, 26.0), etc.]
-                    sum = sum + selected[k]
-        else:
-            for k in keys: # Compared to above, no need to check for dupes, as this specific Pokemon set is already filtering out Pokemon
-                correct_version_ex = v.correct_version(game, k) # Boolean
-                correct_type = (k.find(type) != -1) # Boolean
-                contained_in_subset = any(False if k.strip().lower().find(subset_pkmn.strip().lower()) == -1 else True for subset_pkmn in specific_pkmn) # Boolean
-                if correct_version_ex and contained_in_subset: # First filter
-                    if power_activated == True and correct_type == False: # Second filter
-                        continue
-                    ranges.append(Range(k, sum, sum + selected[k])) # Otherwise, create ranges with bounds like: [(0, 15.7563), (15.7563, 26.0), etc.]
-                    sum = sum + selected[k]
-
-        if len(ranges) == 0:
-            return [self.name, daypart.title(), "None"]
-        rng = random.uniform(0, sum) # Generate a value
-        for r in ranges: # For every range created...
-            if r.enclosed(rng): # Proceed if the value falls within the range
-                pkmn_name = r.name.split("_")[0]
-                return_list = [self.name, daypart.title(), pkmn_name]
-                if print_boolean:
-                    print(f"{self.name} ({daypart.title()}): {pkmn_name}")
-                return return_list
-
+ 
     def load_areas():
         """
         Docstring for load_areas
