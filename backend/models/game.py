@@ -265,8 +265,6 @@ class Game:
         pass
 
     def load_box_string(self, string):
-
-    
         # Placeholder until it is figured out how to read an imported text file
         string = string[:len(string)-1]
         pkmns = string.split(",")
