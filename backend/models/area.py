@@ -496,3 +496,87 @@ class Area:
         alpha["West Province (Area Three)"] = west_province_area_three
         
         return alpha
+
+    def distinguish_if_version_exclusive_pkmn(pkmn_name: str):
+        
+        pass
+    
+    def add_version_exclusive_tag(pkmn_name: str):
+        pokedex = list()
+        with open(r"data/pokedex/links.txt","r") as f1:
+            lines = f1.readlines()
+        pokedex = list(map(lambda x: x.split(",")[0], lines))
+
+        for pkmn in pokedex:
+            pkmn_full_name = pkmn.split("_")[0]
+            if pkmn.find("Scarlet") != -1 or pkmn.find("Violet") != -1:
+                if Area.remove_version_exclusive_tag(pkmn_full_name) == Area.remove_version_exclusive_tag(pkmn_name):
+                    return pkmn_full_name
+
+    def remove_version_exclusive_tag(pkmn_name: str):
+        """
+        Docstring for remove_version_exclusive_tag
+        
+        :param pkmn_name: String object that represents the Pokémon's name; should be in a form such as "Deino (Scarlet)"
+
+        This function will transform a value such as "Deino (Scarlet)" to "Deino".
+        Otherwise, it will return a value such as "Deino", "Bagon", "Pikachu", "Whateverinputisenteredbecausethisdoesnotcheckpokemonname"
+        """
+        pkmn_name = pkmn_name.strip().lower()
+        if pkmn_name.find("scarlet") != -1 or pkmn_name.find("violet") != -1:
+            pkmn_name = pkmn_name.replace("(scarlet)", " ")
+            pkmn_name = pkmn_name.replace("(violet)", " ")
+            pkmn_name = pkmn_name.strip()
+        return pkmn_name.title() # Converts something like Deino 
+    
+    def validate_area(area_name):
+        areas = {
+        "Alfornada Cavern",
+        "Asado Desert",
+        "Cabo Poco",
+        "Casseroya Lake",
+        "Dalizapa Passage",
+        "East Paldean Sea",
+        "East Province (Area One)",
+        "East Province (Area Two)",
+        "East Province (Area Three)",
+        "Glaseado Mountain",
+        "Great Crater of Paldea",
+        "Inlet Grotto",
+        "North Paldean Sea",
+        "North Province (Area One)",
+        "North Province (Area Two)",
+        "North Province (Area Three)",
+        "Poco Path",
+        "Pokemon League",
+        "Socarrat Trail",
+        "South Paldean Sea",
+        "South Province (Area One)",
+        "South Province (Area Two)",
+        "South Province (Area Three)",
+        "South Province (Area Four)",
+        "South Province (Area Five)",
+        "South Province (Area Six)",
+        "Tagtree Thicket",
+        "West Paldean Sea",
+        "West Province (Area One)",
+        "West Province (Area Two)",
+        "West Province (Area Three)"
+        }
+
+        return any(area_name.lower() == area.lower() for area in areas)
+    
+    def validate_type(type_input):
+        types = ["Normal","Fighting","Flying","Poison","Ground","Rock","Bug","Ghost","Steel","Fire","Water","Grass","Electric","Psychic","Ice","Dragon","Dark","Fairy"]
+        return any(type_input.strip().title() == pkmn_type for pkmn_type in types)
+
+    def validate_daypart(daypart_name: str):
+            """
+            Docstring for validate_daypart
+
+            :param daypart_input: String object that is expected to be cleaned by strip() and title().
+            """
+            valid_dayparts = {"Dawn", "Day", "Dusk", "Night"}
+            valid = any(daypart_name == valid_daypart for valid_daypart in valid_dayparts)
+            return valid
+

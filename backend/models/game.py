@@ -1,5 +1,4 @@
 from models.area import Area
-import modules.v as v
 from pathlib import Path
 
 class Game:
@@ -107,22 +106,21 @@ class Game:
         If it does, then check every daypart.
         Print the areas and its dayparts that a Pokemon can be found in.
         """
-        pkmn_to_find = pkmn_to_find.strip().lower()
         areas = self.alphabetical
         habitats = [] # A list is used instead of a set because a set does not print in the same order every time.
 
         for area in areas.values():
             # areas is a dictionary with K: "Area Name", V: Area object.
             # areas.values() represents Area objects, therefore area is an Area object.
-            # native_pkmn are String objects representing the Pokemon that can be found in an area or its dayparts.
+            # native_pkmn are String objects representing the Pokemon that can be found in an area or its daypart, in format "Pokemon_Type1_Type2" or "Pokemon (Version)_Type1_Type2"
             # First, immediately rule out areas.
 
-            # This immensely long logic is broken down as follows:
-            # a) The Find function searches a string for a substring, and returns -1 if False. Find is more inclusive than the equality operator.
-            # b) The Ternary Statement is similar to an if statement
-            # c) Any statement allows for modification of an iteratable's values, and evaluates to False if all values are False, empty, or 0, otherwise True.
+            # String equality is used instead of find because there is currently no logic to transform a diminutive form into a full form.
+            # Additionally there are Pokémon with different various such as Tauros (with various Combat, Blaze, and Aqua Breed).
+            # Logic to transform a diminutive form into a full form would transform into unintended forms. 
 
-            pkmn_found = any(v.remove_version_exclusive_tag(native_pkmn.strip().lower().split("_")[0]).lower() == v.remove_version_exclusive_tag(pkmn_to_find).lower() for native_pkmn in area.pokemon)
+            pkmn_to_find = Area.remove_version_exclusive_tag(pkmn_to_find)
+            pkmn_found = any(Area.remove_version_exclusive_tag(native_pkmn.split("_")[0]) == pkmn_to_find for native_pkmn in area.pokemon)
             if pkmn_found == False:
                 continue
 
@@ -132,15 +130,7 @@ class Game:
             daypart_keys = [area.dawn.keys(), area.day.keys(), area.dusk.keys(), area.night.keys()]
             for x in range(len(daypart_keys)):
                 dp = daypart_keys[x]
-                for pkmn in dp:
-                    # pkmn format = "Bronzong_Steel_Psychic"
-                    name = pkmn.strip().lower().split("_")[0]
-                    refactored_native = v.remove_version_exclusive_tag(name).lower()
-                    refactored_pkmn_to_find = v.remove_version_exclusive_tag(pkmn_to_find).lower()
-
-                    if refactored_native == refactored_pkmn_to_find:
-                        daypart_found[x] = True
-                        break
+                daypart_found[x] = any(Area.remove_version_exclusive_tag(native_pkmn.split("_")[0]) == pkmn_to_find for native_pkmn in dp)
 
             dawn_found = daypart_found[0]
             day_found = daypart_found[1]
@@ -171,8 +161,8 @@ class Game:
                 pass # Pokemon was not found in this Area.
 
         # If the print boolean is flagged True, then print
-        pkmn_to_find = pkmn_to_find.title()
         if print_boolean:
+            pkmn_to_find = Area.add_version_exclusive_tag(pkmn_to_find)
             if len(habitats) >= 1:
                 print(f"{pkmn_to_find} is located in:")
                 for x in habitats:
@@ -194,6 +184,10 @@ class Game:
         areas = Area.load_areas()
         self.alphabetical = areas
 
+    def validate_pokemon(self, pkmn_name):
+        pokedex = list(map(lambda x: Area.remove_version_exclusive_tag(x.split(",")[0]), self.links))
+        return any(Area.remove_version_exclusive_tag(pkmn_name) == pkmn for pkmn in pokedex)
+    
     def validate_generate_distribution_input(area: str, daypart: str, type: str, power: int):
         """
         Docstring for validate_gen_dis_input
@@ -204,15 +198,15 @@ class Game:
         :param power: String object representing power.
         :param check_dupes: Boolean object representing whether or not to remove duplicate (and evolutionary relatives) from Pokémon to generate or calculate distributions for.
         """
-        if not v.valid_area(area):
+        if not Area.validate_area(area):
             print("Invalid Area")
             return False
         
-        if not v.validate_daypart(daypart):
+        if not Area.validate_daypart(daypart):
             print("Invalid Daypart")
             return False
         
-        if not v.valid_type(type): # While an optional feature, it should be ensured the value is at least correct for later processes. 
+        if not Area.validate_type(type): # While an optional feature, it should be ensured the value is at least correct for later processes. 
             print("Invalid Type")
             return False
 
@@ -220,7 +214,5 @@ class Game:
             print("Invalid Power")
             return False
 
+        # Else if all checks are passed, return True
         return True
-
-    def real_pokemon(string):
-        return v.valid_pokemon(string)
