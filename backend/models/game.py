@@ -57,21 +57,17 @@ class Game:
         :param area: String object representing the area.
         :param daypart: String object representing the daypart.
         :param type: String object representing the Pokemon Type (Grass, Water, etc.).
-        :param power: Integer object related to Encounter Power (Levels 1, 2, or 3).
+        :param power: Integer object related to Encounter Power (Levels 0, 1, 2, or 3).
         :param check_dupes: Boolean object that checks whether or not to exclude dupes. Defaults to False later if non-boolean object.
         :param specific_pkmn: Set object that if greater than one signifies that instead of calculating for all Pokemon in an area, only calculate for the ones in the set. Ignores check_dupes if non-empty set.
         :param print_boolean: Boolean object that checks whether or not to print.
         """
-        # Making sure that area input is valid
-        area = area.strip()
-        if v.valid_area(area) == False:
-            print("Invalid Area")
-            return None
-        
-        # Making sure that time input is valid
-        daypart = daypart.strip.title()
-        daypart_valid = v.validate_daypart(daypart)
-        if not daypart_valid:
+        # Making sure that area, daypart, and type are precleaned before checking validation.
+        area = area.strip().title()
+        daypart = daypart.strip().title()
+        type = type.strip().title()
+        if not Game.validate_gen_dis_input(area, daypart, type, power, check_dupes):
+            print("Generate arguments invalid.")
             return False
         
         return self.alphabetical[area].generate(self.game, daypart, type, power, self.dupes, check_dupes, specific_pkmn, print_boolean)
@@ -89,16 +85,12 @@ class Game:
         :param specific_pkmn: Set object that if greater than one signifies that instead of calculating for all Pokemon in an area, only calculate for the ones in the set. Ignores check_dupes if non-empty set.
         :param print_boolean: Boolean object that checks whether or not to print.
         """
-        # Making sure that area input is valid
-        area = area.strip()
-        if v.valid_area(area) == False:
-            print("Invalid Area")
-            return None
-        
-        # Making sure that time input is valid
-        daypart = daypart.strip.title()
-        daypart_valid = v.validate_daypart(daypart)
-        if not daypart_valid:
+        # Making sure that area, daypart, and type are precleaned before checking validation.
+        area = area.strip().title()
+        daypart = daypart.strip().title()
+        type = type.strip().title()
+        if not Game.validate_gen_dis_input(area, daypart, type, power, check_dupes):
+            print("Distribution arguments invalid.")
             return False
         
         return self.alphabetical[area].distribution(self.game, daypart, type, power, self.dupes, check_dupes, specific_pkmn, print_boolean)
@@ -201,6 +193,34 @@ class Game:
         """
         areas = Area.load_areas()
         self.alphabetical = areas
+
+    def validate_gen_dis_input(area: str, daypart: str, type: str, power: int, check_dupes: bool):
+        """
+        Docstring for validate_gen_dis_input
+        All string inputs are expected to have been precleaned with strip() and title() prior to being passed into function.
+        :param area: String object representing area.
+        :param daypart: String object representing daypart.
+        :param type: String object representing Pokémon Type.
+        :param power: String object representing power.
+        :param check_dupes: Boolean object representing whether or not to remove duplicate (and evolutionary relatives) from Pokémon to generate or calculate distributions for.
+        """
+        if not v.valid_area(area):
+            print("Invalid Area")
+            return False
+        
+        if not v.validate_daypart(daypart):
+            print("Invalid Daypart")
+            return False
+        
+        if not v.valid_type(type): # Does not return False and stop program as this is an optional feature.
+            print("Invalid Type")
+
+        if power > 0 or power < 3: # Does not return False and stop program as this is an optional feature.
+            print("Invalid Power")
+
+        # No check required for check_dupes, expected bool data type should already prevent invalid entry.
+        # If all conditions at least area and daypart are valid, then return True and allow program to proceed.
+        return True
 
     def real_pokemon(string):
         return v.valid_pokemon(string)
