@@ -1,6 +1,5 @@
 import random
 from modules import nc as nc
-from modules import v as v
 
 class Area:
     def __init__(self, name):
@@ -226,7 +225,7 @@ class Area:
             daypart_selected = self.night
         
         # Use random number generator to decide if Encounter Power is activated
-        encounter_power_activated = v.power(encounter_power)
+        encounter_power_activated = Area.activate_encounter_power(encounter_power)
         
         sum = 0.0
         pkmn_keys = daypart_selected.keys() # Keys are possible wild Pokemon present in the daypart selected.
@@ -236,7 +235,7 @@ class Area:
         if len(specific_pkmn) == 0:
             for key in pkmn_keys:
                 is_dupe = self.find_dupe(dupes, key.split("_")[0], check_dupes) # Boolean
-                correct_version_exclusive = v.correct_version(game, key) # Boolean
+                correct_version_exclusive = Area.correct_version(game, key) # Boolean
                 correct_type = (key.find(type) != -1) # Boolean
 
                 # Check if Pokémon is not considered a duplicate, and that the Pokémon is compatible with the game version; if not, continue to next Pokémon
@@ -255,7 +254,7 @@ class Area:
         # No need to check for dupes, as this specific Pokemon set is already filtering out Pokemon
         if len(specific_pkmn) > 0: 
             for key in pkmn_keys:
-                correct_version_exclusive = v.correct_version(game, key) # Boolean
+                correct_version_exclusive = Area.validate_compatible_version(game, key) # Boolean
                 correct_type = (key.find(type) != -1) # Boolean
                 contained_in_specific_subset = any(False if key.strip().lower().find(subset_pkmn.strip().lower()) == -1 else True for subset_pkmn in specific_pkmn) # Boolean
 
@@ -371,7 +370,7 @@ class Area:
         if len(specific_pkmn) == 0:
             for key in pkmn_keys:
                 is_dupe = self.find_dupe(dupes, key.split("_")[0], check_dupes)
-                correct_version_exclusive = v.correct_version(game, key)
+                correct_version_exclusive = Area.validate_compatible_version(game, key)
 
                 if is_dupe == False and correct_version_exclusive == True:
                     correct_type = (key.find(type) != -1) # Check if Pokemon is equal to Encounter Power type
@@ -382,7 +381,7 @@ class Area:
         if len(specific_pkmn) > 0: 
             for key in pkmn_keys:
                 contained_in_specific_subset = any(False if key.strip().lower().find(subset_pkmn.strip().lower()) == -1 else True for subset_pkmn in specific_pkmn)
-                correct_version_exclusive = v.correct_version(game, key)
+                correct_version_exclusive = Area.validate_compatible_version(game, key)
 
                 if correct_version_exclusive and contained_in_specific_subset:
                     correct_type = (key.find(type) != -1) # Check if Pokemon is equal to Encounter Power type
@@ -497,9 +496,42 @@ class Area:
         
         return alpha
 
-    def distinguish_if_version_exclusive_pkmn(pkmn_name: str):
+    def validate_compatible_version(game_string, pkmn_to_check):
+        """
+        Docstring for correct_version
         
-        pass
+        :param self: Area object.
+        :param game_string: String object representing game version, either "Scarlet" or "Violet"
+        :param pkmn_to_check: String object representing name of Pokemon.
+        """
+        if game_string.lower() == "scarlet" and pkmn_to_check.lower().find("violet") == -1:
+            return True
+        elif game_string.lower() == "violet" and pkmn_to_check.lower().find("scarlet") == -1:
+            return True 
+        else:
+            return False
+
+    def activate_encounter_power(encounter_power_number):
+        """
+        Docstring for power_int
+        
+        :param self: Area object.
+        :param power_int: An Integer intended to 1, 2, or 3. Depending on power_int level, it has a greater chance of forcing a specific Type (Grass, Water, etc.) Pokemon to spawn.
+        
+        upper_bound represents the percentage chance that a specific Type Pokemon is forced to spawn.
+        Generates a random number from 1 to 100 (inclusive), if it is less than or equal to the upper_bound, then the specific Type is forced.
+        """
+        upper_bound = 0
+        if encounter_power_number == 1:
+            upper_bound = 50
+        elif encounter_power_number == 2:
+            upper_bound = 75
+        elif encounter_power_number == 3: 
+            upper_bound = 100
+        else:
+            return False
+        
+        return random.randint(1,100) <= upper_bound
     
     def add_version_exclusive_tag(pkmn_name: str):
         pokedex = list()
