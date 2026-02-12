@@ -394,7 +394,7 @@ class Area:
         sum = 0.0
         for allowed in allowed_pkmn:
             val = 0.0
-            if demultiplier != 1 and not allowed.matching_type:
+            if demultiplier != 1 and not allowed.matching_type: # If Encounter Power is active and Pokémon does not match specified type
                 val = daypart_selected[allowed.name]*demultiplier
             else:
                 val = daypart_selected[allowed.name]
@@ -403,10 +403,11 @@ class Area:
         # Second, calculate each Pokémon
         for allowed in allowed_pkmn:
             val = 0.0
-            if demultiplier != 1 and not allowed.matching_type: 
+            if demultiplier != 1 and not allowed.matching_type: # If Encounter Power is active and Pokémon does not match specified type
                 val = daypart_selected[allowed.name]*demultiplier
             else:
                 val = daypart_selected[allowed.name]
+
             if (sum == 0.0): # Prevents division by 0
                 allowed.percentage = 0.0
             else:
