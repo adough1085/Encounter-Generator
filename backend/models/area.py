@@ -213,60 +213,77 @@ class Area:
             def enclosed(self, number):
                 return (self.lower <= number and number <= self.upper)             
 
+
         # Select a day part
-        if daypart == "dawn":
-            selected = self.dawn
-        elif daypart == "day":
-            selected = self.day
-        elif daypart == "dusk":
-            selected = self.dusk
-        elif daypart == "night":
-            selected = self.night
-
-        # Ensures that types entered are legitimate types, and will ignore typos.
-        valid_type = v.valid_type(type)
+        daypart_selected = {}
+        if daypart == "Dawn":
+            daypart_selected = self.dawn
+        elif daypart == "Day":
+            daypart_selected = self.day
+        elif daypart == "Dusk":
+            daypart_selected = self.dusk
+        elif daypart == "Night":
+            daypart_selected = self.night
         
-        # If the type entered is real, then check if the Encounter Power is activated
-        power_activated = False
-        if valid_type == True:
-            power_activated = v.power(encounter_power)
-
+        # Use random number generator to decide if Encounter Power is activated
+        encounter_power_activated = v.power(encounter_power)
         
         sum = 0.0
-        keys = selected.keys() # Keys are possible wild Pokemon present in the day part selected.
+        pkmn_keys = daypart_selected.keys() # Keys are possible wild Pokemon present in the daypart selected.
         ranges = []
 
+        # Normal operations, do not calculate for specific Pokemon only 
         if len(specific_pkmn) == 0:
-            for k in keys:
-                is_dupe = self.find_dupe(dupes, k.split("_")[0], check_dupes) # Boolean
-                correct_version_ex = v.correct_version(game, k) # Boolean
-                correct_type = (k.find(type) != -1) # Boolean
-                if is_dupe == False and correct_version_ex == True: # First filter
-                    if power_activated == True and correct_type == False: # Second filter
-                        continue
-                    ranges.append(Range(k, sum, sum + selected[k])) # Otherwise, create ranges with bounds like: [(0, 15.7563), (15.7563, 26.0), etc.]
-                    sum = sum + selected[k]
-        else:
-            for k in keys: # Compared to above, no need to check for dupes, as this specific Pokemon set is already filtering out Pokemon
-                correct_version_ex = v.correct_version(game, k) # Boolean
-                correct_type = (k.find(type) != -1) # Boolean
-                contained_in_subset = any(False if k.strip().lower().find(subset_pkmn.strip().lower()) == -1 else True for subset_pkmn in specific_pkmn) # Boolean
-                if correct_version_ex and contained_in_subset: # First filter
-                    if power_activated == True and correct_type == False: # Second filter
-                        continue
-                    ranges.append(Range(k, sum, sum + selected[k])) # Otherwise, create ranges with bounds like: [(0, 15.7563), (15.7563, 26.0), etc.]
-                    sum = sum + selected[k]
+            for key in pkmn_keys:
+                is_dupe = self.find_dupe(dupes, key.split("_")[0], check_dupes) # Boolean
+                correct_version_exclusive = v.correct_version(game, key) # Boolean
+                correct_type = (key.find(type) != -1) # Boolean
 
+                # Check if Pokémon is not considered a duplicate, and that the Pokémon is compatible with the game version; if not, continue to next Pokémon
+                if not (not is_dupe and correct_version_exclusive):
+                    continue
+
+                # Check if an Encounter Power was activated, and if the Pokémon is not of the specified type; if so, continue to next Pokémon
+                if encounter_power_activated and not correct_type: # Second filter
+                    continue
+
+                # If those filters are passed, create ranges with bounds like: [(0, 15.7563), (15.7563, 26.0), etc.]
+                ranges.append(Range(key, sum, sum + daypart_selected[key])) 
+                sum = sum + daypart_selected[key]
+        
+        # If length of specific_pkmn is greater than 0, then calculate for specific Pokemon only
+        # No need to check for dupes, as this specific Pokemon set is already filtering out Pokemon
+        if len(specific_pkmn) > 0: 
+            for key in pkmn_keys:
+                correct_version_exclusive = v.correct_version(game, key) # Boolean
+                correct_type = (key.find(type) != -1) # Boolean
+                contained_in_specific_subset = any(False if key.strip().lower().find(subset_pkmn.strip().lower()) == -1 else True for subset_pkmn in specific_pkmn) # Boolean
+
+                # Check if Pokémon is compatible with game's version, and check if Pokémon is in specific subset; if not, immediately go to next Pokémon
+                if not (correct_version_exclusive and contained_in_specific_subset): 
+                    continue
+
+                # Check if Encounter Power is active, and check if Pokémon is not the specific type; if so, immediately go to next Pokémon
+                if encounter_power_activated and not correct_type:
+                    continue
+        
+                # Otherwise, create ranges with bounds like: [(0, 15.7563), (15.7563, 26.0), etc.]
+                ranges.append(Range(key, sum, sum + daypart_selected[key])) 
+                sum = sum + daypart_selected[key]
+
+
+        # If no Pokémon are eligible due to a combination of Dupes Clause and Encounter Power for example, return that for the Area, Daypart, no Pokémon were selected.
         if len(ranges) == 0:
-            return [self.name, daypart.title(), "None"]
+            return [self.name, daypart, "None"]
+        
+        # Otherwise, generate a Pokémon
         rng = random.uniform(0, sum) # Generate a value
-        for r in ranges: # For every range created...
+        for r in ranges: # For every range created...; r is used because range in Python is defined to have functionality.
             if r.enclosed(rng): # Proceed if the value falls within the range
                 pkmn_name = r.name.split("_")[0]
-                return_list = [self.name, daypart.title(), pkmn_name]
                 if print_boolean:
-                    print(f"{self.name} ({daypart.title()}): {pkmn_name}")
-                return return_list
+                    print(f"{self.name} ({daypart}): {pkmn_name}")
+                return [self.name, daypart, pkmn_name]
 
     def distribution(self, game: str, daypart: str, type: str, encounter_power: int, dupes: set, check_dupes: bool, specific_pkmn: set, print_boolean: bool):
         """
