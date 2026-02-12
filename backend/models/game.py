@@ -49,22 +49,19 @@ class Game:
             for pkmn in link:
                 self.dupes.add(pkmn)
 
-    def generate(self, area, time, type, power, check_dupes, specific_pkmn=set(), print_boolean=False):
+    def generate(self, area, daypart, type, power, check_dupes, specific_pkmn=set(), print_boolean=False):
         """
         Docstring for generate
         
         :param self: Game object.
         :param area: String object representing the area.
-        :param time: String or Integer object representing the daypart.
+        :param daypart: String object representing the daypart.
         :param type: String object representing the Pokemon Type (Grass, Water, etc.).
         :param power: Integer object related to Encounter Power (Levels 1, 2, or 3).
         :param check_dupes: Boolean object that checks whether or not to exclude dupes. Defaults to False later if non-boolean object.
         :param specific_pkmn: Set object that if greater than one signifies that instead of calculating for all Pokemon in an area, only calculate for the ones in the set. Ignores check_dupes if non-empty set.
         :param print_boolean: Boolean object that checks whether or not to print.
         """
-        
-        
-        
         # Making sure that area input is valid
         area = area.strip()
         if v.valid_area(area) == False:
@@ -72,19 +69,14 @@ class Game:
             return None
         
         # Making sure that time input is valid
-        if isinstance(time, str):
-            time = time.strip()
-        daypart = v.validate_daypart(time)
-        if daypart == False:
-            print("0 = Dawn")
-            print("1 = Day")
-            print("2 = Dusk")
-            print("3 = Night")
-            return None
+        daypart = daypart.strip.title()
+        daypart_valid = v.validate_daypart(daypart)
+        if not daypart_valid:
+            return False
         
         return self.alphabetical[area].generate(self.game, daypart, type, power, self.dupes, check_dupes, specific_pkmn, print_boolean)
 
-    def distribution(self, area, time, type, power, check_dupes, specific_pkmn=set(), print_boolean=False):
+    def distribution(self, area, daypart, type, power, check_dupes, specific_pkmn=set(), print_boolean=False):
         """
         Docstring for distribution
         
@@ -97,11 +89,6 @@ class Game:
         :param specific_pkmn: Set object that if greater than one signifies that instead of calculating for all Pokemon in an area, only calculate for the ones in the set. Ignores check_dupes if non-empty set.
         :param print_boolean: Boolean object that checks whether or not to print.
         """
-        # Getting rid of whitespace for string inputs
-        
-        if isinstance(time, str):
-            time = time.strip()
-        
         # Making sure that area input is valid
         area = area.strip()
         if v.valid_area(area) == False:
@@ -109,15 +96,10 @@ class Game:
             return None
         
         # Making sure that time input is valid
-        if isinstance(time, str):
-            time = time.strip()
-        daypart = v.validate_daypart(time)
-        if daypart == False:
-            print("0 = Dawn")
-            print("1 = Day")
-            print("2 = Dusk")
-            print("3 = Night")
-            return None
+        daypart = daypart.strip.title()
+        daypart_valid = v.validate_daypart(daypart)
+        if not daypart_valid:
+            return False
         
         return self.alphabetical[area].distribution(self.game, daypart, type, power, self.dupes, check_dupes, specific_pkmn, print_boolean)
 

@@ -180,13 +180,13 @@ class Area:
         # Names are compared in lowercase in case of any strange case input errors.
         return any(pkmn_to_check.lower() == dupe.lower() for dupe in dupes)
 
-    def distribution(self, game, time, type, power, dupes, check_dupes, specific_pkmn, print_boolean):
+    def distribution(self, game, daypart, type, power, dupes, check_dupes, specific_pkmn, print_boolean):
         """
         Docstring for distribution
         
         :param self: Area object.
         :param game: String object representing game, either "Scarlet" or "Violet".
-        :param time: String object that represents the daypart, possible values are: "Dawn", "Day", "Dusk", and "Night".
+        :param daypart: Precleaned string object that represents the daypart, possible values are: "Dawn", "Day", "Dusk", and "Night".
         :param type: String object that represents a Pokemon Type (Grass, Water, etc.).
         :param power: Integer object ranging from 1, 2, or 3; represents an Encounter Power which increases likelihood of a Pokemon of a specific Type (Water-type Pokemon, etc.).
         :param dupes: Set object storing String representations of Pokemon names; typically Game.dupes object. Set contains Pokemon that are considered "duplicates" and should be excluded, see Area.find_dupe(). 
@@ -206,17 +206,15 @@ class Area:
         6) Print list of Pokemon in descending order of percentage value
 
         """
-        # Choosing all possible wild Pokemon that are present within the day part selected.
-        time = v.validate_daypart(time).lower()
-        print(f"{self.name} ({time.capitalize()})")
+        # Choosing all possible wild Pokemon that are present within the daypart selected.
         selected = {}
-        if time == "dawn":
+        if daypart == "dawn":
             selected = self.dawn
-        elif time == "day":
+        elif daypart == "day":
             selected = self.day
-        elif time == "dusk":
+        elif daypart == "dusk":
             selected = self.dusk
-        elif time == "night":
+        elif daypart == "night":
             selected = self.night
 
         # Ensures that types entered are legitimate types, and will ignore typos.
@@ -296,13 +294,13 @@ class Area:
                 print(f"{pkmn_name}: {allowed.percentage}%")
         return allowed_pkmn
             
-    def generate(self, game, time, type, power_int, dupes, check_dupes, specific_pkmn, print_boolean):
+    def generate(self, game, daypart, type, power_int, dupes, check_dupes, specific_pkmn, print_boolean):
         """
         Docstring for generate
         
         :param self: Area object.
         :param game: String object representing game, either "Scarlet" or "Violet"
-        :param time: String object that represents the daypart, possible values are: "Dawn", "Day", "Dusk", and "Night".
+        :param daypart: Precleaned string object that represents the daypart, possible values are: "Dawn", "Day", "Dusk", and "Night".
         :param type: String object that represents a Pokemon Type (Grass, Water, etc.).
         :param power: Integer object ranging from 1, 2, or 3; represents an Encounter Power which increases likelihood of a Pokemon of a specific Type (Water-type Pokemon, etc.).
         :param dupes: Set object storing String representations of Pokemon names; typically Game.dupes object. Set contains Pokemon that are considered "duplicates" and should be excluded, see Area.find_dupe(). 
@@ -330,15 +328,13 @@ class Area:
                 return (self.lower <= number and number <= self.upper)             
 
         # Select a day part
-        time = v.validate_daypart(time).lower()
-        selected = {}
-        if time == "dawn":
+        if daypart == "dawn":
             selected = self.dawn
-        elif time == "day":
+        elif daypart == "day":
             selected = self.day
-        elif time == "dusk":
+        elif daypart == "dusk":
             selected = self.dusk
-        elif time == "night":
+        elif daypart == "night":
             selected = self.night
 
         # Ensures that types entered are legitimate types, and will ignore typos.
@@ -376,14 +372,14 @@ class Area:
                     sum = sum + selected[k]
 
         if len(ranges) == 0:
-            return [self.name, time.title(), "None"]
+            return [self.name, daypart.title(), "None"]
         rng = random.uniform(0, sum) # Generate a value
         for r in ranges: # For every range created...
             if r.enclosed(rng): # Proceed if the value falls within the range
                 pkmn_name = r.name.split("_")[0]
-                return_list = [self.name, time.title(), pkmn_name]
+                return_list = [self.name, daypart.title(), pkmn_name]
                 if print_boolean:
-                    print(f"{self.name} ({time.title()}): {pkmn_name}")
+                    print(f"{self.name} ({daypart.title()}): {pkmn_name}")
                 return return_list
 
     def load_areas():

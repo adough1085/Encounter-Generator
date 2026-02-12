@@ -82,34 +82,15 @@ def valid_type(string_input):
     string_input = string_input.strip().lower()
     return any(string_input.strip().lower() == pkmn_type.strip().lower() for pkmn_type in types)
 
-def resolve_daypart(time):
-        valid = True
+def validate_daypart(daypart_input: str):
+        """
+        Docstring for validate_daypart
+        
+        :param daypart_input: String object that is expected to be cleaned by strip() and title().
+        """
         valid_dayparts = {"Dawn", "Day", "Dusk", "Night"}
-        daypart = ""
-
-        if isinstance(time, str):
-            time = time.title()
-            for dp in valid_dayparts:
-                if time == dp:
-                    daypart = dp
-                    break
-
-        if isinstance(time, int):
-            if time == 0:
-                daypart = "Dawn"
-            elif time == 1:
-                daypart = "Day"
-            elif time == 2:
-                daypart = "Dusk"
-            elif time == 3:
-                daypart = "Night"
-            else:
-                valid = False
-
-        if valid == False:
-            return False
-        elif daypart != "":
-            return daypart
+        valid = any(daypart_input == valid_daypart for valid_daypart in valid_dayparts)
+        return valid
 
 def valid_pokemon(string_input):
     pokedex = list()
