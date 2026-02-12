@@ -391,8 +391,8 @@ class Area:
         Docstring for load_areas
 
         Static method meant to be used by Game objects.
-        Loads the areas, and returns them as a list of dictionaries.
-        The dictionaries are numerical and alpha, which take an integer or string respectively.
+        Loads the areas, and returns them as a dictionary.
+        The areas in the dictionary are listed in alphabetical order.
         """
         alfornada_cavern = Area("Alfornada Cavern")
         asado_desert = Area("Asado Desert")
@@ -425,39 +425,6 @@ class Area:
         west_province_area_one = Area("West Province (Area One)")
         west_province_area_two = Area("West Province (Area Two)")
         west_province_area_three = Area("West Province (Area Three)")
-
-        numerical = {}
-        numerical[1] = alfornada_cavern
-        numerical[2] = asado_desert
-        numerical[3] = cabo_poco
-        numerical[4] = casseroya_lake
-        numerical[5] = dalizapa_passage
-        numerical[6] = east_paldean_sea
-        numerical[7] = east_province_area_one
-        numerical[8] = east_province_area_two
-        numerical[9] = east_province_area_three
-        numerical[10] = glaseado_mountain
-        numerical[11] = great_crater_of_paldea
-        numerical[12] = inlet_grotto
-        numerical[13] = north_paldean_sea
-        numerical[14] = north_province_area_one
-        numerical[15] = north_province_area_two
-        numerical[16] = north_province_area_three
-        numerical[17] = poco_path
-        numerical[18] = pokemon_league
-        numerical[19] = socarrat_trail
-        numerical[20] = south_paldean_sea
-        numerical[21] = south_province_area_one
-        numerical[22] = south_province_area_two
-        numerical[23] = south_province_area_three
-        numerical[24] = south_province_area_four
-        numerical[25] = south_province_area_five
-        numerical[26] = south_province_area_six
-        numerical[27] = tagtree_thicket
-        numerical[28] = west_paldean_sea
-        numerical[29] = west_province_area_one
-        numerical[30] = west_province_area_two
-        numerical[31] = west_province_area_three
 
         alpha = {}
         alpha["Alfornada Cavern"] = alfornada_cavern
@@ -492,5 +459,4 @@ class Area:
         alpha["West Province (Area Two)"] = west_province_area_two
         alpha["West Province (Area Three)"] = west_province_area_three
         
-        pair = [numerical, alpha]
-        return pair
+        return alpha

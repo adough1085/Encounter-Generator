@@ -11,7 +11,6 @@ class Game:
         self.dupes = set()
         
         self.alphabetical = {}
-        self.numerical = {}
         
         self.define_links()
         self.load_areas()
@@ -69,15 +68,15 @@ class Game:
         if isinstance(time, str):
             time = time.strip()
         
-
         # Making sure that area input is valid
+        # Expected forms of input
         if isinstance(area, str):
             if area.isnumeric():
                 area = int(area)
             if v.valid_area(area) == False:
                 print("Invalid Area")
                 return None
-        if isinstance(area, int):
+        if isinstance(area, int) or (isinstance(area, str) and area.isnumeric()):
             if (1 <= area and area <= 31) == False:
                 print("Areas 1-31")
                 return None
@@ -93,7 +92,7 @@ class Game:
 
         # Setting area set
         if isinstance(area, int):
-            pkmn_set = self.numerical
+            pass
         else:
             pkmn_set = self.alphabetical
         
@@ -112,9 +111,8 @@ class Game:
         :param specific_pkmn: Set object that if greater than one signifies that instead of calculating for all Pokemon in an area, only calculate for the ones in the set. Ignores check_dupes if non-empty set.
         :param print_boolean: Boolean object that checks whether or not to print.
         """
-        pkmn_set = {}
-        if isinstance(area, str):
-            area = area.strip()
+        # Getting rid of whitespace for string inputs
+        area = area.strip()
         if isinstance(time, str):
             time = time.strip()
         
@@ -139,14 +137,8 @@ class Game:
             print("2 = Dusk")
             print("3 = Night")
             return None
-
-        # Setting area set
-        if isinstance(area, int):
-            pkmn_set = self.numerical
-        else:
-            pkmn_set = self.alphabetical
         
-        return pkmn_set[area].distribution(self.game, daypart, type, power, self.dupes, check_dupes, specific_pkmn, print_boolean)
+        return self.alphabetical[area].distribution(self.game, daypart, type, power, self.dupes, check_dupes, specific_pkmn, print_boolean)
 
     def locate(self, pkmn_to_find, print_boolean=False):
         """
@@ -244,32 +236,8 @@ class Game:
 
         Loads all areas.
         """
-        duo = Area.load_areas()
-        self.numerical = duo[0]
-        self.alphabetical = duo[1]
-
-    def print_box(self):
-        # Placeholder until it is figured out how to export a text file
-        folder = f"data/pokedex"
-        file_name = f"box.txt"
-        file_path = f"{folder}/{file_name}"
-
-        # Overwriting in case there is pre-existing text
-        with open(file_path,"w") as f1:
-            f1.write("")
-
-        # Writing each biome and distribution
-        with open(file_path, "a") as f1:
-            for pkmn in self.box:
-                f1.write(f"{pkmn},")
-        pass
-
-    def load_box_string(self, string):
-        # Placeholder until it is figured out how to read an imported text file
-        string = string[:len(string)-1]
-        pkmns = string.split(",")
-        print(len(pkmns))
-        pass
+        areas = Area.load_areas()
+        self.alphabetical = areas
 
     def real_pokemon(string):
         return v.valid_pokemon(string)
