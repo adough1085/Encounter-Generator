@@ -222,3 +222,12 @@ def remove_version_exclusive_tag(string_input):
             string_input = string_input.replace("(violet)", " ")
             string_input = string_input.strip()
     return string_input
+
+
+"""
+Game class is in charge of doing validation prior to passing it to area, ensuring that area does not have to do any cleaning or formatting.
+Area class is in charge of doing the actual generating and distribution calculation.
+One caveat is that because Area class contains majority of the Pokémon information, it must be able to:
+1) Check Pokémon and version compatibility
+2) Add or remove exclusive tag for sake of string equality such that "Tauros (Blaze Breed)" and "Tauros (Blaze Breed) (Scarlet)" are the same at runtime
+"""
