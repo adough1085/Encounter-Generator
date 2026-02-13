@@ -123,8 +123,6 @@ def generate(gen_input: Generation_Input):
 @app.post("/distribution", response_model=Distributions)
 def distribution(dist_input: Distribution_Input):
     g = Game(dist_input.game)
-    print("dist_input.specificPkmn")
-    print(dist_input.specificPkmn)
     calculated_dist = g.process_generate_distribution_request("distribution",dist_input.sharedText, dist_input.area, dist_input.time, dist_input.pkmnType, int(dist_input.power), dist_input.dupes, dist_input.specificPkmn, False)
     return Distributions(location_name=dist_input.area, distributions=convert_distributions(calculated_dist))
 
@@ -135,7 +133,8 @@ def locate_pokemon(pokemon: Pokemon):
     habitats = g.locate(pokemon.name, False) # habitats[last index] = Pokémon name
     
     real_pkmn_name = pokemon.name.title()
-    if len(habitats) > 0: # If a location was found...
+    if any(habitats): # If a location was found...
+        real_pkmn_name = Game.remove_version_exclusive_tag(real_pkmn_name)
         real_pkmn_name = Game.add_version_exclusive_tag(real_pkmn_name)
 
     return Locations(pkmn_name=real_pkmn_name, locations=convert_locations(habitats))
