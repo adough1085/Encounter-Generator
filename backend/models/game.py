@@ -49,7 +49,7 @@ class Game:
             for pkmn in link:
                 self.dupes.add(pkmn)
 
-    def generate(self, area, daypart, type, encounter_power, check_dupes, specific_pkmn=set(), print_boolean=False):
+    def generate(self, area: str, daypart: str, type: str, encounter_power: str, check_dupes: bool, specific_pkmn=set(), print_boolean=False):
         """
         Docstring for generate
         
@@ -72,7 +72,7 @@ class Game:
         
         return self.alphabetical[area].generate(self.game, daypart, type, encounter_power, self.dupes, check_dupes, specific_pkmn, print_boolean)
 
-    def distribution(self, area, daypart, type, encounter_power, check_dupes, specific_pkmn=set(), print_boolean=False):
+    def distribution(self, area: str, daypart: str, type: str, encounter_power: str, check_dupes: bool, specific_pkmn=set(), print_boolean=False):
         """
         Docstring for distribution
         
@@ -95,7 +95,7 @@ class Game:
         
         return self.alphabetical[area].distribution(self.game, daypart, type, encounter_power, self.dupes, check_dupes, specific_pkmn, print_boolean)
 
-    def locate(self, pkmn_to_find, print_boolean=False):
+    def locate(self, pkmn_to_find: str, print_boolean=False):
         """
         Docstring for locate
         
@@ -185,10 +185,97 @@ class Game:
         areas = Area.load_areas()
         self.alphabetical = areas
 
-    def validate_pokemon(self, pkmn_name):
+    def validate_pokemon(self, pkmn_name: str):
         pokedex = list(map(lambda x: Game.remove_version_exclusive_tag(x.split(",")[0]), self.links))
         return any(Game.remove_version_exclusive_tag(pkmn_name) == pkmn for pkmn in pokedex)
-    
+
+    def validate_pkmn_is_version_exclusive(self, pkmn_name: str):
+        if self.validate_pokemon(pkmn_name) == False:
+            return "none"
+
+        scarlet = set()
+        violet = set()
+        scarlet.add("Vulpix")
+        scarlet.add("Ninetails")
+        scarlet.add("Tauros (Blaze Breed)")
+        scarlet.add("Gligar")
+        scarlet.add("Larvitar")
+        scarlet.add("Pupitar")
+        scarlet.add("Tyranitar")
+        scarlet.add("Cranidos")
+        scarlet.add("Rampardos")
+        scarlet.add("Drifloon")
+        scarlet.add("Drifblim")
+        scarlet.add("Stunky")
+        scarlet.add("Skuntank")
+        scarlet.add("Gliscor")
+        scarlet.add("Deino")
+        scarlet.add("Zweilous")
+        scarlet.add("Hydreigon")
+        scarlet.add("Skrelp")
+        scarlet.add("Dragalge")
+        scarlet.add("Oranguru")
+        scarlet.add("Cramorant")
+        scarlet.add("Stonjourner")
+        scarlet.add("Armarouge")
+        scarlet.add("Great Tusk")
+        scarlet.add("Scream Tail")
+        scarlet.add("Brute Bonnet")
+        scarlet.add("Flutter Mane")
+        scarlet.add("Slither Wing")
+        scarlet.add("Sandy Shocks")
+        scarlet.add("Roaring Moon")
+        scarlet.add("Koraidon")
+        scarlet.add("Walking Wake")
+        scarlet.add("Gouging Fire")
+        scarlet.add("Raging Bolt")
+
+        violet.add("Sandshrew")
+        violet.add("Sandslash")
+        violet.add("Tauros (Aqua Breed)")
+        violet.add("Aipom")
+        violet.add("Misdreavus")
+        violet.add("Gulpin")
+        violet.add("Swalot")
+        violet.add("Bagon")
+        violet.add("Shelgon")
+        violet.add("Salamence")
+        violet.add("Shieldon")
+        violet.add("Bastiodon")
+        violet.add("Ambipom")
+        violet.add("Mismagius")
+        violet.add("Clauncher")
+        violet.add("Clawitzer")
+        violet.add("Passimian")
+        violet.add("Morpeko")
+        violet.add("Dreepy")
+        violet.add("Drakloak")
+        violet.add("Dragapult")
+        violet.add("Eiscue")
+        violet.add("Ceruledge")
+        violet.add("Iron Treads")
+        violet.add("Iron Bundle")
+        violet.add("Iron Hands")
+        violet.add("Iron Jugulis")
+        violet.add("Iron Moth")
+        violet.add("Iron Thorns")
+        violet.add("Iron Valiant")
+        violet.add("Miraidon")
+        violet.add("Iron Leaves")
+        violet.add("Iron Boulder")
+        violet.add("Iron Crown")
+
+        #scarlet_pkmn = any(pkmn.strip().lower().find(string_input.strip().lower()) != -1 for pkmn in scarlet)
+        #violet_pkmn = any(pkmn.strip().lower().find(string_input.strip().lower()) != -1 for pkmn in violet)
+        is_scarlet_pkmn = any(Area.remove_version_exclusive_tag(pkmn_name) == pkmn.strip().title() for pkmn in scarlet)
+        is_violet_pkmn = any(Area.remove_version_exclusive_tag(pkmn_name) == pkmn.strip().title() for pkmn in violet)
+        if is_scarlet_pkmn:
+            return "scarlet"
+        elif is_violet_pkmn:
+            return "violet"
+        else:
+            return "none"
+
     def validate_generate_distribution_input(area: str, daypart: str, type: str, power: int):
         """
         Docstring for validate_gen_dis_input
@@ -218,64 +305,55 @@ class Game:
         # Else if all checks are passed, return True
         return True
 
-    def process_generate_request(self, global_text: str, area: str, daypart: str, pkmn_type: str, encounter_power_level: int, dupes_clause_enabled: bool, specific_pkmn_set_enabled: bool, print_enabled: bool):
-        """
-        Docstring for process_generate_request
-        
-        :param self: Game object.
-        :param global_text: String object meant to represent the Pokémon that the user owns; if specific_pkmn_set_enabled is True, then it represents the specific kind of Pokémon to include.
-        :param area: String object that is the area name.
-        :param daypart: String object that represents the time of day.
-        :param pkmn_type: String object that represents the specific Pokémon Type that the Encounter Power will force more Pokémon of the same type to spawn.
-        :param encounter_power_level: String object at that represents Encounter Power Level ranging from 0 to 3.
-        :param dupes_clause_enabled: Boolean object that represents whether or not Dupes Clause is to be used.
-        :param specific_pkmn_set_enabled: Boolean object that represents whether or not a specific subset of Pokémon are to be used instead of all of the Pokémon in an area and time.
-        :param print_enabled: Boolean object that represents whether or not to print the result in the console.
-        """
-        self.box = []
-        pkmn_list = global_text.split(",")
-        pkmn_list = list(map(lambda x: x.strip(), pkmn_list))
-        pkmn_list = list(map(lambda x: Area.add_version_exclusive_tag(x) if self.validate_pokemon(x) else False, pkmn_list)) # Checks Pokemon name, filters out fake names, add tag if applicable
-        pkmn_list = [pkmn for pkmn in pkmn_list if pkmn] # Filters out False
-        
-        if dupes_clause_enabled:
-            self.populate_dupes()
-
-        subset = set()
-        if specific_pkmn_set_enabled:
-            subset = set(self.box)
-    
-        return self.generate(area, daypart, pkmn_type, encounter_power_level, self.dupes, subset, print_enabled)
-    
-    def process_distribution_request(self, global_text: str, area: str, daypart: str, pkmn_type: str, encounter_power_level: int, dupes_clause_enabled: bool, specific_pkmn_set_enabled: bool, print_enabled: bool):
+    def process_generate_distribution_request(self, request_type: str, global_text: str, area: str, daypart: str, pkmn_type: str, encounter_power_level: int, dupes_clause_enabled_str: str, specific_pkmn_set_enabled: bool, print_enabled: bool):
         """
         Docstring for process_distribution_request
         
         :param self: Game object.
+        :param request_type: Represents whether the request is to generate/choose a Pokémon or whether to create a distribution.
         :param global_text: String object meant to represent the Pokémon that the user owns; if specific_pkmn_set_enabled is True, then it represents the specific kind of Pokémon to include.
         :param area: String object that is the area name.
         :param daypart: String object that represents the time of day.
         :param pkmn_type: String object that represents the specific Pokémon Type that the Encounter Power will force more Pokémon of the same type to spawn.
         :param encounter_power_level: String object at that represents Encounter Power Level ranging from 0 to 3.
-        :param dupes_clause_enabled: Boolean object that represents whether or not Dupes Clause is to be used.
+        :param dupes_clause_enabled_str: Represents whether or not Dupes Clause is to be used, values are "Yes" or "No".
         :param specific_pkmn_set_enabled: Boolean object that represents whether or not a specific subset of Pokémon are to be used instead of all of the Pokémon in an area and time.
         :param print_enabled: Boolean object that represents whether or not to print the result in the console.
+        
+        This function is used to process both HTTP requests for generate and distribution because the preprocessing steps and variables are identical.
+        Having two separate functions for processing both would be unnecessary duplication. 
         """
+        
+        # For parsing the textbox, the operations are applied in the following order:
+        # 1) Split into an array by "," to get each Pokémon
+        # 2) Remove whitespace from each Pokémon
+        # 3) Check if the Pokémon names are real, if not, replace with False. For the remaining real ones, remove version exclusive tags "(Scarlet)" or "(Violet)"
+        # 4) Remove False values from previous step
+        # 5) For the Pokémon left, add version exclusive tags to applicable Pokémon
+        # 6) Textbox is done parsing and ready to be used 
         self.box = []
         pkmn_list = global_text.split(",")
-        pkmn_list = list(map(lambda x: x.strip(), pkmn_list))
-        pkmn_list = list(map(lambda x: Area.add_version_exclusive_tag(x) if self.validate_pokemon(x) else False, pkmn_list)) # Checks Pokemon name, filters out fake names, add tag if applicable
+        pkmn_list = list(map(lambda x: x.strip(), pkmn_list)) # Remove whitespace
+        pkmn_list = list(map(lambda x: Game.remove_version_exclusive_tag(x) if self.validate_pokemon(x) else False, pkmn_list)) # Checks Pokemon name, filters out fake names, and removes version exclusive tags from remaining
         pkmn_list = [pkmn for pkmn in pkmn_list if pkmn] # Filters out False
+        pkmn_list = list(map(lambda x: Game.add_version_exclusive_tag(x), pkmn_list))
+        self.box = pkmn_list
         
-        if dupes_clause_enabled:
+        dupes_clause_enabled_bool = True if dupes_clause_enabled_str == "Yes" else False
+        if dupes_clause_enabled_bool:
             self.populate_dupes()
 
         subset = set()
         if specific_pkmn_set_enabled:
             subset = set(self.box)
     
-        return self.distribution(area, daypart, pkmn_type, encounter_power_level, self.dupes, subset, print_enabled)
-    
+        
+        if request_type.strip().lower() == "generate":
+            return self.generate(area, daypart, pkmn_type, encounter_power_level, dupes_clause_enabled_bool, subset, print_enabled)
+        
+        elif request_type.strip().lower() == "distribution":
+            return self.distribution(area, daypart, pkmn_type, encounter_power_level, dupes_clause_enabled_bool, subset, print_enabled)
+
     def add_version_exclusive_tag(pkmn_name: str):
         return Area.add_version_exclusive_tag(pkmn_name)
     
