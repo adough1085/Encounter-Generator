@@ -59,9 +59,9 @@ def str_to_distribution(pkmn_name: str, percentage: float):
 
 def convert_distributions(old_distributions: List):
     new_list = []
-    for pkmn in old_distributions:
+    for pkmn in old_distributions: # pkmn instances have attributes name, percentage, and truncated_percentage
         pkmn_name = pkmn.name.split("_")[0]
-        percent = pkmn.percentage
+        percent = pkmn.truncated_percentage
         new_list.append(str_to_distribution(pkmn_name, percent))
     return new_list
 
@@ -117,13 +117,15 @@ def get_pokemons():
 @app.post("/generate", response_model=Generation_Output)
 def generate(gen_input: Generation_Input):
     g = Game(gen_input.game)
-    generated_pkmn = g.process_generate_request(gen_input.sharedText, gen_input.area, gen_input.time, gen_input.pkmnType, int(gen_input.power), gen_input.dupes, gen_input.specificPkmn, False)
+    generated_pkmn = g.process_generate_distribution_request("generate",gen_input.sharedText, gen_input.area, gen_input.time, gen_input.pkmnType, int(gen_input.power), gen_input.dupes, gen_input.specificPkmn, False)
     return convert_generation(generated_pkmn)
 
 @app.post("/distribution", response_model=Distributions)
 def distribution(dist_input: Distribution_Input):
     g = Game(dist_input.game)
-    calculated_dist = g.process_distribution_request(dist_input.sharedText, dist_input.area, dist_input.time, dist_input.pkmnType, int(dist_input.power), dist_input.dupes, dist_input.specificPkmn, False)
+    print("dist_input.specificPkmn")
+    print(dist_input.specificPkmn)
+    calculated_dist = g.process_generate_distribution_request("distribution",dist_input.sharedText, dist_input.area, dist_input.time, dist_input.pkmnType, int(dist_input.power), dist_input.dupes, dist_input.specificPkmn, False)
     return Distributions(location_name=dist_input.area, distributions=convert_distributions(calculated_dist))
 
 

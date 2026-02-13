@@ -349,13 +349,15 @@ class Area:
                 """
                 self.name = name
                 self.percentage = percentage
+                self.truncated_percentage = 0.0
                 self.matching_type = matching_type
 
             def set_percentage(self, new_percentage: float):
+                    self.percentage = new_percentage 
                     new_percentage = new_percentage * 10000 # Multiplying to 5 whole digits
                     new_percentage = new_percentage // 1 # Truncating
                     new_percentage = new_percentage / 100 # Dividing down to 5 decimal places
-                    self.percentage = new_percentage
+                    self.truncated_percentage = new_percentage
                 
 
 
