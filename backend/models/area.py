@@ -499,21 +499,6 @@ class Area:
         
         return alpha
 
-    def validate_compatible_version(game_string, pkmn_to_check):
-        """
-        Docstring for correct_version
-        
-        :param self: Area object.
-        :param game_string: String object representing game version, either "Scarlet" or "Violet"
-        :param pkmn_to_check: String object representing name of Pokemon.
-        """
-        if game_string.lower() == "scarlet" and pkmn_to_check.lower().find("violet") == -1:
-            return True
-        elif game_string.lower() == "violet" and pkmn_to_check.lower().find("scarlet") == -1:
-            return True 
-        else:
-            return False
-
     def activate_encounter_power(encounter_power_number):
         """
         Docstring for power_int
@@ -535,7 +520,7 @@ class Area:
             return False
         
         return random.randint(1,100) <= upper_bound
-    
+
     def add_version_exclusive_tag(pkmn_name: str):
         pokedex = list()
         with open(r"data/pokedex/links.txt","r") as f1:
@@ -551,7 +536,6 @@ class Area:
         # Otherwise, simply return a reformatted name
         return pkmn_name.strip().title()
         
-
     def remove_version_exclusive_tag(pkmn_name: str):
         """
         Docstring for remove_version_exclusive_tag
@@ -567,7 +551,7 @@ class Area:
             pkmn_name = pkmn_name.replace("(violet)", " ")
             pkmn_name = pkmn_name.strip()
         return pkmn_name.title() # Converts something like Deino 
-    
+
     def validate_area(area_name):
         areas = {
         "Alfornada Cavern",
@@ -604,7 +588,22 @@ class Area:
         }
 
         return any(area_name.lower() == area.lower() for area in areas)
-    
+
+    def validate_compatible_version(game_string, pkmn_to_check):
+        """
+        Docstring for correct_version
+        
+        :param self: Area object.
+        :param game_string: String object representing game version, either "Scarlet" or "Violet"
+        :param pkmn_to_check: String object representing name of Pokemon.
+        """
+        if game_string.lower() == "scarlet" and pkmn_to_check.lower().find("violet") == -1:
+            return True
+        elif game_string.lower() == "violet" and pkmn_to_check.lower().find("scarlet") == -1:
+            return True 
+        else:
+            return False
+
     def validate_type(type_input):
         types = ["Normal","Fighting","Flying","Poison","Ground","Rock","Bug","Ghost","Steel","Fire","Water","Grass","Electric","Psychic","Ice","Dragon","Dark","Fairy"]
         return any(type_input.strip().title() == pkmn_type for pkmn_type in types)
