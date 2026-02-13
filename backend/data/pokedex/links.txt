@@ -148,9 +148,9 @@ Meowth,Meowth_Persian
 Persian,Meowth_Persian
 Drifloon (Scarlet),Drifloon (Scarlet)_Drifblim (Scarlet)
 Drifblim (Scarlet),Drifloon (Scarlet)_Drifblim (Scarlet)
-Flabébé,Flabébé_Floette_Florges
-Floette,Flabébé_Floette_Florges
-Florges,Flabébé_Floette_Florges
+Flabebe,Flabebe_Floette_Florges
+Floette,Flabebe_Floette_Florges
+Florges,Flabebe_Floette_Florges
 Diglett,Diglett_Dugtrio
 Dugtrio,Diglett_Dugtrio
 Torkoal,Torkoal
