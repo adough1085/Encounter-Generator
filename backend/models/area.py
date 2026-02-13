@@ -469,7 +469,7 @@ class Area:
         alpha["East Province (Area Two)"] = east_province_area_two
         alpha["East Province (Area Three)"] = east_province_area_three
         alpha["Glaseado Mountain"] = glaseado_mountain
-        alpha["Great Crater of Paldea"] = great_crater_of_paldea
+        alpha["Great Crater Of Paldea"] = great_crater_of_paldea
         alpha["Inlet Grotto"] = inlet_grotto
         alpha["North Paldean Sea"] = north_paldean_sea
         alpha["North Province (Area One)"] = north_province_area_one
