@@ -547,6 +547,10 @@ class Area:
             if pkmn.find("Scarlet") != -1 or pkmn.find("Violet") != -1:
                 if Area.remove_version_exclusive_tag(pkmn_full_name) == Area.remove_version_exclusive_tag(pkmn_name):
                     return pkmn_full_name
+        
+        # Otherwise, simply return a reformatted name
+        return pkmn_name.strip().title()
+        
 
     def remove_version_exclusive_tag(pkmn_name: str):
         """
