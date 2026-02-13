@@ -409,8 +409,12 @@ class Area:
             else:
                 allowed.set_percentage(val/sum)
 
+        # Third, filter out Pokémon where the percentage is 0.0, not much reason to show Pokémon if you cannot catch them under set of parameters
+        allowed_pkmn = list(map(lambda pkmn: pkmn if pkmn.percentage > 0.0 else False, allowed_pkmn))
+        allowed_pkmn = [pkmn for pkmn in allowed_pkmn if pkmn] # Filters out False
+
         # Sort based on percentage values starting from largest to smallest
-        allowed_pkmn = sorted(allowed_pkmn, key=lambda wild: wild.percentage, reverse=True)
+        allowed_pkmn = sorted(allowed_pkmn, key=lambda pkmn: pkmn.percentage, reverse=True)
 
         if print_boolean:
             for allowed in allowed_pkmn:
