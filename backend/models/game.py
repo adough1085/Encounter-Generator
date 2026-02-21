@@ -122,17 +122,20 @@ class Game:
             # Logic to transform a diminutive form into a full form would transform into unintended forms. 
 
             pkmn_to_find = Game.remove_version_exclusive_tag(pkmn_to_find)
-            pkmn_found = any(Game.remove_version_exclusive_tag(native_pkmn.split("_")[0]) == pkmn_to_find for native_pkmn in area.pokemon)
-            if pkmn_found == False:
+            pkmn_key = False
+            for native_pkmn in area.pokemon:
+                if Game.remove_version_exclusive_tag(native_pkmn.split("_")[0]) == pkmn_to_find:
+                    pkmn_key = native_pkmn
+                    break
+            if not pkmn_key:
                 continue
 
             # Second, check dayparts.
             # False if area.dawn[native_pkmn] == 0.0 else True
             daypart_found = [False, False, False, False]
-            daypart_keys = [area.dawn.keys(), area.day.keys(), area.dusk.keys(), area.night.keys()]
-            for x in range(len(daypart_keys)):
-                dp = daypart_keys[x]
-                daypart_found[x] = any(Game.remove_version_exclusive_tag(native_pkmn.split("_")[0]) == pkmn_to_find for native_pkmn in dp)
+            dayparts = [area.dawn, area.day, area.dusk, area.night]
+            for index, dp in enumerate(dayparts):
+                daypart_found[index] = True if dp[pkmn_key] > 0 else False
 
             dawn_found = daypart_found[0]
             day_found = daypart_found[1]
@@ -143,16 +146,17 @@ class Game:
             if dawn_found and day_found and dusk_found and night_found:
                 habitats.append(area.name)
             # If a Pokemon is only found in specific dayparts, then it will list which Area and dayparts it can be found in.
+            # Discrepency in code name for dayparts and the display name is due to finding it is called Morning, Day, Evening, and Night later on.
             elif dawn_found or day_found or dusk_found or night_found:
                 string = f"{area.name} ("
                 if dawn_found:
-                    string = f"{string}Dawn, "
+                    string = f"{string}Morning, "
 
                 if day_found:
                     string = f"{string}Day, "
 
                 if dusk_found:
-                    string = f"{string}Dusk, "
+                    string = f"{string}Evening, "
 
                 if night_found:
                     string = f"{string}Night, "
