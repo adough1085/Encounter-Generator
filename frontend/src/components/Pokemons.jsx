@@ -3,12 +3,14 @@ import api from "../api.js";
 import LocatePokemonForm from './LocatePokemonForm.jsx';
 import DistributionForm from './DistributionForm.jsx';
 import GenerationForm from './GenerationForm.jsx';
+import PokemonSubstringForm from './PokemonSubstringForm.jsx';
 
 const PokemonList = () => {
   const [locations, setLocations] = useState([]);
   const [locateName, setLocateName] = useState([]);
   const [distributions, setDistributions] = useState([]);
   const [generation, setGeneration] = useState([]);
+  const [potentialPokemon, setPotentialPokemon] = useState([]);
   const [sharedText, setSharedText] = useState("");
   const [isChecked, setIsChecked] = useState(false);
 
@@ -67,6 +69,15 @@ const PokemonList = () => {
     }
   };
 
+  const pokemonSubstring = async (pokemonName) => {
+    try {
+      const response = await api.post('/subset', { name: pokemonName });
+      setPotentialPokemon(response.data.pokemons)
+    } catch (error) { 
+      console.error("Error finding potential Pokémon", error);
+    }
+  };
+
   // Not actually sure what this snippet does, used to run something on launch presumably
   useEffect(() => {
     //
@@ -113,6 +124,13 @@ const PokemonList = () => {
       <ul>
         {locations.map((location, index) => (
           <li key={index}>{location.name}</li>
+        ))}
+      </ul>
+      <PokemonSubstringForm pokemonSubstring={pokemonSubstring} />
+      <div>{potentialPokemon.length > 0 ? <p>Potential matches:</p> : <p>No potential matches found.</p>}</div>
+      <ul>
+        {potentialPokemon.map((pokemon, index) => (
+          <li key={index}>{pokemon.name}</li>
         ))}
       </ul>
     </div>

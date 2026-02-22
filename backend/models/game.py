@@ -178,6 +178,13 @@ class Game:
         # Return list of Areas that it can be found in.
         return habitats
 
+    def pkmn_substring(self, query: str):
+        pkmn_list = []
+        for pkmn in self.links.keys():
+            if pkmn.strip().lower().find(query.strip().lower()) != -1:
+                pkmn_list.append(pkmn) 
+        return pkmn_list
+
     def load_areas(self):
         """
         Docstring for load_areas

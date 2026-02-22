@@ -87,6 +87,8 @@ def convert_generation(old_generation: List):
     return Generation_Output(area=old_generation[0],time=old_generation[1],pkmn_name=old_generation[2])
 
 
+
+
 app = FastAPI()
 
 origins = [
@@ -138,6 +140,15 @@ def locate_pokemon(pokemon: Pokemon):
         real_pkmn_name = Game.add_version_exclusive_tag(real_pkmn_name)
 
     return Locations(pkmn_name=real_pkmn_name, locations=convert_locations(habitats))
+
+@app.post("/subset", response_model=Pokemons)
+def pkmn_substring(pokemon: Pokemon):
+    g = Game("Scarlet") # Does not check for dupes or version exclusives, just need this to initialize a game
+    possible_matches = g.pkmn_substring(pokemon.name) # habitats[last index] = Pokémon name
+    returnable_list = []
+    for pkmn in possible_matches:
+        returnable_list.append(Pokemon(name=pkmn))
+    return Pokemons(pokemons=returnable_list)
 
 """
 Testing
