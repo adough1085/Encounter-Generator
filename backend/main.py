@@ -93,7 +93,8 @@ app = FastAPI()
 
 origins = [
     "https://localhost:5173", # origin for testing 
-    "https://3.137.101.123" # origin for deployment
+    "https://3.137.101.123", # origin for deployment (IP address)
+    "https://scviselector.com"
 ]
 
 
